@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -46,7 +47,8 @@ fun foodcard(img: Int,
     Box(
         modifier = Modifier
             .width(600.dp)
-            .height(261.dp)
+            .height(261.dp),
+
 
     ){
         Column(
@@ -57,7 +59,8 @@ fun foodcard(img: Int,
             Card(
                 modifier = Modifier
                     .width(600.dp)
-                    .height(193.dp)
+                    .height(193.dp),
+                elevation = CardDefaults.cardElevation(5.dp),
             ){
                 Box(modifier = Modifier) {
                     Image(painter = painterResource(id = img),

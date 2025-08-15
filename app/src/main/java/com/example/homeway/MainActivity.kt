@@ -9,8 +9,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.example.homeway.presentation.deshbord.component.BlackFilterScreen
-
-
+import com.example.homeway.presentation.deshbord.component.CallmainScreen
+import com.example.homeway.presentation.deshbord.component.FourColumnsFoodCategory
 
 
 class MainActivity : ComponentActivity() {
@@ -24,9 +24,12 @@ class MainActivity : ComponentActivity() {
      Surface (modifier = Modifier.fillMaxSize()){
 
 
-         BlackFilterScreen()
+         //BlackFilterScreen()
 
-       //  CallmainScreen()
+        CallmainScreen()
+
+
+        // FourColumnsFoodCategory()
 
       }
     }

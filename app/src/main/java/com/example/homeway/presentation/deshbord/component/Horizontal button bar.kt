@@ -58,7 +58,7 @@ fun myapp(){
                 .horizontalScroll(rememberScrollState())
                 .width(IntrinsicSize.Min)
                 .height(28.dp)
-                .padding(end = 17.dp),
+                .padding(start = 5.dp,end = 17.dp),
             verticalAlignment = Alignment.CenterVertically
         ){
 
@@ -68,13 +68,9 @@ fun myapp(){
                 modifier = Modifier
                     .width(66.dp)
                     .height(27.dp)
-                    .align(Alignment.CenterVertically)
-                    .border(
-                        width = 1.5.dp,
-                        color = Color(0xFF808080).copy(alpha = 0.7f),
-                        shape = RoundedCornerShape(8.dp)
-                    ),
+                    .align(Alignment.CenterVertically),
                 colors = CardDefaults.cardColors(containerColor = Color.White),
+                elevation = CardDefaults.cardElevation(5.dp),
                 shape = RoundedCornerShape(8.dp)
             ){
                 Row(
@@ -118,12 +114,8 @@ fun myapp(){
                 modifier = Modifier
                     .width(70.dp)
                     .height(27.dp)
-                    .align(Alignment.CenterVertically)
-                    .border(
-                        width = 1.5.dp,
-                        color = Color(0xFF808080).copy(alpha = 0.7f),
-                        shape = RoundedCornerShape(8.dp)
-                    ),
+                    .align(Alignment.CenterVertically),
+                elevation = CardDefaults.cardElevation(5.dp),
                 colors = CardDefaults.cardColors(containerColor = Color.White),
                 shape = RoundedCornerShape(8.dp)
             ){
@@ -165,12 +157,8 @@ fun myapp(){
                 modifier = Modifier
                     .width(74.dp)
                     .height(27.dp)
-                    .align(Alignment.CenterVertically)
-                    .border(
-                        width = 1.5.dp,
-                        color = Color(0xFF808080).copy(alpha = 0.7f),
-                        shape = RoundedCornerShape(8.dp)
-                    ),
+                    .align(Alignment.CenterVertically),
+                elevation = CardDefaults.cardElevation(5.dp),
                 colors = CardDefaults.cardColors(containerColor = Color.White),
                 shape = RoundedCornerShape(8.dp)
             ){
@@ -214,12 +202,8 @@ fun myapp(){
                 modifier = Modifier
                     .width(56.dp)
                     .height(27.dp)
-                    .align(Alignment.CenterVertically)
-                    .border(
-                        width = 1.5.dp,
-                        color = Color(0xFF808080).copy(alpha = 0.7f),
-                        shape = RoundedCornerShape(8.dp)
-                    ),
+                    .align(Alignment.CenterVertically),
+                elevation = CardDefaults.cardElevation(5.dp),
                 colors = CardDefaults.cardColors(containerColor = Color.White),
                 shape = RoundedCornerShape(8.dp)
             ){
@@ -264,12 +248,8 @@ fun myapp(){
                 modifier = Modifier
                     .width(82.dp)
                     .height(27.dp)
-                    .align(Alignment.CenterVertically)
-                    .border(
-                        width = 1.5.dp,
-                        color = Color(0xFF808080).copy(alpha = 0.7f),
-                        shape = RoundedCornerShape(8.dp)
-                    ),
+                    .align(Alignment.CenterVertically),
+                elevation = CardDefaults.cardElevation(5.dp),
                 colors = CardDefaults.cardColors(containerColor = Color.White),
                 shape = RoundedCornerShape(8.dp)
             ){
@@ -313,12 +293,8 @@ fun myapp(){
                 modifier = Modifier
                     .width(72.dp)
                     .height(27.dp)
-                    .align(Alignment.CenterVertically)
-                    .border(
-                        width = 1.5.dp,
-                        color = Color(0xFF808080).copy(alpha = 0.7f),
-                        shape = RoundedCornerShape(8.dp)
-                    ),
+                    .align(Alignment.CenterVertically),
+                elevation = CardDefaults.cardElevation(5.dp),
                 colors = CardDefaults.cardColors(containerColor = Color.White),
                 shape = RoundedCornerShape(8.dp)
             ){
@@ -363,12 +339,8 @@ fun myapp(){
                 modifier = Modifier
                     .width(78.dp)
                     .height(27.dp)
-                    .align(Alignment.CenterVertically)
-                    .border(
-                        width = 1.5.dp,
-                        color = Color(0xFF808080).copy(alpha = 0.7f),
-                        shape = RoundedCornerShape(8.dp)
-                    ),
+                    .align(Alignment.CenterVertically),
+                elevation = CardDefaults.cardElevation(5.dp),
                 colors = CardDefaults.cardColors(containerColor = Color.White),
                 shape = RoundedCornerShape(8.dp)
             ){
@@ -412,12 +384,8 @@ fun myapp(){
                 modifier = Modifier
                     .width(82.dp)
                     .height(27.dp)
-                    .align(Alignment.CenterVertically)
-                    .border(
-                        width = 1.5.dp,
-                        color = Color(0xFF808080).copy(alpha = 0.7f),
-                        shape = RoundedCornerShape(8.dp)
-                    ),
+                    .align(Alignment.CenterVertically),
+                elevation = CardDefaults.cardElevation(5.dp),
                 colors = CardDefaults.cardColors(containerColor = Color.White),
                 shape = RoundedCornerShape(8.dp)
             ){
