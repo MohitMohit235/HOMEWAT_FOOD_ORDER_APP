@@ -47,7 +47,6 @@ fun My_preview() {
         .width(600.dp)
         .height(180.dp),
         shape = RoundedCornerShape(12.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     ){
 
         Row(

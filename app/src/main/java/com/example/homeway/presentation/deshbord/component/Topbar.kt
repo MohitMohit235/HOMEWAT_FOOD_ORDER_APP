@@ -158,7 +158,7 @@ fun topbar(categories: List<String>,
                         selected = selectedTabIndex == index,
                         onClick = { onTabSelected(index) },
                         selectedContentColor = Color.Black,
-                        unselectedContentColor = Color(0xFF626161)
+                        unselectedContentColor = Color.Black.copy(alpha = 0.20f)
                     ) {
                         Row(
                             horizontalArrangement = Arrangement.Center,
