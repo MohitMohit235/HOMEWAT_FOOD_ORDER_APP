@@ -24,6 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.homeway.R
@@ -40,7 +41,7 @@ fun foodcard(img: Int,
 ) {
 
     val marcellusFont =FontFamily(
-        Font(R.font.manuale_regular, FontWeight.Normal))
+        Font(R.font.lato_regular, FontWeight.Normal))
 
 
 
@@ -169,3 +170,15 @@ fun foodcard(img: Int,
 }
 
 
+@Preview
+@Composable
+private fun kok() {
+    foodcard(img = R.drawable.penne_pasta,
+        dishname = "Penne Pasta",
+        countryfood = "Italy",
+        restorentplace = "Lashkar , Gwalior",
+        price = "₹400",
+        distance = "1.6Km",
+        veg_nonveg = R.drawable.veg_icon
+    )
+}
