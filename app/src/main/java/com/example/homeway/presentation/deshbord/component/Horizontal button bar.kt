@@ -1,7 +1,7 @@
 package com.example.homeway.presentation.deshbord.component
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -66,6 +66,7 @@ fun myapp(){
 
             Card(
                 modifier = Modifier
+                    .clickable{}
                     .width(66.dp)
                     .height(27.dp)
                     .align(Alignment.CenterVertically),
