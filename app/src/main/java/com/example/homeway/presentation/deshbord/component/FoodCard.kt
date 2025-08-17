@@ -1,11 +1,16 @@
 package com.example.homeway.presentation.deshbord.component
 
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.hoverable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsHoveredAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -16,8 +21,13 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -39,29 +49,36 @@ fun foodcard(img: Int,
              restorentplace: String,
              veg_nonveg: Int
 ) {
+    val interactionSource = remember { MutableInteractionSource() }
+    val isHovered by interactionSource.collectIsHoveredAsState()
 
     val marcellusFont =FontFamily(
-        Font(R.font.lato_regular, FontWeight.Normal))
+        Font(R.font.montserrat_regular, FontWeight.Normal))
 
+    val animatedElevation by animateDpAsState(
+        targetValue = if (isHovered) 10.dp else 2.dp,
+        label = "elevationAnimation"
+    )
 
-
-    Box(
+    Card(
         modifier = Modifier
-            .width(600.dp)
-            .height(261.dp),
-
-
-    ){
+            .fillMaxWidth()
+            .height(260.dp)
+            .size(160.dp)
+            .hoverable(interactionSource)
+            .shadow(animatedElevation, shape = RoundedCornerShape(1.dp)),
+        colors = CardDefaults.cardColors(containerColor = Color.White)
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight()
         ){
             Card(
+                shape = RoundedCornerShape(1.dp),
                 modifier = Modifier
-                    .width(600.dp)
-                    .height(193.dp),
-                elevation = CardDefaults.cardElevation(5.dp),
+                    .fillMaxWidth()
+                    .height(193.dp)
             ){
                 Box(modifier = Modifier) {
                     Image(painter = painterResource(id = img),
@@ -109,7 +126,11 @@ fun foodcard(img: Int,
 
 
                 ){
-                Column (modifier = Modifier.fillMaxHeight()){
+                Column (
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .padding(start = 10.dp)
+                ){
                     Text(
                         text = dishname,
                         fontFamily = marcellusFont,
@@ -136,6 +157,7 @@ fun foodcard(img: Int,
 
                 Column(modifier = Modifier
                     .fillMaxHeight()
+                    .padding(end = 10.dp)
                     .align(Alignment.CenterEnd),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.End
@@ -172,7 +194,7 @@ fun foodcard(img: Int,
 
 @Preview
 @Composable
-private fun kok() {
+private fun poop() {
     foodcard(img = R.drawable.penne_pasta,
         dishname = "Penne Pasta",
         countryfood = "Italy",
