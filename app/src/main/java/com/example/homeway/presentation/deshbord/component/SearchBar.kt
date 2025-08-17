@@ -49,7 +49,7 @@ fun SearchBar() {
         )
         {
             Row(modifier = Modifier
-                .padding(vertical = 5.dp, horizontal = 10.dp),
+                .padding(vertical = 8.dp, horizontal = 10.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ){
@@ -60,10 +60,10 @@ fun SearchBar() {
                     modifier = Modifier.size(25.dp)
                 )
 
-                Spacer(modifier = Modifier.width(5.dp))
+                Spacer(modifier = Modifier.width(10.dp))
 
                 Text(
-                    text = "Search Restorers and Foods",
+                    text = "Search Restorents and Foods",
                     color = Color.Black.copy(alpha = 0.40f),
                     fontSize = 16.sp,
                     fontFamily = jonefont

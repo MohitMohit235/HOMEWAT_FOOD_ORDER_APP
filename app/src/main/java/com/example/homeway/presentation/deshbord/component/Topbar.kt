@@ -3,6 +3,7 @@ package com.example.homeway.presentation.deshbord.component
 import android.text.Layout
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,17 +16,30 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.IconButton
 import androidx.compose.material.ScrollableTabRow
+import androidx.compose.material.Surface
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Place
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.PlainTooltip
 import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -38,9 +52,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.homeway.R
+import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
+import androidx.compose.material3.TooltipBox
+import androidx.compose.material3.TooltipDefaults
+import androidx.compose.material3.rememberTooltipState
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.input.pointer.pointerInput
 
 
 @Composable
@@ -50,6 +72,10 @@ fun topbar(categories: List<String>,
     val marcellusFont =FontFamily(
         Font(R.font.marcellus_regular, FontWeight.Normal)
     )
+
+    var checked by remember { mutableStateOf(true) }
+
+
 
     Box(modifier = Modifier
         .fillMaxWidth()
@@ -117,7 +143,44 @@ fun topbar(categories: List<String>,
                         .padding(top = 3.dp)
 
                 )
-                Spacer(modifier = Modifier.weight(0.10f))
+                Spacer(modifier = Modifier.weight(0.9f))
+
+                Switch(
+                    checked = checked,
+                    onCheckedChange = {
+                        checked = it
+                    },
+
+                    modifier = Modifier
+                        .scale(0.6f)
+                        .align(Alignment.CenterVertically),
+
+                    thumbContent = {
+                        if (checked) {
+                            Image(
+                                painter = painterResource(R.drawable.circal_veg),
+                                contentDescription = null,
+                                modifier = Modifier.size(SwitchDefaults.IconSize)
+                            )
+                        } else {
+                            Image(
+                                painter = painterResource(R.drawable.circal_nonveg),
+                                contentDescription = null,
+                                modifier = Modifier.size(SwitchDefaults.IconSize)
+                            )
+                        }
+                    },
+                            colors = SwitchDefaults.colors(
+                        checkedThumbColor =Color(0xFFFFFFFF),
+                        checkedTrackColor =Color(0xFF09AA39) ,
+                        uncheckedThumbColor = Color(0xFFFFFFFF),
+                        uncheckedTrackColor =Color(0xFF663333) ,
+                        uncheckedBorderColor = Color.Transparent,
+
+                    ),
+                )
+
+                Spacer(modifier = Modifier.width(5.dp))
                 Box(
                     modifier = Modifier
                         .size(35.dp)
@@ -188,3 +251,19 @@ fun topbar(categories: List<String>,
         }
     }
 }
+
+@Preview
+@Composable
+private fun pppp() {
+
+    var selectedTab by remember { mutableStateOf(0) }
+    val categories = listOf(
+        "ALL", "Pizza", "Burger", "Pasta", "Noodle",
+        "Curry", "Fish", "Dal fry", "Biryani", "See all",
+
+        )
+    topbar( categories = categories,
+        selectedTabIndex = selectedTab,
+        onTabSelected = { selectedTab = it })
+}
+

@@ -72,7 +72,7 @@ fun MY_foodCategory(img: Int, title: String, Discription : String) {
 
             Column(
                 modifier = Modifier
-                    .width(185.dp)
+                    .fillMaxWidth()
                     .fillMaxHeight(),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.Start
@@ -81,7 +81,7 @@ fun MY_foodCategory(img: Int, title: String, Discription : String) {
                     Text(
                         text = title,
                         fontFamily = jonefont,
-                        fontSize = 15.sp,
+                        fontSize = 19.sp,
                         color = Color.Black.copy(alpha = 0.80f)
                     )
 
@@ -89,7 +89,7 @@ fun MY_foodCategory(img: Int, title: String, Discription : String) {
 
                     Text(
                         text = Discription,
-                        fontSize = 9.sp,
+                        fontSize = 12.sp,
                         color = Color.Black.copy(alpha = 0.60f),
                         fontFamily = jonefont
                     )
