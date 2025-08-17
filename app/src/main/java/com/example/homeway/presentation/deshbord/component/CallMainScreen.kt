@@ -29,11 +29,9 @@ import com.example.homeway.R
 
 @Composable
 fun CallmainScreen(modifier: Modifier = Modifier) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color(0xFFF5F8FF))
-    ) {
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(Color(0xFFF5F8FF))) {
 
         var selectedTab by remember { mutableStateOf(0) }
         val categories = listOf(
@@ -43,14 +41,11 @@ fun CallmainScreen(modifier: Modifier = Modifier) {
             )
 
 
-        Column(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+        Column(modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally){
 
 
-            topbar(
-                categories = categories,
+            topbar( categories = categories,
                 selectedTabIndex = selectedTab,
                 onTabSelected = { selectedTab = it })
 
@@ -67,16 +62,18 @@ fun CallmainScreen(modifier: Modifier = Modifier) {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 contentPadding = PaddingValues(horizontal = 18.dp)
             ) {
-                item {
-                    Spacer(modifier = Modifier.height(30.dp))
+                items(10) { index ->
+
+                    Spacer(modifier = Modifier.width(10.dp))
+
                     My_preview()
 
-                    Spacer(modifier = Modifier.height(30.dp))
+                    Spacer(modifier = Modifier.padding(vertical = 10.dp))
                     myapp()
 
                     Spacer(modifier = Modifier.height(30.dp))
-                    foodcard(
-                        img = R.drawable.penne_pasta,
+
+                    foodcard(img = R.drawable.penne_pasta,
                         dishname = "Penne Pasta",
                         countryfood = "Italy",
                         restorentplace = "Lashkar , Gwalior",
@@ -87,92 +84,84 @@ fun CallmainScreen(modifier: Modifier = Modifier) {
 
                     Spacer(modifier = Modifier.height(30.dp))
 
-                    foodcard(
-                        img = R.drawable.penne_pasta,
-                        dishname = "Penne Pasta",
-                        countryfood = "Italy",
-                        restorentplace = "Lashkar , Gwalior",
-                        price = "₹400",
-                        distance = "1.6Km",
-                        veg_nonveg = R.drawable.veg_icon
-                    )
-                    Spacer(modifier = Modifier.height(30.dp))
-
-                    foodcard(
-                        img = R.drawable.penne_pasta,
-                        dishname = "Penne Pasta",
-                        countryfood = "Italy",
-                        restorentplace = "Lashkar , Gwalior",
-                        price = "₹400",
-                        distance = "1.6Km",
-                        veg_nonveg = R.drawable.veg_icon
+                    foodcard(img = R.drawable.burger_img,
+                        dishname = "Cheeseburger",
+                        countryfood = "United States",
+                        restorentplace = "City Center , Gwalior",
+                        price = "₹200",
+                        distance = "1Km",
+                        veg_nonveg = R.drawable.nonveg_icon
                     )
 
                     Spacer(modifier = Modifier.height(30.dp))
 
-                    foodcard(
-                        img = R.drawable.penne_pasta,
-                        dishname = "Penne Pasta",
-                        countryfood = "Italy",
-                        restorentplace = "Lashkar , Gwalior",
-                        price = "₹400",
-                        distance = "1.6Km",
-                        veg_nonveg = R.drawable.veg_icon
+                    foodcard(img = R.drawable.pizza_img,
+                        dishname = "Pepperoni Pizza",
+                        countryfood = "United States",
+                        restorentplace = "Maharaja Complex DD Nagar , Gwalior",
+                        price = "₹445",
+                        distance = "600m",
+                        veg_nonveg = R.drawable.nonveg_icon
                     )
 
                     Spacer(modifier = Modifier.height(30.dp))
 
-                    foodcard(
-                        img = R.drawable.penne_pasta,
-                        dishname = "Penne Pasta",
-                        countryfood = "Italy",
-                        restorentplace = "Lashkar , Gwalior",
-                        price = "₹400",
-                        distance = "1.6Km",
+                    foodcard(img = R.drawable.biryani,
+                        dishname = "Chicken Biryani",
+                        countryfood = "hyderabad , India",
+                        restorentplace = "Phool Bagh , Gwalior",
+                        price = "₹530",
+                        distance = "4Km",
+                        veg_nonveg = R.drawable.nonveg_icon
+                    )
+
+                    Spacer(modifier = Modifier.height(30.dp))
+
+                    foodcard(img = R.drawable.img,
+                        dishname = "Chicken Tikka Masala",
+                        countryfood = "Punjab , India",
+                        restorentplace = "Gandhi Nagar , Gwalior",
+                        price = "₹160",
+                        distance = "1Km",
                         veg_nonveg = R.drawable.veg_icon
                     )
 
                     Spacer(modifier = Modifier.height(30.dp))
 
-                    foodcard(
-                        img = R.drawable.penne_pasta,
-                        dishname = "Penne Pasta",
-                        countryfood = "Italy",
-                        restorentplace = "Lashkar , Gwalior",
-                        price = "₹400",
-                        distance = "1.6Km",
+                    foodcard(img = R.drawable.img6,
+                        dishname = "Dal Tadka",
+                        countryfood = "North Indian",
+                        restorentplace = "City Center , Gwalior",
+                        price = "₹120",
+                        distance = "100m",
                         veg_nonveg = R.drawable.veg_icon
                     )
 
                     Spacer(modifier = Modifier.height(30.dp))
 
-                    foodcard(
-                        img = R.drawable.penne_pasta,
-                        dishname = "Penne Pasta",
-                        countryfood = "Italy",
-                        restorentplace = "Lashkar , Gwalior",
-                        price = "₹400",
-                        distance = "1.6Km",
-                        veg_nonveg = R.drawable.veg_icon
+                    foodcard(img = R.drawable.img7,
+                        dishname = "Chicken Madras",
+                        countryfood = "Kashmir , India",
+                        restorentplace = "DD Nagar,Gwalior",
+                        price = "₹760",
+                        distance = "300m",
+                        veg_nonveg = R.drawable.nonveg_icon
                     )
 
                     Spacer(modifier = Modifier.height(30.dp))
 
-                    foodcard(
-                        img = R.drawable.penne_pasta,
-                        dishname = "Penne Pasta",
-                        countryfood = "Italy",
-                        restorentplace = "Lashkar , Gwalior",
-                        price = "₹400",
-                        distance = "1.6Km",
+                    foodcard(img = R.drawable.img8,
+                        dishname = "Rasgulla",
+                        countryfood = "West Bengal",
+                        restorentplace = "Phool Bagh,Gwalior",
+                        price = "₹220",
+                        distance = "4Km",
                         veg_nonveg = R.drawable.veg_icon
                     )
-                    Spacer(modifier = Modifier.height(60.dp))
+
                 }
             }
 
         }
     }
 }
-
-
