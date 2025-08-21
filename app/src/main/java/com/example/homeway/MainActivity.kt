@@ -22,10 +22,11 @@ class MainActivity : ComponentActivity() {
 
      Surface (modifier = Modifier.fillMaxSize()){
 
+            //AIsearch()
 
          //BlackFilterScreen()
 
-        CallmainScreen()
+       CallmainScreen()
 
 
         // FourColumnsFoodCategory()

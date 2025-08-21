@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.ScrollableTabRow
+import androidx.compose.material3.Switch
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material.icons.Icons
@@ -26,9 +27,12 @@ import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Place
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.VerticalDivider
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -39,6 +43,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
@@ -53,6 +58,8 @@ import androidx.compose.ui.unit.sp
 import com.example.homeway.R
 
 
+
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun topbar(categories: List<String>,
@@ -61,7 +68,7 @@ fun topbar(categories: List<String>,
     val marcellusFont =FontFamily(
         Font(R.font.marcellus_regular, FontWeight.Normal)
     )
-
+    var checked by remember { mutableStateOf(true) }
     var showBottomSheet by remember { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState(
         skipPartiallyExpanded = false,
@@ -85,7 +92,7 @@ fun topbar(categories: List<String>,
                 modifier = Modifier
                     .padding(top = 40.dp)
                     .fillMaxWidth()
-                    .height(41.dp),
+                    .height(30.dp),
                 horizontalArrangement = Arrangement.Absolute.Left,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -105,12 +112,11 @@ fun topbar(categories: List<String>,
                     fontFamily = marcellusFont,
                     modifier = Modifier.padding(start = 0.dp)
                 )
-                Text(
-                    text = ",",
-                    color = Color(0xFF626161),
-                    fontSize = 15.sp,
-                    fontWeight = FontWeight.Medium,
-                    fontFamily = marcellusFont
+
+                Spacer(modifier = Modifier.width(4.dp))
+                VerticalDivider(
+                    color = Color(0xFF6471FF),
+                    modifier = Modifier.height(15.dp).padding(vertical = 2.dp)
                 )
 
                 Text(
@@ -133,10 +139,45 @@ fun topbar(categories: List<String>,
                         .padding(top = 3.dp)
 
                 )
-                Spacer(modifier = Modifier.weight(0.10f))
+                Spacer(modifier = Modifier.weight(0.5f))
+
+                Switch(
+                    modifier = Modifier.scale(0.6f),
+                    checked = checked,
+                    onCheckedChange = {checked=it},
+
+                    colors = SwitchDefaults.colors(
+                        checkedThumbColor = Color(0xFFFFFFFF),
+                        checkedTrackColor =Color(0xFFFFFFFF),
+                        checkedBorderColor = Color(0xFF09AA39),
+                        uncheckedThumbColor =Color(0xFFFFFFFF),
+                        uncheckedTrackColor = Color(0xFFFFFFFF),
+                        uncheckedBorderColor = Color(0xFF663333)
+
+                    ),
+
+                    thumbContent = {
+                        if (checked){
+                            Image(
+                                painter = painterResource(R.drawable.circal_veg),
+                                contentDescription = null
+                            )
+                        }else{
+                            Image(
+                                painter = painterResource(R.drawable.circal_nonveg),
+                                contentDescription = null
+                            )
+                        }
+                    }
+                )
+
+
+
+                Spacer(modifier = Modifier.width(6.dp))
+
                 Box(
                     modifier = Modifier
-                        .size(35.dp)
+                        .size(30.dp)
                         .clip(CircleShape)
 
 

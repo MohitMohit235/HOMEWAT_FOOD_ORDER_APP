@@ -37,14 +37,14 @@ fun SearchBar() {
 
         Card(
             modifier = Modifier
-            .width(400.dp)
-            .height(40.dp),
+            .width(380.dp)
+            .height(45.dp),
             elevation = CardDefaults.cardElevation(5.dp),
             colors = CardDefaults.cardColors(containerColor = Color.White)
         )
         {
             Row(modifier = Modifier
-                .padding(vertical = 8.dp, horizontal = 10.dp),
+                .padding(vertical = 10.dp, horizontal = 10.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ){
@@ -55,7 +55,7 @@ fun SearchBar() {
                     modifier = Modifier.size(25.dp)
                 )
 
-                Spacer(modifier = Modifier.width(10.dp))
+                Spacer(modifier = Modifier.width(15.dp))
 
                 Text(
                     text = "Search Restorents and Foods",
