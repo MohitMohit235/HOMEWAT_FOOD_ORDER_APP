@@ -9,7 +9,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.example.homeway.presentation.deshbord.component.CallmainScreen
-
+import com.example.homeway.presentation.deshbord.component.CartScreen
+import com.example.homeway.presentation.deshbord.component.checkout
 
 
 class MainActivity : ComponentActivity() {
@@ -26,8 +27,11 @@ class MainActivity : ComponentActivity() {
 
          //BlackFilterScreen()
 
-       CallmainScreen()
+     //  CallmainScreen()
 
+      //   CartScreen()
+
+         checkout()
 
         // FourColumnsFoodCategory()
 

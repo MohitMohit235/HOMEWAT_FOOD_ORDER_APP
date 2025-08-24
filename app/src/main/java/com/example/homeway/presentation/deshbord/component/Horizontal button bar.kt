@@ -93,7 +93,7 @@ fun myapp(){
                         modifier = Modifier
                             .size(18.dp)
                             .align(Alignment.CenterVertically)
-                            .padding(start = 6.dp)
+                            .padding(start = 8.dp)
                     )
                     Box(
                         modifier = Modifier
@@ -137,7 +137,7 @@ fun myapp(){
                         modifier = Modifier
                             .size(18.dp)
                             .align(Alignment.CenterVertically)
-                            .padding(start = 6.dp)
+                            .padding(start = 8.dp)
                     )
                     Box(
                         modifier = Modifier
@@ -180,7 +180,7 @@ fun myapp(){
                         modifier = Modifier
                             .size(18.dp)
                             .align(Alignment.CenterVertically)
-                            .padding(start = 6.dp)
+                            .padding(start = 8.dp)
                     )
                     Box(
                         modifier = Modifier
