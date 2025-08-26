@@ -3,7 +3,6 @@ package com.example.homeway.presentation.deshbord.component
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,7 +17,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.selection.selectable
@@ -31,27 +32,21 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.icons.filled.ArrowDropUp
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathEffect
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.Font
@@ -176,126 +171,6 @@ fun CartScreen(modifier: Modifier = Modifier) {
 }
 
 
-@Composable
-fun Cartfood(modifier: Modifier = Modifier) {
-
-    val cardfont = FontFamily(
-        Font(R.font.mergeone_regular, FontWeight.Normal)
-    )
-
-
-    var count by remember { mutableStateOf(1) }
-    Card(
-        colors = CardDefaults.cardColors(
-            containerColor = Color(0xFFEDEEFF)),
-        modifier = Modifier
-            .width(390.dp)
-            .height(100.dp),
-        onClick = {}
-    ){
-        Row (
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(6.dp)
-        ){
-
-            Box(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .width(110.dp)
-                    .clip(RoundedCornerShape(10.dp))
-            ){
-                Image(
-                    painter = painterResource(R.drawable.chole_bhature),
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop
-                )
-            }
-
-            Column (
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .width(145.dp)
-                    .padding(start = 10.dp),
-                verticalArrangement = Arrangement.Center
-            ){
-                Text(
-                    text = "Chole Bhature",
-                    fontFamily = cardfont,
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    color = Color.Black.copy(alpha = 0.6f)
-                )
-            Spacer(modifier= Modifier.height(5.dp))
-                Text(
-                    text = "₹Amount",
-                    fontFamily = cardfont,
-                    fontSize = 15.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    color = Color.Black.copy(alpha = 0.6f)
-                )
-            }
-
-
-            Box(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .fillMaxWidth(),
-                contentAlignment = Alignment.Center
-            ) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.padding(2.dp)
-                ) {
-
-
-                    Box(
-                        modifier = Modifier
-                            .size(28.dp)
-                            .clickable { count++ },
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Icon(
-                            Icons.Default.ArrowDropUp,
-                            contentDescription = "Increase",
-                            modifier = Modifier.size(50.dp)
-                        )
-                    }
-
-
-                    Text(
-                        text = "$count item",
-                        fontSize = 15.sp,
-                        modifier = Modifier.padding(vertical = 2.dp),
-                        fontFamily = cardfont,
-                        color = Color.Black.copy(alpha = 0.7f)
-                    )
-
-
-                    Box(
-                        modifier = Modifier
-                            .size(28.dp)
-                            .clickable { if (count > 0) count-- },
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Icon(
-                            Icons.Default.ArrowDropDown,
-                            contentDescription = "Decrease",
-                            modifier = Modifier.size(30.dp)
-                        )
-                    }
-                }
-            }
-
-
-
-        }
-    }
-
-}
-
 
 
 @Composable
@@ -415,120 +290,9 @@ fun Cartfood(modifier: Modifier = Modifier) {
 }
 
 
-@Preview
-@Composable
- fun checkout() {
-
-    val jonefont = FontFamily(
-        Font(R.font.mergeone_regular, FontWeight.Normal)
-    )
-
-    Surface(
-        modifier = Modifier
-            .fillMaxSize()
-    ){
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color(0xFFFFFFFF)),
-            contentAlignment = Alignment.TopCenter,
-
-            ) {
-
-            Column(
-                modifier = Modifier
-                    .width(370.dp)
-                    .fillMaxHeight(),
-                verticalArrangement = Arrangement.spacedBy(30.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ){
-
-                Box(
-                    modifier = Modifier
-                        .width(370.dp)
-                        .height(85.dp)
-                        .padding(top = 40.dp)
-
-                ){
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 10.dp)
-                            .height(50.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(70.dp)
-                    ){
-
-
-                        Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = null,
-                            tint = Color.Black.copy(alpha = 0.7f),
-                            modifier = Modifier.size(30.dp)
-                        )
 
 
 
-                        Text(
-                            text = "Check Out",
-                            fontSize = 30.sp,
-                            fontWeight = FontWeight.Normal,
-                            fontFamily = jonefont,
-                            color = Color.Black.copy(alpha = 0.7f)
-                        )
-
-                        Box(
-                            modifier = Modifier
-                                .size(40.dp)
-                                .clip(CircleShape),
-                            contentAlignment = Alignment.Center
-                        ){
-                            Icon(
-                                imageVector = Icons.Default.Close,
-                                contentDescription = null,
-                                tint = Color.Black.copy(alpha = 0.7f),
-                                modifier = Modifier.size(30.dp)
-                            )
-                        }
-
-                    }
-                }
-
-
-                LazyColumn (
-                    modifier = Modifier.height(580.dp).width(400.dp)
-                ){
-                    item(1){
-
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(330.dp),
-                            contentAlignment = Alignment.Center
-                        ){
-                                AddressSelectionCard()
-                        }
-
-                    }
-                }
-            }
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight(),
-                verticalArrangement = Arrangement.Bottom
-            ){
-                Checktotal()
-            }
-
-
-
-        }
-    }
-}
-
-
-@Preview
 @Composable
 private fun orederplace() {
     Box (
@@ -541,7 +305,7 @@ private fun orederplace() {
 
 
 
-
+@Preview
 @Composable
 fun Checktotal() {
 
@@ -694,31 +458,6 @@ fun Checktotal() {
 
 }
 
-@Composable
-fun DashedDivider(
-    color: Color = Color.Gray,
-    thickness: Dp = 1.dp,
-    dashWidth: Dp = 10.dp,
-    dashGap: Dp = 5.dp,
-    modifier: Modifier = Modifier
-) {
-    Canvas(
-        modifier = modifier
-            .width(352.dp)
-            .height(thickness)
-    ) {
-        drawLine(
-            color = color,
-            start = Offset(0f, size.height / 2),
-            end = Offset(size.width, size.height / 2),
-            strokeWidth = thickness.toPx(),
-            pathEffect = PathEffect.dashPathEffect(
-                floatArrayOf(dashWidth.toPx(), dashGap.toPx()), 0f
-            )
-        )
-    }
-}
-
 
 
 @Composable
@@ -734,7 +473,7 @@ fun AddressSelectionCard() {
         columns = GridCells.Fixed(2),
         modifier = Modifier
             .fillMaxWidth()
-            .height(320.dp)
+            .height(300.dp)
             .padding(5.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalArrangement = Arrangement.spacedBy(12.dp)
@@ -772,7 +511,7 @@ fun AddressSelectionCard() {
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceBetween,
-                            modifier = Modifier.width(130.dp)
+                            modifier = Modifier.width(130.dp).padding(end = 5.dp)
                         ) {
                             Text(
                                 text = option,
@@ -812,3 +551,4 @@ fun AddressSelectionCard() {
         }
     }
 }
+

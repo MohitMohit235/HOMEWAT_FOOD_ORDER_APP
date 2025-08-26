@@ -1,6 +1,7 @@
 package com.example.homeway.presentation.deshbord.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -111,6 +112,7 @@ fun SEE_ALL() {
                                 .fillMaxHeight()
                                 .fillMaxWidth()
                                 .padding(10.dp),
+                            verticalArrangement = Arrangement.spacedBy(10.dp),
                             horizontalAlignment = Alignment.Start,
 
                         ) {
