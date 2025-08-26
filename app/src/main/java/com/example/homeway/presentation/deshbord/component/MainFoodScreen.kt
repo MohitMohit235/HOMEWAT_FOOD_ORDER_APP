@@ -40,6 +40,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -331,7 +332,92 @@ fun FoodScreen() {
                     }
 
 
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(250.dp)
+                            .padding(8.dp)
+                    ) {
+                        // Left Grid - 4 small images
+                        Column(
+                            modifier = Modifier
+                                .weight(1f)
+                                .height(190.dp),
+                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .height(10.dp),
+                                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                            ) {
+                                Image(
+                                    painter = painterResource(R.drawable.penne_pasta),
+                                    contentDescription = "null",
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier.weight(1f)
+                                )
+                                Image(
+                                    painter = painterResource(R.drawable.penne_pasta),
+                                    contentDescription = "null",
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier.weight(1f)
+                                )
 
+                            }
+                            Row(
+                                modifier = Modifier.weight(1f),
+                                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                            ) {
+                                Image(
+                                    painter = painterResource(R.drawable.penne_pasta),
+                                    contentDescription = "null",
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier.weight(1f)
+                                )
+                                Image(
+                                    painter = painterResource(R.drawable.penne_pasta),
+                                    contentDescription = "null",
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier.weight(1f)
+                                )
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.width(8.dp))
+
+
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                                .height(190.dp)
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.penne_pasta),
+                                contentDescription = "null",
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.fillMaxHeight()
+                            )
+
+
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .align(Alignment.Center)
+                                    .background(Color.Black.copy(alpha = 0.6f))
+                                    .padding(horizontal = 16.dp, vertical = 8.dp),
+
+                            ) {
+                                Text(
+                                    text = "View More",
+                                    color = Color.White,
+                                    fontWeight = FontWeight.Normal,
+                                    fontSize = 16.sp,
+                                    modifier = Modifier.align(Alignment.Center)
+                                )
+                            }
+                        }
+                    }
 
 
                 }
