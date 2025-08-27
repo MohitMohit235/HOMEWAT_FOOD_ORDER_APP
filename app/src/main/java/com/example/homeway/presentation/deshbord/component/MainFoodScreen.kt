@@ -27,6 +27,7 @@ import androidx.compose.material.Tab
 import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.filled.KeyboardArrowDown
@@ -42,6 +43,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedCard
+import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.VerticalDivider
@@ -55,6 +57,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.Layout
@@ -98,12 +101,12 @@ fun FoodScreen(categories: List<String>,
                 .padding(top = 40.dp)
         ){
             item {
-                Box (
+                Box(
                     modifier = Modifier
                         .height(280.dp)
                         .fillMaxWidth()
                         .padding(6.dp)
-                ){
+                ) {
                     Image(
                         painter = painterResource(R.drawable.penne_pasta),
                         contentDescription = "null",
@@ -112,15 +115,15 @@ fun FoodScreen(categories: List<String>,
                     )
 
 
-                    Image(
-                        painter = painterResource(R.drawable.veg_icon),
-                        contentDescription = "veg",
-                        contentScale = ContentScale.FillBounds,
-                        modifier = Modifier
-                            .size(30.dp)
-                            .align(Alignment.BottomEnd)
-                            .padding(end = 12.dp, bottom = 12.dp)
-                    )
+//                    Image(
+//                        painter = painterResource(R.drawable.veg_icon),
+//                        contentDescription = "veg",
+//                        contentScale = ContentScale.FillBounds,
+//                        modifier = Modifier
+//                            .size(30.dp)
+//                            .align(Alignment.BottomEnd)
+//                            .padding(end = 12.dp, bottom = 12.dp)
+//                    )
 
                     Box(
                         modifier = Modifier
@@ -128,7 +131,7 @@ fun FoodScreen(categories: List<String>,
                             .size(30.dp)
                             .clip(CircleShape)
                             .background(Color.Black.copy(alpha = 0.4f))
-                    ){
+                    ) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = null,
@@ -137,19 +140,34 @@ fun FoodScreen(categories: List<String>,
                         )
                     }
 
+                    SmallFloatingActionButton(
+                        onClick = {},
+                        containerColor = Color(0xFF7682FF),
+                        contentColor = Color(0xFFFFFFFF),
+                        modifier = Modifier
+                            .align(Alignment.BottomEnd)
+                            .padding(end = 12.dp, bottom = 12.dp)
+                    ) {
+                        Icon(
+                            Icons.Filled.Add,
+                            "Small floating action button.",
+                            tint = Color.White
+                        )
+                    }
 
                 }
-                Column (
+
+                Column(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(6.dp),
                     verticalArrangement = Arrangement.spacedBy(5.dp)
-                ){
-                    Row (
+                ) {
+                    Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
-                    ){
+                    ) {
                         Text(
                             text = "Penne Pasta",
                             fontSize = 29.sp,
@@ -158,21 +176,21 @@ fun FoodScreen(categories: List<String>,
                             color = Color(0xFF2B2B2B)
                         )
 
-                        Card (
+                        Card(
                             modifier = Modifier
                                 .width(35.dp)
                                 .height(17.dp)
                                 .align(Alignment.CenterVertically),
                             colors = CardDefaults.cardColors(containerColor = Color(0xFF056923)),
                             shape = RoundedCornerShape(5.dp)
-                        ){
-                            Row (
+                        ) {
+                            Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .height(17.dp),
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.Center
-                            ){
+                            ) {
                                 Text(
                                     text = "4.3",
                                     fontSize = 12.sp,
@@ -191,7 +209,7 @@ fun FoodScreen(categories: List<String>,
                         }
                     }
 
-                    Row (
+                    Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
@@ -213,11 +231,11 @@ fun FoodScreen(categories: List<String>,
 
                     }
 
-                    Row (
+                    Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
-                    ){
+                    ) {
                         Text(
                             text = "Sanatan Dharam Mandir Road , Lashkar , Gwalior",
                             fontSize = 12.sp,
@@ -225,19 +243,20 @@ fun FoodScreen(categories: List<String>,
                             fontFamily = mac,
                             color = Color(0xFF2B2B2B)
                         )
-                        Card (
+                        Card(
                             modifier = Modifier
                                 .width(33.dp)
                                 .height(12.dp)
                                 .align(Alignment.CenterVertically),
                             colors = CardDefaults.cardColors(containerColor = Color(0xFFE73F46)),
                             shape = RoundedCornerShape(5.dp)
-                        ){
+                        ) {
                             Box(
                                 modifier = Modifier
-                                .fillMaxWidth()
-                                .fillMaxHeight(),
-                                contentAlignment = Alignment.Center) {
+                                    .fillMaxWidth()
+                                    .fillMaxHeight(),
+                                contentAlignment = Alignment.Center
+                            ) {
                                 Text(
                                     text = "OPEN",
                                     fontSize = 9.sp,
@@ -278,10 +297,14 @@ fun FoodScreen(categories: List<String>,
                                 color = Color(0xFF4B4B4B)
                             )
 
-                            VerticalDivider(thickness = 0.8.dp, modifier = Modifier.height(17.dp), color = Color.Gray)
+                            VerticalDivider(
+                                thickness = 0.8.dp,
+                                modifier = Modifier.height(17.dp),
+                                color = Color.Gray
+                            )
 
                             Text(
-                                text = "₹250 for one",
+                                text = "₹650 for two",
                                 fontSize = 12.sp,
                                 fontWeight = FontWeight.Normal,
                                 fontFamily = MergFont,
@@ -298,13 +321,13 @@ fun FoodScreen(categories: List<String>,
                         )
                     }
 
-                    Row (
+                    Row(
                         modifier = Modifier
                             .width(280.dp)
                             .height(32.dp),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween
-                    ){
+                    ) {
 
 //-----------------------------------------------------------------------------------------------------------------
                         val borderWidth = 300.dp
@@ -317,7 +340,7 @@ fun FoodScreen(categories: List<String>,
                                 .align(Alignment.CenterVertically),
                             colors = CardDefaults.cardColors(containerColor = Color.White),
                             shape = RoundedCornerShape(6.dp)
-                        ){
+                        ) {
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -339,7 +362,7 @@ fun FoodScreen(categories: List<String>,
                                         .fillMaxHeight()
                                         .padding(5.dp),
                                     contentAlignment = Alignment.CenterStart
-                                ){
+                                ) {
                                     Text(
                                         text = "Direction",
                                         color = Color(0xFF282828),
@@ -361,7 +384,7 @@ fun FoodScreen(categories: List<String>,
                                 .align(Alignment.CenterVertically),
                             colors = CardDefaults.cardColors(containerColor = Color.White),
                             shape = RoundedCornerShape(6.dp)
-                        ){
+                        ) {
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -383,7 +406,7 @@ fun FoodScreen(categories: List<String>,
                                         .fillMaxHeight()
                                         .padding(5.dp),
                                     contentAlignment = Alignment.CenterStart
-                                ){
+                                ) {
                                     Text(
                                         text = "Share",
                                         color = Color(0xFF282828),
@@ -405,7 +428,7 @@ fun FoodScreen(categories: List<String>,
                                 .align(Alignment.CenterVertically),
                             colors = CardDefaults.cardColors(containerColor = Color.White),
                             shape = RoundedCornerShape(6.dp)
-                        ){
+                        ) {
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -427,7 +450,7 @@ fun FoodScreen(categories: List<String>,
                                         .fillMaxHeight()
                                         .padding(5.dp),
                                     contentAlignment = Alignment.CenterStart
-                                ){
+                                ) {
                                     Text(
                                         text = "Review",
                                         color = Color(0xFF282828),
@@ -516,7 +539,7 @@ fun FoodScreen(categories: List<String>,
                                     .background(Color.Black.copy(alpha = 0.6f))
                                     .padding(horizontal = 16.dp, vertical = 8.dp),
 
-                            ) {
+                                ) {
                                 Text(
                                     text = "View More",
                                     color = Color.White,
@@ -528,8 +551,10 @@ fun FoodScreen(categories: List<String>,
                         }
                     }
 
-                    Box(modifier = Modifier
-                        .fillMaxWidth(),contentAlignment = Alignment.Center) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(), contentAlignment = Alignment.Center
+                    ) {
                         ScrollableTabRow(
                             selectedTabIndex = selectedTabIndex,
                             backgroundColor = Color.White,
@@ -557,7 +582,9 @@ fun FoodScreen(categories: List<String>,
                                     Row(
                                         horizontalArrangement = Arrangement.Center,
                                         verticalAlignment = Alignment.CenterVertically,
-                                        modifier = Modifier.fillMaxWidth().padding(horizontal = 6.dp, vertical = 8.dp)
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(horizontal = 6.dp, vertical = 8.dp)
                                     ) {
                                         Text(
                                             text = category,
@@ -592,15 +619,232 @@ fun FoodScreen(categories: List<String>,
                         }
                     }
 
-                }
+            Spacer(modifier = Modifier.height(10.dp))
+                    Column(
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .fillMaxWidth(),
+                        verticalArrangement = Arrangement.spacedBy(15.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
 
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            verticalArrangement = Arrangement.spacedBy(6.dp)
+                        ){
+
+                            Text(
+                                text = "Cuisines",
+                                fontSize = 20.sp,
+                                fontWeight = FontWeight.Normal,
+                                fontFamily = MergFont,
+                                color = Color(0xFF2B2B2B),
+                                modifier = Modifier.padding(start = 10.dp)
+                            )
+                            Row (
+                                modifier = Modifier
+                                    .width(270.dp)
+                                    .height(30.dp)
+                                    .padding(start =14.dp ),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ){
+
+                                OutlinedCard(
+                                    border = BorderStroke(1.dp, Color.Gray.copy(alpha = 0.7f)),
+                                    modifier = Modifier
+                                        .clickable {}
+                                        .width(72.dp)
+                                        .height(15.dp)
+                                        .align(Alignment.CenterVertically),
+                                    colors = CardDefaults.cardColors(containerColor = Color.Gray.copy(0.1f)),
+                                    shape = RoundedCornerShape(6.dp)
+                                ) {
+                                    Row(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .height(28.dp),
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = Arrangement.SpaceBetween
+                                    ) {
+
+                                        Icon(
+                                            imageVector = Icons.Default.Star,
+                                            contentDescription = "Location",
+                                            tint = Color(0xFFEFBD42),
+                                            modifier = Modifier
+                                                .size(10.dp)
+                                                .align(Alignment.CenterVertically)
+                                                .padding(start = 4.dp)
+                                        )
+                                            Text(
+                                                text = "North Indian",
+                                                color = Color(0xFF2F2F2F),
+                                                fontSize = 8.sp,
+                                                fontWeight = FontWeight.Light
+
+                                            )
+                                            Icon(
+                                                imageVector = Icons.Default.Star,
+                                                contentDescription = "Location",
+                                                tint = Color(0xFFEFBD42),
+                                                modifier = Modifier
+                                                    .size(10.dp)
+                                                    .padding(end = 4.dp)
+                                            )
+                                    }
+                                }
+
+                                OutlinedCard(
+                                    border = BorderStroke(1.dp, Color.Gray.copy(alpha = 0.7f)),
+                                    modifier = Modifier
+                                        .clickable {}
+                                        .width(72.dp)
+                                        .height(15.dp)
+                                        .align(Alignment.CenterVertically),
+                                    colors = CardDefaults.cardColors(containerColor = Color.Gray.copy(0.1f)),
+                                    shape = RoundedCornerShape(6.dp)
+                                ) {
+                                    Row(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .height(28.dp),
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = Arrangement.SpaceBetween
+                                    ) {
+
+                                        Icon(
+                                            imageVector = Icons.Default.Star,
+                                            contentDescription = "Location",
+                                            tint = Color(0xFFEFBD42),
+                                            modifier = Modifier
+                                                .size(10.dp)
+                                                .align(Alignment.CenterVertically)
+                                                .padding(start = 4.dp)
+                                        )
+                                        Text(
+                                            text = "North Indian",
+                                            color = Color(0xFF2F2F2F),
+                                            fontSize = 8.sp,
+                                            fontWeight = FontWeight.Light
+
+                                        )
+                                        Icon(
+                                            imageVector = Icons.Default.Star,
+                                            contentDescription = "Location",
+                                            tint = Color(0xFFEFBD42),
+                                            modifier = Modifier
+                                                .size(10.dp)
+                                                .padding(end = 4.dp)
+                                        )
+                                    }
+                                }
+
+                                OutlinedCard(
+                                    border = BorderStroke(1.dp, Color.Gray.copy(alpha = 0.7f)),
+                                    modifier = Modifier
+                                        .clickable {}
+                                        .width(72.dp)
+                                        .height(15.dp)
+                                        .align(Alignment.CenterVertically),
+                                    colors = CardDefaults.cardColors(containerColor = Color.Gray.copy(0.1f)),
+                                    shape = RoundedCornerShape(6.dp)
+                                ) {
+                                    Row(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .height(28.dp),
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = Arrangement.SpaceBetween
+                                    ) {
+
+                                        Icon(
+                                            imageVector = Icons.Default.Star,
+                                            contentDescription = "Location",
+                                            tint = Color(0xFFEFBD42),
+                                            modifier = Modifier
+                                                .size(10.dp)
+                                                .align(Alignment.CenterVertically)
+                                                .padding(start = 4.dp)
+                                        )
+                                        Text(
+                                            text = "North Indian",
+                                            color = Color(0xFF2F2F2F),
+                                            fontSize = 8.sp,
+                                            fontWeight = FontWeight.Light
+
+                                        )
+                                        Icon(
+                                            imageVector = Icons.Default.Star,
+                                            contentDescription = "Location",
+                                            tint = Color(0xFFEFBD42),
+                                            modifier = Modifier
+                                                .size(10.dp)
+                                                .padding(end = 4.dp)
+                                        )
+                                    }
+                                }
+                            }
+                        }
+
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            verticalArrangement = Arrangement.spacedBy(6.dp)
+                        ) {
+
+                            Text(
+                                text = "Menu",
+                                fontSize = 20.sp,
+                                fontWeight = FontWeight.Normal,
+                                fontFamily = MergFont,
+                                color = Color(0xFF2B2B2B),
+                                modifier = Modifier.padding(start = 10.dp)
+                            )
+
+                            Row (
+                                modifier = Modifier
+                                    .width(270.dp)
+                                    .fillMaxHeight()
+                                    .padding(start =14.dp ),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ){
+                                Image(
+                                    painter = painterResource(R.drawable.menu),
+                                    contentDescription = null,
+                                    modifier = Modifier.height(180.dp)
+                                        .width(140.dp)
+                                )
+                                Image(
+                                    painter = painterResource(R.drawable.menu2),
+                                    contentDescription = null,
+                                    modifier = Modifier.height(190.dp)
+                                        .width(140.dp)
+                                )
+                            }
+
+                        }
+
+
+
+                    }
+
+                }
+            }
+
+
+                
 
 
 
             }
         }
     }
-}
+
+
+
 
 @Preview
 @Composable
