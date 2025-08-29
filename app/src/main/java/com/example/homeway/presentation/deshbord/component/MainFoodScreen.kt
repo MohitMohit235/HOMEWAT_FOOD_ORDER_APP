@@ -29,6 +29,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowRight
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.Share
@@ -39,6 +40,7 @@ import androidx.compose.material.icons.outlined.Reviews
 import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.ModalBottomSheet
@@ -56,6 +58,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -635,9 +638,18 @@ fun FoodScreen(categories: List<String>,
                         ){
 
                             Text(
-                                text = "Cuisines",
+                                text = "Menu",
                                 fontSize = 20.sp,
                                 fontWeight = FontWeight.Normal,
+                                fontFamily = MergFont,
+                                color = Color(0xFF2B2B2B),
+                                modifier = Modifier.padding(start = 10.dp)
+                            )
+
+                            Text(
+                                text = "Cuisines",
+                                fontSize = 15.sp,
+                                fontWeight = FontWeight.Light,
                                 fontFamily = MergFont,
                                 color = Color(0xFF2B2B2B),
                                 modifier = Modifier.padding(start = 10.dp)
@@ -646,13 +658,12 @@ fun FoodScreen(categories: List<String>,
                                 modifier = Modifier
                                     .width(270.dp)
                                     .height(30.dp)
-                                    .padding(start =14.dp ),
+                                    .padding(start = 14.dp),
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ){
 
-                                OutlinedCard(
-                                    border = BorderStroke(1.dp, Color.Gray.copy(alpha = 0.7f)),
+                                Card(
                                     modifier = Modifier
                                         .clickable {}
                                         .width(72.dp)
@@ -696,8 +707,7 @@ fun FoodScreen(categories: List<String>,
                                     }
                                 }
 
-                                OutlinedCard(
-                                    border = BorderStroke(1.dp, Color.Gray.copy(alpha = 0.7f)),
+                               Card(
                                     modifier = Modifier
                                         .clickable {}
                                         .width(72.dp)
@@ -741,8 +751,7 @@ fun FoodScreen(categories: List<String>,
                                     }
                                 }
 
-                                OutlinedCard(
-                                    border = BorderStroke(1.dp, Color.Gray.copy(alpha = 0.7f)),
+                                Card(
                                     modifier = Modifier
                                         .clickable {}
                                         .width(72.dp)
@@ -786,16 +795,41 @@ fun FoodScreen(categories: List<String>,
                                     }
                                 }
                             }
+                            Row (
+                                modifier = Modifier
+                                    .width(270.dp)
+                                    .fillMaxHeight()
+                                    .padding(start = 14.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ){
+                                Image(
+                                    painter = painterResource(R.drawable.menu),
+                                    contentDescription = null,
+                                    modifier = Modifier
+                                        .height(180.dp)
+                                        .width(140.dp)
+                                )
+                                Image(
+                                    painter = painterResource(R.drawable.menu2),
+                                    contentDescription = null,
+                                    modifier = Modifier
+                                        .height(190.dp)
+                                        .width(140.dp)
+                                )
+                            }
                         }
+
+                        LocationCard()
 
                         Column(
                             modifier = Modifier
                                 .fillMaxWidth(),
-                            verticalArrangement = Arrangement.spacedBy(6.dp)
+                            verticalArrangement = Arrangement.spacedBy(10.dp)
                         ) {
 
                             Text(
-                                text = "Menu",
+                                text = "More Restaurant",
                                 fontSize = 20.sp,
                                 fontWeight = FontWeight.Normal,
                                 fontFamily = MergFont,
@@ -803,26 +837,79 @@ fun FoodScreen(categories: List<String>,
                                 modifier = Modifier.padding(start = 10.dp)
                             )
 
-                            Row (
-                                modifier = Modifier
-                                    .width(270.dp)
-                                    .fillMaxHeight()
-                                    .padding(start =14.dp ),
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.SpaceBetween
-                            ){
-                                Image(
-                                    painter = painterResource(R.drawable.menu),
-                                    contentDescription = null,
-                                    modifier = Modifier.height(180.dp)
-                                        .width(140.dp)
+                            HorizontalDivider(thickness = 2.dp)
+
+                            Spacer(modifier = Modifier.height(5.dp))
+
+                            res(
+                                img = R.drawable.biryani,
+                                Resname = "7 hill Restaurant",
+                                Address = "Nani Plaza, Lashkar, Gwalior",
+                                time = "10:20Pm to 11:40Am",
+                                Distance = "1.0"
+                            )
+
+                            res(
+                                img = R.drawable.biryani,
+                                Resname = "7 hill Restaurant",
+                                Address = "Nani Plaza, Lashkar, Gwalior",
+                                time = "10:20Pm to 11:40Am",
+                                Distance = "1.0"
+                            )
+
+                            res(
+                                img = R.drawable.biryani,
+                                Resname = "7 hill Restaurant",
+                                Address = "Nani Plaza, Lashkar, Gwalior",
+                                time = "10:20Pm to 11:40Am",
+                                Distance = "1.0"
+                            )
+
+                            res(
+                                    img = R.drawable.biryani,
+                            Resname = "7 hill Restaurant",
+                            Address = "Nani Plaza, Lashkar, Gwalior",
+                            time = "10:20Pm to 11:40Am",
+                            Distance = "1.0"
+                            )
+
+                            res(
+                                img = R.drawable.biryani,
+                                Resname = "7 hill Restaurant",
+                                Address = "Nani Plaza, Lashkar, Gwalior",
+                                time = "10:20Pm to 11:40Am",
+                                Distance = "1.0"
+                            )
+
+                            res(
+                                img = R.drawable.biryani,
+                                Resname = "7 hill Restaurant",
+                                Address = "Nani Plaza, Lashkar, Gwalior",
+                                time = "10:20Pm to 11:40Am",
+                                Distance = "1.0"
+                            )
+
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.Center,
+                                verticalAlignment = Alignment.CenterVertically){
+                                Text(
+                                    text = "Show more",
+                                    fontSize = 15.sp,
+                                    fontWeight = FontWeight.Normal,
+                                    fontFamily = MergFont,
+                                    color = Color(0xFF6471FF),
+                                    modifier = Modifier.padding(start = 10.dp)
                                 )
-                                Image(
-                                    painter = painterResource(R.drawable.menu2),
-                                    contentDescription = null,
-                                    modifier = Modifier.height(190.dp)
-                                        .width(140.dp)
+                                Icon(
+                                    imageVector = Icons.Default.ArrowRight,
+                                    contentDescription = "Location",
+                                    tint = Color(0xFF6471FF),
+                                    modifier = Modifier
+                                        .size(30.dp)
+                                        .padding(end = 7.dp)
                                 )
+
                             }
 
                         }
@@ -846,7 +933,7 @@ fun FoodScreen(categories: List<String>,
 
 
 
-@Preview
+//@Preview
 @Composable
 private fun ok() {
     var selectedTab by remember { mutableStateOf(0) }
@@ -857,4 +944,231 @@ private fun ok() {
     FoodScreen(categories = categories,
         selectedTabIndex = selectedTab,
         onTabSelected = { selectedTab = it })
+}
+
+
+
+@Composable
+private fun res(
+    img: Int,Resname: String,
+    Address: String,
+    time: String,
+    Distance: String
+) {
+    val MergFont = FontFamily(
+        Font(R.font.mergeone_regular, FontWeight.Normal)
+    )
+    Box(
+        modifier = Modifier
+            .width(350.dp)
+            .height(60.dp)
+            .padding(start = 15.dp)
+            .clip(RoundedCornerShape(11.dp))
+    ){
+        Row (
+            modifier = Modifier
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ){
+            Box(
+                modifier = Modifier
+                    .size(58.dp)
+                    .clip(CircleShape)
+
+            ) {
+                Image(
+                    painter = painterResource(id = img),
+                    contentDescription = "null",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
+
+    Column (
+        modifier = Modifier
+            .height(50.dp)
+            .padding(end = 40.dp),
+        horizontalAlignment = Alignment.Start,
+        verticalArrangement = Arrangement.SpaceBetween
+    ){
+        Text(
+            text = Resname,
+            color = Color(0xFF2F2F2F),
+            fontSize = 20.sp,
+            fontFamily = MergFont,
+            fontWeight = FontWeight.Light
+
+        )
+        Text(
+            text = Address,
+            color = Color(0xFF2F2F2F),
+            fontSize = 13.sp,
+            fontFamily = MergFont,
+            fontWeight = FontWeight.Light
+
+        )
+        Text(
+            text = "Today ${time}",
+            color = Color(0xFF2F2F2F),
+            fontSize = 9.sp,
+            fontFamily = MergFont,
+            fontWeight = FontWeight.Light
+
+        )
+    }
+
+            Column (
+                modifier = Modifier
+                    .height(50.dp)
+                    .padding(end = 5.dp, top = 6.dp),
+                horizontalAlignment = Alignment.End,
+                verticalArrangement = Arrangement.SpaceBetween
+            ){
+
+                Card(
+                    modifier = Modifier
+                        .width(33.dp)
+                        .height(12.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color(0xFFE73F46)),
+                    shape = RoundedCornerShape(5.dp)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .fillMaxHeight(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = "OPEN",
+                            fontSize = 9.sp,
+                            fontWeight = FontWeight.Normal,
+                            fontFamily = MergFont,
+                            color = Color(0xFFFFFFFF)
+                        )
+                    }
+                }
+
+                Text(
+                    text = "Distance ${Distance}m",
+                    color = Color(0xFF2F2F2F),
+                    fontSize = 8.sp,
+                    fontFamily = MergFont,
+                    fontWeight = FontWeight.Light
+
+                )
+            }
+
+        }
+    }
+}
+
+
+@Preview
+@Composable
+private fun Similar() {
+    val MergFont = FontFamily(
+        Font(R.font.mergeone_regular, FontWeight.Normal)
+    )
+
+    ElevatedCard(
+        modifier = Modifier
+            .width(280.dp)
+            .height(250.dp),
+
+        shape = RoundedCornerShape(11.dp),
+        colors = CardDefaults.cardColors(Color.White),
+        elevation = CardDefaults.cardElevation(3.dp)
+
+    ){
+      Column (
+          modifier = Modifier
+              .fillMaxSize()
+              .padding(horizontal = 12.dp),
+          verticalArrangement = Arrangement.Center,
+          horizontalAlignment = Alignment.CenterHorizontally
+      ){
+         Image(
+             painter = painterResource(R.drawable.img_1),
+             contentDescription = null,
+             modifier = Modifier.clip(RoundedCornerShape(10.dp))
+
+         )
+
+          Row (modifier = Modifier.fillMaxWidth(),
+              verticalAlignment = Alignment.CenterVertically
+          ){
+              Text(
+                  text = "Lal Jira Tadka",
+                  fontSize = 21.sp,
+                  fontWeight = FontWeight.Normal,
+                  fontFamily = MergFont,
+                  color = Color(0xFF2B2B2B)
+              )
+
+              Spacer(modifier = Modifier.width(30.dp))
+
+              Card(
+                  modifier = Modifier
+                      .width(38.dp)
+                      .height(22.dp)
+                      .align(Alignment.CenterVertically),
+                  colors = CardDefaults.cardColors(containerColor = Color(0xFF056923)),
+                  shape = RoundedCornerShape(5.dp)
+              ) {
+                  Row(
+                      modifier = Modifier
+                          .fillMaxWidth()
+                          .padding(vertical = 3.dp)
+                          .height(17.dp),
+                      verticalAlignment = Alignment.CenterVertically,
+                      horizontalArrangement = Arrangement.Center
+                  ) {
+                      Text(
+                          text = "4.3",
+                          fontSize = 12.sp,
+                          fontWeight = FontWeight.Normal,
+                          fontFamily = MergFont,
+                          color = Color(0xFFFFFFFF)
+                      )
+                      Spacer(modifier = Modifier.width(3.dp))
+                      Icon(
+                          imageVector = Icons.Default.Star,
+                          contentDescription = null,
+                          tint = Color(0xFFFFFFFF),
+                          modifier = Modifier.size(9.dp)
+                      )
+                  }
+              }
+
+              Spacer(modifier = Modifier.width(5.dp))
+VerticalDivider(
+ thickness = 1.dp,
+ modifier = Modifier
+     .height(14.dp),
+ color = Color.Gray)
+
+              Spacer(modifier = Modifier.width(5.dp))
+
+              Text(
+                  text = "Delivery",
+                  fontSize = 11.sp,
+                  fontWeight = FontWeight.Normal,
+                  fontFamily = MergFont,
+                  color = Color(0xFF2B2B2B)
+              )
+          }
+
+     HorizontalDivider(thickness = 1.5.dp)
+
+          Text(
+              text = "42, Near Poppys Tower, Race Course, Coimbatore",
+              fontSize = 14.sp,
+              fontWeight = FontWeight.Normal,
+              fontFamily = MergFont,
+              color = Color(0xFF3E3E3E)
+          )
+
+      }
+ }
 }
