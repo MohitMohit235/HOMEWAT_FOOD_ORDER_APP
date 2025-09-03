@@ -10,10 +10,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.MicNone
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,12 +34,12 @@ import com.example.homeway.R
 fun SearchBar() {
 
     val jonefont = FontFamily(
-        Font(R.font.amethysta_regular, FontWeight.Normal)
+        Font(R.font.mergeone_regular, FontWeight.Normal)
     )
 
         Card(
             modifier = Modifier
-            .width(380.dp)
+            .width(270.dp)
             .height(45.dp),
             elevation = CardDefaults.cardElevation(5.dp),
             colors = CardDefaults.cardColors(containerColor = Color.White)
@@ -51,18 +53,30 @@ fun SearchBar() {
                 Icon(
                     imageVector = Icons.Outlined.Search,
                     contentDescription = "search bar",
-                    tint = Color(0xFF000000).copy(alpha = 0.40f),
+                    tint = Color(0xFF6471FF),
                     modifier = Modifier.size(25.dp)
                 )
 
                 Spacer(modifier = Modifier.width(15.dp))
 
                 Text(
-                    text = "Search Restorents and Foods",
+                    text = "Restorents name or d...",
                     color = Color.Black.copy(alpha = 0.40f),
                     fontSize = 16.sp,
                     fontFamily = jonefont
                 )
+
+                Spacer(modifier = Modifier.width(10.dp))
+                VerticalDivider(thickness = 0.8.dp, modifier = Modifier)
+
+                Spacer(modifier = Modifier.width(5.dp))
+                Icon(
+                    imageVector = Icons.Outlined.MicNone,
+                    contentDescription = "search bar",
+                    tint = Color(0xFF6471FF),
+                    modifier = Modifier.size(25.dp)
+                )
+
             }
         }
     }

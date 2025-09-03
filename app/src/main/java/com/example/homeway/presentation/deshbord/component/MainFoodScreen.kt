@@ -38,6 +38,7 @@ import androidx.compose.material.icons.filled.WifiCalling3
 import androidx.compose.material.icons.outlined.Directions
 import androidx.compose.material.icons.outlined.Reviews
 import androidx.compose.material.icons.outlined.Share
+import androidx.compose.material.icons.outlined.Timer
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
@@ -72,6 +73,7 @@ import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.homeway.FoodOdringCard
 import com.example.homeway.R
 
 
@@ -79,7 +81,7 @@ import com.example.homeway.R
 @Composable
 fun FoodScreen(categories: List<String>,
                selectedTabIndex: Int,
-               onTabSelected: (Int) -> Unit) {
+               onTabSelected: (Int) -> Unit,time : String) {
 
     var showBottomSheet by remember { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState(
@@ -104,62 +106,6 @@ fun FoodScreen(categories: List<String>,
                 .padding(top = 40.dp)
         ){
             item {
-                Box(
-                    modifier = Modifier
-                        .height(280.dp)
-                        .fillMaxWidth()
-                        .padding(6.dp)
-                ) {
-                    Image(
-                        painter = painterResource(R.drawable.penne_pasta),
-                        contentDescription = "null",
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier.fillMaxSize()
-                    )
-
-
-//                    Image(
-//                        painter = painterResource(R.drawable.veg_icon),
-//                        contentDescription = "veg",
-//                        contentScale = ContentScale.FillBounds,
-//                        modifier = Modifier
-//                            .size(30.dp)
-//                            .align(Alignment.BottomEnd)
-//                            .padding(end = 12.dp, bottom = 12.dp)
-//                    )
-
-                    Box(
-                        modifier = Modifier
-                            .padding(top = 5.dp)
-                            .size(30.dp)
-                            .clip(CircleShape)
-                            .background(Color.Black.copy(alpha = 0.4f))
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = null,
-                            tint = Color.White,
-                            modifier = Modifier.padding(6.dp)
-                        )
-                    }
-
-                    SmallFloatingActionButton(
-                        onClick = {},
-                        containerColor = Color(0xFF7682FF),
-                        contentColor = Color(0xFFFFFFFF),
-                        modifier = Modifier
-                            .align(Alignment.BottomEnd)
-                            .padding(end = 12.dp, bottom = 12.dp)
-                    ) {
-                        Icon(
-                            Icons.Filled.Add,
-                            "Small floating action button.",
-                            tint = Color.White
-                        )
-                    }
-
-                }
-
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -172,7 +118,7 @@ fun FoodScreen(categories: List<String>,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = "Penne Pasta",
+                            text = "7 hill Restaurant",
                             fontSize = 29.sp,
                             fontWeight = FontWeight.Normal,
                             fontFamily = MergFont,
@@ -213,24 +159,27 @@ fun FoodScreen(categories: List<String>,
                     }
 
                     Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(2.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text(
-                            text = "Originates , Italy",
-                            fontSize = 15.sp,
-                            fontFamily = mac,
-                            fontWeight = FontWeight.Normal
+                        Icon(
+                            imageVector = Icons.Outlined.Timer,
+                            contentDescription = null,
+                            tint = Color(0xFF525252),
+                            modifier = Modifier.size(15.dp)
                         )
 
-                        Text(
-                            text = "Today 10:00Am to 11:00Pm",
-                            fontSize = 10.sp,
-                            fontWeight = FontWeight.Normal,
+
+                        androidx.compose.material3.Text(
+                            text = time,
                             fontFamily = MergFont,
-                            color = Color(0xFF2B2B2B)
-                        )
+                            fontSize = 10.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = Color(0xFF525252),
+
+                            )
 
                     }
 
@@ -324,303 +273,145 @@ fun FoodScreen(categories: List<String>,
                         )
                     }
 
-                    Row(
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Column(
                         modifier = Modifier
-                            .width(280.dp)
-                            .height(32.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
+                            .fillMaxWidth(),
+                        verticalArrangement = Arrangement.Center
                     ) {
 
-//-----------------------------------------------------------------------------------------------------------------
-                        val borderWidth = 300.dp
-                        OutlinedCard(
-                            border = BorderStroke(1.dp, Color.Black.copy(alpha = 0.7f)),
+                        Text(
+                            text = "150+ Dishes",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = MergFont,
+                            color = Color(0xFF616161),
                             modifier = Modifier
-                                .clickable {}
-                                .width(88.dp)
-                                .height(28.dp)
-                                .align(Alignment.CenterVertically),
-                            colors = CardDefaults.cardColors(containerColor = Color.White),
-                            shape = RoundedCornerShape(6.dp)
-                        ) {
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(28.dp)
-                            ) {
+                        )
 
-                                Icon(
-                                    imageVector = Icons.Outlined.Directions,
-                                    contentDescription = "Location",
-                                    tint = Color(0xFF6471FF),
-                                    modifier = Modifier
-                                        .size(25.dp)
-                                        .align(Alignment.CenterVertically)
-                                        .padding(start = 8.dp)
-                                )
-                                Box(
-                                    modifier = Modifier
-                                        .weight(0.5f)
-                                        .fillMaxHeight()
-                                        .padding(5.dp),
-                                    contentAlignment = Alignment.CenterStart
-                                ) {
-                                    Text(
-                                        text = "Direction",
-                                        color = Color(0xFF282828),
-                                        fontSize = 13.sp,
-                                        fontWeight = FontWeight.Light
+                        Spacer(modifier = Modifier.height(10.dp))
 
-                                    )
-                                }
-                            }
-                        }
+                        Text(
+                            text = "Vegetarian",
+                            fontSize = 15.sp,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = MergFont,
+                            color = Color(0xFF616161),
+                            modifier = Modifier.padding(start = 5.dp)
+                        )
 
-//-----------------------------------------------------------------------------------------------------------------
-                        OutlinedCard(
-                            border = BorderStroke(1.dp, Color.Black.copy(alpha = 0.7f)),
-                            modifier = Modifier
-                                .clickable {}
-                                .width(76.dp)
-                                .height(28.dp)
-                                .align(Alignment.CenterVertically),
-                            colors = CardDefaults.cardColors(containerColor = Color.White),
-                            shape = RoundedCornerShape(6.dp)
-                        ) {
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(28.dp)
-                            ) {
+                        FoodOdringCard(
+                            img = R.drawable.img,
+                            DishName = "Kdai Paneer",
+                            Discription = "when this is set, it will force the emu to use the",
+                            Price = "210",
+                            veg = R.drawable.veg_icon
+                        )
 
-                                Icon(
-                                    imageVector = Icons.Default.Share,
-                                    contentDescription = "Location",
-                                    tint = Color(0xFF6471FF),
-                                    modifier = Modifier
-                                        .size(25.dp)
-                                        .align(Alignment.CenterVertically)
-                                        .padding(start = 8.dp)
-                                )
-                                Box(
-                                    modifier = Modifier
-                                        .weight(0.5f)
-                                        .fillMaxHeight()
-                                        .padding(5.dp),
-                                    contentAlignment = Alignment.CenterStart
-                                ) {
-                                    Text(
-                                        text = "Share",
-                                        color = Color(0xFF282828),
-                                        fontSize = 13.sp,
-                                        fontWeight = FontWeight.Light
+                        Spacer(modifier = Modifier.height(3.dp))
 
-                                    )
-                                }
-                            }
-                        }
+                        FoodOdringCard(
+                            img = R.drawable.img6,
+                            DishName = "Dal fry",
+                            Discription = "when this is set, it will force the emu to use the",
+                            Price = "210",
+                            veg = R.drawable.veg_icon
+                        )
+                        Spacer(modifier = Modifier.height(3.dp))
 
-//-----------------------------------------------------------------------------------------------------------------
-                        OutlinedCard(
-                            border = BorderStroke(1.dp, Color.Black.copy(alpha = 0.7f)),
-                            modifier = Modifier
-                                .clickable {}
-                                .width(80.dp)
-                                .height(28.dp)
-                                .align(Alignment.CenterVertically),
-                            colors = CardDefaults.cardColors(containerColor = Color.White),
-                            shape = RoundedCornerShape(6.dp)
-                        ) {
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(28.dp)
-                            ) {
+                        FoodOdringCard(
+                            img = R.drawable.chole_bhature,
+                            DishName = "Chole Bhature",
+                            Discription = "when this is set, it will force the emu to use the",
+                            Price = "210",
+                            veg = R.drawable.veg_icon
+                        )
 
-                                Icon(
-                                    imageVector = Icons.Outlined.Reviews,
-                                    contentDescription = "Location",
-                                    tint = Color(0xFF6471FF),
-                                    modifier = Modifier
-                                        .size(25.dp)
-                                        .align(Alignment.CenterVertically)
-                                        .padding(start = 8.dp)
-                                )
-                                Box(
-                                    modifier = Modifier
-                                        .weight(0.5f)
-                                        .fillMaxHeight()
-                                        .padding(5.dp),
-                                    contentAlignment = Alignment.CenterStart
-                                ) {
-                                    Text(
-                                        text = "Review",
-                                        color = Color(0xFF282828),
-                                        fontSize = 13.sp,
-                                        fontWeight = FontWeight.Light
+                        Spacer(modifier = Modifier.height(3.dp))
 
-                                    )
-                                }
-                            }
-                        }
+                        FoodOdringCard(
+                            img = R.drawable.penne_pasta,
+                            DishName = "Pasta",
+                            Discription = "when this is set, it will force the emu to use the",
+                            Price = "210",
+                            veg = R.drawable.veg_icon
+                        )
+
+                        Spacer(modifier = Modifier.height(3.dp))
+
+                        FoodOdringCard(
+                            img = R.drawable.pizza_img,
+                            DishName = "Pizza",
+                            Discription = "when this is set, it will force the emu to use the",
+                            Price = "420",
+                            veg = R.drawable.veg_icon
+                        )
+                        Spacer(modifier = Modifier.height(3.dp))
+
+                        Text(
+                            text = "Non-Vegetarian",
+                            fontSize = 15.sp,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = MergFont,
+                            color = Color(0xFF616161),
+                            modifier = Modifier.padding(start = 5.dp)
+                        )
+
+                        Spacer(modifier = Modifier.height(3.dp))
+
+                        FoodOdringCard(
+                            img = R.drawable.img7,
+                            DishName = "Chicken 66",
+                            Discription = "when this is set, it will force the emu to use the",
+                            Price = "130",
+                            veg = R.drawable.nonveg_icon
+                        )
+
+                        Spacer(modifier = Modifier.height(3.dp))
+
+                        FoodOdringCard(
+                            img = R.drawable.biryani,
+                            DishName = "Chicken Biryani",
+                            Discription = "when this is set, it will force the emu to use the",
+                            Price = "130",
+                            veg = R.drawable.nonveg_icon
+                        )
+                        Spacer(modifier = Modifier.height(3.dp))
+
+                        FoodOdringCard(
+                            img = R.drawable.burger_img,
+                            DishName = "Burger",
+                            Discription = "when this is set, it will force the emu to use the",
+                            Price = "210",
+                            veg = R.drawable.nonveg_icon
+                        )
+
+                        Spacer(modifier = Modifier.height(3.dp))
+
+                        Text(
+                            text = "Desserts",
+                            fontSize = 15.sp,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = MergFont,
+                            color = Color(0xFF616161),
+                            modifier = Modifier.padding(start = 5.dp)
+                        )
+
+                        Spacer(modifier = Modifier.height(3.dp))
+
+                        FoodOdringCard(
+                            img = R.drawable.img8,
+                            DishName = "Rasgulla",
+                            Discription = "when this is set, it will force the emu to use the",
+                            Price = "130",
+                            veg = R.drawable.desserts
+                        )
+
                     }
 
 
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(190.dp)
-                            .padding(8.dp)
-                    ) {
-                        // Left Grid - 4 small images
-                        Column(
-                            modifier = Modifier
-                                .weight(1f)
-                                .height(190.dp),
-                            verticalArrangement = Arrangement.spacedBy(8.dp)
-                        ) {
-                            Row(
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .height(10.dp),
-                                horizontalArrangement = Arrangement.spacedBy(8.dp)
-                            ) {
-                                Image(
-                                    painter = painterResource(R.drawable.penne_pasta),
-                                    contentDescription = "null",
-                                    contentScale = ContentScale.Crop,
-                                    modifier = Modifier.weight(1f)
-                                )
-                                Image(
-                                    painter = painterResource(R.drawable.penne_pasta),
-                                    contentDescription = "null",
-                                    contentScale = ContentScale.Crop,
-                                    modifier = Modifier.weight(1f)
-                                )
 
-                            }
-                            Row(
-                                modifier = Modifier.weight(1f),
-                                horizontalArrangement = Arrangement.spacedBy(8.dp)
-                            ) {
-                                Image(
-                                    painter = painterResource(R.drawable.penne_pasta),
-                                    contentDescription = "null",
-                                    contentScale = ContentScale.Crop,
-                                    modifier = Modifier.weight(1f)
-                                )
-                                Image(
-                                    painter = painterResource(R.drawable.penne_pasta),
-                                    contentDescription = "null",
-                                    contentScale = ContentScale.Crop,
-                                    modifier = Modifier.weight(1f)
-                                )
-                            }
-                        }
-
-                        Spacer(modifier = Modifier.width(8.dp))
-
-
-                        Box(
-                            modifier = Modifier
-                                .weight(1f)
-                                .height(190.dp)
-                        ) {
-                            Image(
-                                painter = painterResource(R.drawable.penne_pasta),
-                                contentDescription = "null",
-                                contentScale = ContentScale.Crop,
-                                modifier = Modifier.fillMaxHeight()
-                            )
-
-
-                            Box(
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .align(Alignment.Center)
-                                    .background(Color.Black.copy(alpha = 0.6f))
-                                    .padding(horizontal = 16.dp, vertical = 8.dp),
-
-                                ) {
-                                Text(
-                                    text = "View More",
-                                    color = Color.White,
-                                    fontWeight = FontWeight.Normal,
-                                    fontSize = 16.sp,
-                                    modifier = Modifier.align(Alignment.Center)
-                                )
-                            }
-                        }
-                    }
-
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth(), contentAlignment = Alignment.Center
-                    ) {
-                        ScrollableTabRow(
-                            selectedTabIndex = selectedTabIndex,
-                            backgroundColor = Color.White,
-                            edgePadding = 3.dp,
-                            indicator = { tabPositions ->
-                                TabRowDefaults.Indicator(
-                                    modifier = Modifier
-                                        .tabIndicatorOffset(tabPositions[selectedTabIndex])
-                                        .height(3.dp),
-                                    color = Color(0xFF7A63FF),
-
-                                    )
-                            },
-                            divider = {}
-                        ) {
-                            categories.forEachIndexed { index, category ->
-                                Tab(
-                                    selected = selectedTabIndex == index,
-                                    onClick = { onTabSelected(index) },
-                                    selectedContentColor = Color.Black,
-                                    unselectedContentColor = Color.Black.copy(alpha = 2.8f),
-                                    modifier = Modifier.width(IntrinsicSize.Min)
-
-                                ) {
-                                    Row(
-                                        horizontalArrangement = Arrangement.Center,
-                                        verticalAlignment = Alignment.CenterVertically,
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .padding(horizontal = 6.dp, vertical = 8.dp)
-                                    ) {
-                                        Text(
-                                            text = category,
-                                            fontSize = 15.sp,
-                                            fontWeight = if (selectedTabIndex == index) FontWeight.Bold else FontWeight.Normal,
-                                            fontFamily = MergFont,
-                                            modifier = Modifier.padding(end = 20.dp)
-                                        )
-
-                                        if (category == "See all") {
-                                            Icon(
-                                                imageVector = Icons.Default.KeyboardArrowDown,
-                                                contentDescription = "Arrow",
-                                                tint = Color(0xFF6471FF),
-                                                modifier = Modifier
-                                                    .size(18.dp)
-                                                    .clickable { showBottomSheet = true }
-                                            )
-                                            if (showBottomSheet) {
-                                                ModalBottomSheet(
-                                                    modifier = Modifier.fillMaxHeight(),
-                                                    sheetState = sheetState,
-                                                    onDismissRequest = { showBottomSheet = false }
-                                                ) {
-                                                    SEE_ALL()
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
 
             Spacer(modifier = Modifier.height(10.dp))
                     Column(
@@ -633,194 +424,21 @@ fun FoodScreen(categories: List<String>,
 
                         Column(
                             modifier = Modifier
-                                .fillMaxWidth(),
-                            verticalArrangement = Arrangement.spacedBy(6.dp)
-                        ){
+                                .width(350.dp),
+                            verticalArrangement = Arrangement.spacedBy(10.dp)
+                        ) {
 
                             Text(
-                                text = "Menu",
+                                text = "Similar Restaurant",
                                 fontSize = 20.sp,
                                 fontWeight = FontWeight.Normal,
                                 fontFamily = MergFont,
                                 color = Color(0xFF2B2B2B),
-                                modifier = Modifier.padding(start = 10.dp)
+                                modifier = Modifier
                             )
 
-                            Text(
-                                text = "Cuisines",
-                                fontSize = 15.sp,
-                                fontWeight = FontWeight.Light,
-                                fontFamily = MergFont,
-                                color = Color(0xFF2B2B2B),
-                                modifier = Modifier.padding(start = 10.dp)
-                            )
-                            Row (
-                                modifier = Modifier
-                                    .width(270.dp)
-                                    .height(30.dp)
-                                    .padding(start = 14.dp),
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.SpaceBetween
-                            ){
-
-                                Card(
-                                    modifier = Modifier
-                                        .clickable {}
-                                        .width(72.dp)
-                                        .height(15.dp)
-                                        .align(Alignment.CenterVertically),
-                                    colors = CardDefaults.cardColors(containerColor = Color.Gray.copy(0.1f)),
-                                    shape = RoundedCornerShape(6.dp)
-                                ) {
-                                    Row(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .height(28.dp),
-                                        verticalAlignment = Alignment.CenterVertically,
-                                        horizontalArrangement = Arrangement.SpaceBetween
-                                    ) {
-
-                                        Icon(
-                                            imageVector = Icons.Default.Star,
-                                            contentDescription = "Location",
-                                            tint = Color(0xFFEFBD42),
-                                            modifier = Modifier
-                                                .size(10.dp)
-                                                .align(Alignment.CenterVertically)
-                                                .padding(start = 4.dp)
-                                        )
-                                            Text(
-                                                text = "North Indian",
-                                                color = Color(0xFF2F2F2F),
-                                                fontSize = 8.sp,
-                                                fontWeight = FontWeight.Light
-
-                                            )
-                                            Icon(
-                                                imageVector = Icons.Default.Star,
-                                                contentDescription = "Location",
-                                                tint = Color(0xFFEFBD42),
-                                                modifier = Modifier
-                                                    .size(10.dp)
-                                                    .padding(end = 4.dp)
-                                            )
-                                    }
-                                }
-
-                               Card(
-                                    modifier = Modifier
-                                        .clickable {}
-                                        .width(72.dp)
-                                        .height(15.dp)
-                                        .align(Alignment.CenterVertically),
-                                    colors = CardDefaults.cardColors(containerColor = Color.Gray.copy(0.1f)),
-                                    shape = RoundedCornerShape(6.dp)
-                                ) {
-                                    Row(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .height(28.dp),
-                                        verticalAlignment = Alignment.CenterVertically,
-                                        horizontalArrangement = Arrangement.SpaceBetween
-                                    ) {
-
-                                        Icon(
-                                            imageVector = Icons.Default.Star,
-                                            contentDescription = "Location",
-                                            tint = Color(0xFFEFBD42),
-                                            modifier = Modifier
-                                                .size(10.dp)
-                                                .align(Alignment.CenterVertically)
-                                                .padding(start = 4.dp)
-                                        )
-                                        Text(
-                                            text = "North Indian",
-                                            color = Color(0xFF2F2F2F),
-                                            fontSize = 8.sp,
-                                            fontWeight = FontWeight.Light
-
-                                        )
-                                        Icon(
-                                            imageVector = Icons.Default.Star,
-                                            contentDescription = "Location",
-                                            tint = Color(0xFFEFBD42),
-                                            modifier = Modifier
-                                                .size(10.dp)
-                                                .padding(end = 4.dp)
-                                        )
-                                    }
-                                }
-
-                                Card(
-                                    modifier = Modifier
-                                        .clickable {}
-                                        .width(72.dp)
-                                        .height(15.dp)
-                                        .align(Alignment.CenterVertically),
-                                    colors = CardDefaults.cardColors(containerColor = Color.Gray.copy(0.1f)),
-                                    shape = RoundedCornerShape(6.dp)
-                                ) {
-                                    Row(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .height(28.dp),
-                                        verticalAlignment = Alignment.CenterVertically,
-                                        horizontalArrangement = Arrangement.SpaceBetween
-                                    ) {
-
-                                        Icon(
-                                            imageVector = Icons.Default.Star,
-                                            contentDescription = "Location",
-                                            tint = Color(0xFFEFBD42),
-                                            modifier = Modifier
-                                                .size(10.dp)
-                                                .align(Alignment.CenterVertically)
-                                                .padding(start = 4.dp)
-                                        )
-                                        Text(
-                                            text = "North Indian",
-                                            color = Color(0xFF2F2F2F),
-                                            fontSize = 8.sp,
-                                            fontWeight = FontWeight.Light
-
-                                        )
-                                        Icon(
-                                            imageVector = Icons.Default.Star,
-                                            contentDescription = "Location",
-                                            tint = Color(0xFFEFBD42),
-                                            modifier = Modifier
-                                                .size(10.dp)
-                                                .padding(end = 4.dp)
-                                        )
-                                    }
-                                }
-                            }
-                            Row (
-                                modifier = Modifier
-                                    .width(270.dp)
-                                    .fillMaxHeight()
-                                    .padding(start = 14.dp),
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.SpaceBetween
-                            ){
-                                Image(
-                                    painter = painterResource(R.drawable.menu),
-                                    contentDescription = null,
-                                    modifier = Modifier
-                                        .height(180.dp)
-                                        .width(140.dp)
-                                )
-                                Image(
-                                    painter = painterResource(R.drawable.menu2),
-                                    contentDescription = null,
-                                    modifier = Modifier
-                                        .height(190.dp)
-                                        .width(140.dp)
-                                )
-                            }
+                            Similar()
                         }
-
-                        LocationCard()
 
                         Column(
                             modifier = Modifier
@@ -933,7 +551,7 @@ fun FoodScreen(categories: List<String>,
 
 
 
-//@Preview
+@Preview
 @Composable
 private fun ok() {
     var selectedTab by remember { mutableStateOf(0) }
@@ -943,7 +561,7 @@ private fun ok() {
         )
     FoodScreen(categories = categories,
         selectedTabIndex = selectedTab,
-        onTabSelected = { selectedTab = it })
+        onTabSelected = { selectedTab = it }, time = "30-50 min • 2km")
 }
 
 
@@ -1064,7 +682,7 @@ private fun res(
 }
 
 
-@Preview
+
 @Composable
 private fun Similar() {
     val MergFont = FontFamily(
@@ -1073,8 +691,8 @@ private fun Similar() {
 
     ElevatedCard(
         modifier = Modifier
-            .width(280.dp)
-            .height(250.dp),
+            .width(185.dp)
+            .height(200.dp),
 
         shape = RoundedCornerShape(11.dp),
         colors = CardDefaults.cardColors(Color.White),
@@ -1084,14 +702,17 @@ private fun Similar() {
       Column (
           modifier = Modifier
               .fillMaxSize()
-              .padding(horizontal = 12.dp),
-          verticalArrangement = Arrangement.Center,
+              .padding(vertical = 6.dp)
+              .padding(horizontal = 6.dp),
+          verticalArrangement = Arrangement.spacedBy(8.dp),
           horizontalAlignment = Alignment.CenterHorizontally
       ){
          Image(
              painter = painterResource(R.drawable.img_1),
              contentDescription = null,
-             modifier = Modifier.clip(RoundedCornerShape(10.dp))
+             modifier = Modifier
+                 .clip(RoundedCornerShape(10.dp))
+
 
          )
 
@@ -1100,18 +721,18 @@ private fun Similar() {
           ){
               Text(
                   text = "Lal Jira Tadka",
-                  fontSize = 21.sp,
+                  fontSize = 16.sp,
                   fontWeight = FontWeight.Normal,
                   fontFamily = MergFont,
                   color = Color(0xFF2B2B2B)
               )
 
-              Spacer(modifier = Modifier.width(30.dp))
+              Spacer(modifier = Modifier.width(5.dp))
 
               Card(
                   modifier = Modifier
-                      .width(38.dp)
-                      .height(22.dp)
+                      .width(19.dp)
+                      .height(13.dp)
                       .align(Alignment.CenterVertically),
                   colors = CardDefaults.cardColors(containerColor = Color(0xFF056923)),
                   shape = RoundedCornerShape(5.dp)
@@ -1126,17 +747,17 @@ private fun Similar() {
                   ) {
                       Text(
                           text = "4.3",
-                          fontSize = 12.sp,
+                          fontSize = 6.sp,
                           fontWeight = FontWeight.Normal,
                           fontFamily = MergFont,
                           color = Color(0xFFFFFFFF)
                       )
-                      Spacer(modifier = Modifier.width(3.dp))
+                      Spacer(modifier = Modifier.width(2.dp))
                       Icon(
                           imageVector = Icons.Default.Star,
                           contentDescription = null,
                           tint = Color(0xFFFFFFFF),
-                          modifier = Modifier.size(9.dp)
+                          modifier = Modifier.size(5.dp)
                       )
                   }
               }
@@ -1152,7 +773,7 @@ VerticalDivider(
 
               Text(
                   text = "Delivery",
-                  fontSize = 11.sp,
+                  fontSize = 10.sp,
                   fontWeight = FontWeight.Normal,
                   fontFamily = MergFont,
                   color = Color(0xFF2B2B2B)
@@ -1163,7 +784,7 @@ VerticalDivider(
 
           Text(
               text = "42, Near Poppys Tower, Race Course, Coimbatore",
-              fontSize = 14.sp,
+              fontSize = 10.sp,
               fontWeight = FontWeight.Normal,
               fontFamily = MergFont,
               color = Color(0xFF3E3E3E)
@@ -1172,3 +793,201 @@ VerticalDivider(
       }
  }
 }
+
+
+
+
+
+
+
+
+
+//======================MENU BOX==================
+//Column(
+//modifier = Modifier
+//.fillMaxWidth(),
+//verticalArrangement = Arrangement.spacedBy(6.dp)
+//){
+//
+//    Text(
+//        text = "Menu",
+//        fontSize = 20.sp,
+//        fontWeight = FontWeight.Normal,
+//        fontFamily = MergFont,
+//        color = Color(0xFF2B2B2B),
+//        modifier = Modifier.padding(start = 10.dp)
+//    )
+//
+//    Text(
+//        text = "Cuisines",
+//        fontSize = 15.sp,
+//        fontWeight = FontWeight.Light,
+//        fontFamily = MergFont,
+//        color = Color(0xFF2B2B2B),
+//        modifier = Modifier.padding(start = 10.dp)
+//    )
+//    Row (
+//        modifier = Modifier
+//            .width(270.dp)
+//            .height(30.dp)
+//            .padding(start = 14.dp),
+//        verticalAlignment = Alignment.CenterVertically,
+//        horizontalArrangement = Arrangement.SpaceBetween
+//    ){
+//
+//        Card(
+//            modifier = Modifier
+//                .clickable {}
+//                .width(72.dp)
+//                .height(15.dp)
+//                .align(Alignment.CenterVertically),
+//            colors = CardDefaults.cardColors(containerColor = Color.Gray.copy(0.1f)),
+//            shape = RoundedCornerShape(6.dp)
+//        ) {
+//            Row(
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .height(28.dp),
+//                verticalAlignment = Alignment.CenterVertically,
+//                horizontalArrangement = Arrangement.SpaceBetween
+//            ) {
+//
+//                Icon(
+//                    imageVector = Icons.Default.Star,
+//                    contentDescription = "Location",
+//                    tint = Color(0xFFEFBD42),
+//                    modifier = Modifier
+//                        .size(10.dp)
+//                        .align(Alignment.CenterVertically)
+//                        .padding(start = 4.dp)
+//                )
+//                Text(
+//                    text = "North Indian",
+//                    color = Color(0xFF2F2F2F),
+//                    fontSize = 8.sp,
+//                    fontWeight = FontWeight.Light
+//
+//                )
+//                Icon(
+//                    imageVector = Icons.Default.Star,
+//                    contentDescription = "Location",
+//                    tint = Color(0xFFEFBD42),
+//                    modifier = Modifier
+//                        .size(10.dp)
+//                        .padding(end = 4.dp)
+//                )
+//            }
+//        }
+//
+//        Card(
+//            modifier = Modifier
+//                .clickable {}
+//                .width(72.dp)
+//                .height(15.dp)
+//                .align(Alignment.CenterVertically),
+//            colors = CardDefaults.cardColors(containerColor = Color.Gray.copy(0.1f)),
+//            shape = RoundedCornerShape(6.dp)
+//        ) {
+//            Row(
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .height(28.dp),
+//                verticalAlignment = Alignment.CenterVertically,
+//                horizontalArrangement = Arrangement.SpaceBetween
+//            ) {
+//
+//                Icon(
+//                    imageVector = Icons.Default.Star,
+//                    contentDescription = "Location",
+//                    tint = Color(0xFFEFBD42),
+//                    modifier = Modifier
+//                        .size(10.dp)
+//                        .align(Alignment.CenterVertically)
+//                        .padding(start = 4.dp)
+//                )
+//                Text(
+//                    text = "North Indian",
+//                    color = Color(0xFF2F2F2F),
+//                    fontSize = 8.sp,
+//                    fontWeight = FontWeight.Light
+//
+//                )
+//                Icon(
+//                    imageVector = Icons.Default.Star,
+//                    contentDescription = "Location",
+//                    tint = Color(0xFFEFBD42),
+//                    modifier = Modifier
+//                        .size(10.dp)
+//                        .padding(end = 4.dp)
+//                )
+//            }
+//        }
+//
+//        Card(
+//            modifier = Modifier
+//                .clickable {}
+//                .width(72.dp)
+//                .height(15.dp)
+//                .align(Alignment.CenterVertically),
+//            colors = CardDefaults.cardColors(containerColor = Color.Gray.copy(0.1f)),
+//            shape = RoundedCornerShape(6.dp)
+//        ) {
+//            Row(
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .height(28.dp),
+//                verticalAlignment = Alignment.CenterVertically,
+//                horizontalArrangement = Arrangement.SpaceBetween
+//            ) {
+//
+//                Icon(
+//                    imageVector = Icons.Default.Star,
+//                    contentDescription = "Location",
+//                    tint = Color(0xFFEFBD42),
+//                    modifier = Modifier
+//                        .size(10.dp)
+//                        .align(Alignment.CenterVertically)
+//                        .padding(start = 4.dp)
+//                )
+//                Text(
+//                    text = "North Indian",
+//                    color = Color(0xFF2F2F2F),
+//                    fontSize = 8.sp,
+//                    fontWeight = FontWeight.Light
+//
+//                )
+//                Icon(
+//                    imageVector = Icons.Default.Star,
+//                    contentDescription = "Location",
+//                    tint = Color(0xFFEFBD42),
+//                    modifier = Modifier
+//                        .size(10.dp)
+//                        .padding(end = 4.dp)
+//                )
+//            }
+//        }
+//    }
+//    Row (
+//        modifier = Modifier
+//            .width(270.dp)
+//            .fillMaxHeight()
+//            .padding(start = 14.dp),
+//        verticalAlignment = Alignment.CenterVertically,
+//        horizontalArrangement = Arrangement.SpaceBetween
+//    ){
+//        Image(
+//            painter = painterResource(R.drawable.menu),
+//            contentDescription = null,
+//            modifier = Modifier
+//                .height(180.dp)
+//                .width(140.dp)
+//        )
+//        Image(
+//            painter = painterResource(R.drawable.menu2),
+//            contentDescription = null,
+//            modifier = Modifier
+//                .height(190.dp)
+//                .width(140.dp)
+//        )
+//    }
+//}

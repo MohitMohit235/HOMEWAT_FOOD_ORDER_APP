@@ -3,9 +3,11 @@ package com.example.homeway.presentation.deshbord.component
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,15 +16,25 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.BookmarkBorder
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.Timer
+import androidx.compose.material.icons.outlined.Percent
+import androidx.compose.material.icons.outlined.Timer
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -39,11 +51,10 @@ import com.example.homeway.R
 @Composable
 fun foodcard(img: Int,
              dishname: String,
-             price: String,
-             distance: String,
-             countryfood: String,
              restorentplace: String,
-             veg_nonveg: Int
+             time: String,
+             veg_nonveg: Int,
+             offer : String
 ) {
 
     val marcellusFont = FontFamily(
@@ -54,7 +65,7 @@ fun foodcard(img: Int,
 
             Card(
                 modifier = Modifier
-                    .height(270.dp)
+                    .height(262.dp)
                     .width(360.dp),
                 colors = CardDefaults.cardColors(Color(0xFFEDEEFF))
             ){
@@ -79,107 +90,156 @@ fun foodcard(img: Int,
                                 modifier = Modifier
                                     .fillMaxWidth()
                             )
-                            Image(
-                                painter = painterResource(id = veg_nonveg),
-                                contentDescription = "veg",
-                                contentScale = ContentScale.FillBounds,
-                                modifier = Modifier
-                                    .size(30.dp)
-                                    .align(Alignment.BottomEnd)
-                                    .padding(end = 12.dp, bottom = 12.dp)
-                            )
 
                             Box(
                                 modifier = Modifier
-                                    .width(45.dp)
-                                    .height(30.dp)
-                                    .align(Alignment.TopEnd)
-                                    .padding(end = 12.dp, top = 12.dp)
+                                  //  .width(106.dp)
+                                    .height(28.dp)
+                                    .padding(top = 12.dp, start = 10.dp)
                                     .background(
-                                        color = Color(0xFF0B9A36),
+                                        color = Color(0x86000000),
                                         shape = RoundedCornerShape(3.dp)
-                                    ), contentAlignment = Alignment.Center
+                                    )
                             ) {
                                 Text(
-                                    text = "4.3+",
-                                    fontSize = 12.sp,
-                                    fontWeight = FontWeight.Medium,
+                                    text = "Penna Pasta • ₹360",
+                                    fontSize = 10.sp,
+                                    fontWeight = FontWeight.Normal,
                                     color = Color.White,
+                                    modifier = Modifier
+                                        .padding(vertical = 2.dp, horizontal = 4.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier
+                                    .width(200.dp)
+                                    .padding(top = 172.dp)
+                                    .background(
+                                        Brush.horizontalGradient(listOf(
+                                            Color.Black,
+                                            Color.Transparent
+                                        ))
+                                    )
+                            ) {
+                                Text(
+                                    text = "PHT Colony, Lasker, Gwalior",
+                                    fontSize = 10.sp,
+                                    fontWeight = FontWeight.Normal,
+                                    color = Color.White,
+                                    modifier = Modifier
+                                        .padding(vertical = 2.dp, horizontal = 4.dp)
                                 )
                             }
 
-
+                            Icon(
+                                Icons.Default.BookmarkBorder,
+                                "Small floating action button.",
+                                tint = Color.Gray,
+                                modifier = Modifier.padding(end = 12.dp, top = 12.dp).align(Alignment.TopEnd)
+                            )
                         }
                     }
-                    Box(
-                        modifier = Modifier
-                            .width(340.dp)
-                            .height(68.dp)
-                            .align(Alignment.CenterHorizontally),
 
 
-                        ) {
-                        Column(modifier = Modifier.fillMaxHeight()) {
-                            Text(
-                                text = dishname,
-                                fontFamily = marcellusFont,
-                                fontSize = 24.sp,
-                                color = Color(0xFF525252)
-                            )
-
-                            Text(
-                                text = countryfood,
-                                fontFamily = marcellusFont,
-                                fontSize = 16.sp,
-                                color = Color(0xFF525252)
-                            )
-
-                            Text(
-                                text = restorentplace,
-                                fontFamily = marcellusFont,
-                                fontSize = 14.sp,
-                                color = Color(0xFF525252),
-
-                                )
-                        }
-
-
-                        Column(
+                        Box(
                             modifier = Modifier
-                                .fillMaxHeight()
-                                .align(Alignment.CenterEnd),
-                            verticalArrangement = Arrangement.Center,
-                            horizontalAlignment = Alignment.End
-                        ) {
-                            Text(
-                                text = price,
-                                fontSize = 20.sp,
-                                fontFamily = FontFamily.Monospace,
-                                color = Color(0xFF525252),
-                            )
+                                .width(340.dp)
+                                .align(Alignment.CenterHorizontally),
 
 
-                            Text(
-                                text = "Open now",
-                                fontSize = 15.sp,
-                                fontFamily = marcellusFont,
-                                color = Color(0xFF525252)
+                            ) {
+                            Column(
+                                modifier = Modifier
+                                    .padding(top = 2.dp),
+                                verticalArrangement = Arrangement.spacedBy(3.dp)
+                            ) {
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Text(
+                                        text = dishname,
+                                        fontFamily = marcellusFont,
+                                        fontSize = 15.sp,
+                                        fontWeight = FontWeight.Bold,
+                                        color = Color(0xFF1F1F1F)
+                                    )
+                                    Box(
+                                        modifier = Modifier
+                                            .width(30.dp)
+                                            .height(16.dp)
+                                            .background(
+                                                color = Color(0xFF0B9A36),
+                                                shape = RoundedCornerShape(5.dp)
+                                            ), contentAlignment = Alignment.Center
+                                    ) {
+                                        Text(
+                                            text = "4.3 +",
+                                            fontSize = 10.sp,
+                                            fontWeight = FontWeight.Medium,
+                                            color = Color.White,
+                                        )
+                                    }
+                                }
 
-                            )
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.spacedBy(2.dp),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Outlined.Timer,
+                                        contentDescription = null,
+                                        tint = Color(0xFF525252),
+                                        modifier = Modifier.size(15.dp)
+                                    )
 
-                            Text(
-                                text = distance,
-                                fontSize = 12.sp,
-                                fontFamily = marcellusFont,
-                                color = Color(0xFF525252),
-                                modifier = Modifier.padding(top = 5.dp)
-                            )
+
+                                    Text(
+                                        text = time,
+                                        fontFamily = marcellusFont,
+                                        fontSize = 10.sp,
+                                        fontWeight = FontWeight.SemiBold,
+                                        color = Color(0xFF525252),
+
+                                        )
+
+                                }
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(18.dp)
+                                        .padding(end = 60.dp),
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(5.dp)
+
+                                ) {
+                                    Image(
+                                        painter = painterResource(R.drawable.imgofffffer),
+                                        contentDescription = null,
+                                        modifier = Modifier.size(15.dp)
+
+                                    )
+
+                                    Text(
+                                        text = offer,
+                                        fontFamily = marcellusFont,
+                                        fontSize = 11.sp,
+                                        fontWeight = FontWeight.SemiBold,
+                                        color = Color(0xFF262626).copy(alpha = 0.8f),
+
+                                        )
+                                }
+
+                            }
+
                         }
-
                     }
                 }
             }
-        }
 
 
 
@@ -187,11 +247,10 @@ fun foodcard(img: Int,
 @Composable
 private fun kok() {
     foodcard(img = R.drawable.penne_pasta,
-        dishname = "Penne Pasta",
-        countryfood = "Italy",
-        restorentplace = "Lashkar , Gwalior",
-        price = "₹400",
-        distance = "1.6Km",
-        veg_nonveg = R.drawable.veg_icon
+        dishname = "7 Hill Restaurant",
+        restorentplace = "PRG Colony, Lashkar, Gwalior",
+        time = "20 mins • 2km",
+        veg_nonveg = R.drawable.veg_icon,
+        offer = "10% OFF up to ₹200"
     )
 }

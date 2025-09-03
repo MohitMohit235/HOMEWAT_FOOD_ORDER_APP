@@ -1,8 +1,6 @@
 package com.example.homeway.presentation.deshbord.component
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
@@ -28,9 +26,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.foundation.border
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.OutlinedCard
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -63,22 +58,22 @@ fun myapp(){
                 .horizontalScroll(rememberScrollState())
                 .width(IntrinsicSize.Min)
                 .height(28.dp)
-                .padding(start = 5.dp,end = 17.dp),
+                .padding(end = 17.dp, start = 5.dp),
             verticalAlignment = Alignment.CenterVertically
         ){
 
             //======================first card button========================
 
             val borderWidth = 300.dp
-            OutlinedCard(
-                border = BorderStroke(2.dp, Color.Black.copy(alpha = 0.3f)),
+            Card(
                 modifier = Modifier
                     .clickable{}
                     .width(76.dp)
                     .height(30.dp)
                     .align(Alignment.CenterVertically),
                 colors = CardDefaults.cardColors(containerColor = Color.White),
-                shape = RoundedCornerShape(10.dp)
+                shape = RoundedCornerShape(10.dp),
+                elevation = CardDefaults.cardElevation(5.dp)
             ){
                 Row(
                     modifier = Modifier
@@ -89,7 +84,7 @@ fun myapp(){
                     Icon(
                         imageVector = Icons.Default.FilterList,
                         contentDescription = "Location",
-                        tint = Color(0xFF808080),
+                        tint = Color(0xFF2D2D2D),
                         modifier = Modifier
                             .size(18.dp)
                             .align(Alignment.CenterVertically)
@@ -104,7 +99,7 @@ fun myapp(){
                     ){
                         Text(
                             text = "Filters",
-                            color = Color(0xFF808080),
+                            color = Color(0xFF313131),
                             fontSize = 13.sp,
                             fontWeight = FontWeight.SemiBold,
                             fontFamily = marcellusFont
@@ -113,18 +108,18 @@ fun myapp(){
                 }
             }
 
-            Spacer(modifier = Modifier.width(20.dp))
+            Spacer(modifier = Modifier.width(5.dp))
 
             //======================second card button========================
 
-            OutlinedCard(
-                border = BorderStroke(2.dp, Color.Black.copy(alpha = 0.3f)),
+            Card(
                 modifier = Modifier
                     .width(76.dp)
                     .height(30.dp)
                     .align(Alignment.CenterVertically),
                 colors = CardDefaults.cardColors(containerColor = Color.White),
-                shape = RoundedCornerShape(10.dp)
+                shape = RoundedCornerShape(10.dp),
+                elevation = CardDefaults.cardElevation(5.dp)
             ){
                 Row(
                     modifier = Modifier
@@ -133,7 +128,7 @@ fun myapp(){
                     Icon(
                         imageVector = Icons.Default.LocalOffer,
                         contentDescription = "Location",
-                        tint = Color(0xFF808080),
+                        tint = Color(0xFF2A2A2A),
                         modifier = Modifier
                             .size(18.dp)
                             .align(Alignment.CenterVertically)
@@ -148,7 +143,7 @@ fun myapp(){
                     ){
                         Text(
                             text = "Offers",
-                            color = Color(0xFF808080),
+                            color = Color(0xFF242424),
                             fontSize = 13.sp,
                             fontWeight = FontWeight.SemiBold,
                             fontFamily = marcellusFont
@@ -157,17 +152,17 @@ fun myapp(){
                 }
             }
 
-            Spacer(modifier = Modifier.width(20.dp))
+            Spacer(modifier = Modifier.width(5.dp))
             //======================third card button========================
 
-            OutlinedCard(
-                border = BorderStroke(2.dp, Color.Black.copy(alpha = 0.3f)),
+            Card(
                 modifier = Modifier
                     .width(76.dp)
                     .height(30.dp)
                     .align(Alignment.CenterVertically),
                 colors = CardDefaults.cardColors(containerColor = Color.White),
-                shape = RoundedCornerShape(8.dp)
+                shape = RoundedCornerShape(8.dp),
+                elevation = CardDefaults.cardElevation(5.dp)
             ){
                 Row(
                     modifier = Modifier
@@ -191,7 +186,7 @@ fun myapp(){
                     ){
                         Text(
                             text = "Dessert",
-                            color = Color(0xFF808080),
+                            color = Color(0xFF2B2B2B),
                             fontSize = 13.sp,
                             fontWeight = FontWeight.SemiBold,
                             fontFamily = marcellusFont,
@@ -202,17 +197,17 @@ fun myapp(){
                 }
             }
 
-            Spacer(modifier = Modifier.width(20.dp))
+            Spacer(modifier = Modifier.width(5.dp))
             //======================four card button========================
 
-            OutlinedCard(
-                border = BorderStroke(2.dp, Color.Black.copy(alpha = 0.3f)),
+            Card(
                 modifier = Modifier
                     .width(60.dp)
                     .height(30.dp)
                     .align(Alignment.CenterVertically),
                 colors = CardDefaults.cardColors(containerColor = Color.White),
-                shape = RoundedCornerShape(8.dp)
+                shape = RoundedCornerShape(8.dp),
+                elevation = CardDefaults.cardElevation(5.dp)
             ){
                 Row(
                     modifier = Modifier
@@ -236,7 +231,7 @@ fun myapp(){
                     ){
                         Text(
                             text = "Veg",
-                            color = Color(0xFF808080),
+                            color = Color(0xFF363636),
                             fontSize = 13.sp,
                             fontWeight = FontWeight.SemiBold,
                             fontFamily = marcellusFont,
@@ -247,18 +242,18 @@ fun myapp(){
                 }
             }
 
-            Spacer(modifier = Modifier.width(20.dp))
+            Spacer(modifier = Modifier.width(5.dp))
             //=====================================five card button=====================================
 
 
-            OutlinedCard(
-                border = BorderStroke(2.dp, Color.Black.copy(alpha = 0.3f)),
+            Card(
                 modifier = Modifier
                     .width(86.dp)
                     .height(30.dp)
                     .align(Alignment.CenterVertically),
                 colors = CardDefaults.cardColors(containerColor = Color.White),
-                shape = RoundedCornerShape(8.dp)
+                shape = RoundedCornerShape(8.dp),
+                elevation = CardDefaults.cardElevation(5.dp)
             ){
                 Row(
                     modifier = Modifier
@@ -282,7 +277,7 @@ fun myapp(){
                     ){
                         Text(
                             text = "Non-veg",
-                            color = Color(0xFF808080),
+                            color = Color(0xFF363636),
                             fontSize = 13.sp,
                             fontWeight = FontWeight.SemiBold,
                             fontFamily = marcellusFont,
@@ -293,17 +288,17 @@ fun myapp(){
                 }
             }
 
-            Spacer(modifier = Modifier.width(20.dp))
+            Spacer(modifier = Modifier.width(5.dp))
             //===============================six card button============================================
 
-            OutlinedCard(
-                border = BorderStroke(2.dp, Color.Black.copy(alpha = 0.3f)),
+            Card(
                 modifier = Modifier
                     .width(75.dp)
                     .height(30.dp)
                     .align(Alignment.CenterVertically),
                 colors = CardDefaults.cardColors(containerColor = Color.White),
-                shape = RoundedCornerShape(8.dp)
+                shape = RoundedCornerShape(8.dp),
+                elevation = CardDefaults.cardElevation(5.dp)
             ){
                 Row(
                     modifier = Modifier
@@ -328,7 +323,7 @@ fun myapp(){
                     ){
                         Text(
                             text = "Dining",
-                            color = Color(0xFF808080),
+                            color = Color(0xFF363636),
                             fontSize = 13.sp,
                             fontWeight = FontWeight.SemiBold,
                             fontFamily = marcellusFont,
@@ -339,17 +334,17 @@ fun myapp(){
                 }
             }
 
-            Spacer(modifier = Modifier.width(20.dp))
+            Spacer(modifier = Modifier.width(5.dp))
             //=============================seven card button===================================
 
-            OutlinedCard(
-                border = BorderStroke(2.dp, Color.Black.copy(alpha = 0.3f)),
+           Card(
                 modifier = Modifier
                     .width(84.dp)
                     .height(30.dp)
                     .align(Alignment.CenterVertically),
                 colors = CardDefaults.cardColors(containerColor = Color.White),
-                shape = RoundedCornerShape(8.dp)
+                shape = RoundedCornerShape(8.dp),
+               elevation = CardDefaults.cardElevation(5.dp)
             ){
                 Row(
                     modifier = Modifier
@@ -373,7 +368,7 @@ fun myapp(){
                     ){
                         Text(
                             text = "Delivery",
-                            color = Color(0xFF808080),
+                            color = Color(0xFF363636),
                             fontSize = 13.sp,
                             fontWeight = FontWeight.SemiBold,
                             fontFamily = marcellusFont,
@@ -384,17 +379,17 @@ fun myapp(){
                 }
             }
 
-            Spacer(modifier = Modifier.width(20.dp))
+            Spacer(modifier = Modifier.width(5.dp))
 //============================eight card button==============================
 
-            OutlinedCard(
-                border = BorderStroke(2.dp, Color.Black.copy(alpha = 0.3f)),
+            Card(
                 modifier = Modifier
                     .width(86.dp)
                     .height(30.dp)
                     .align(Alignment.CenterVertically),
                 colors = CardDefaults.cardColors(containerColor = Color.White),
-                shape = RoundedCornerShape(8.dp)
+                shape = RoundedCornerShape(8.dp),
+                elevation = CardDefaults.cardElevation(5.dp)
             ){
                 Row(
                     modifier = Modifier
@@ -419,7 +414,7 @@ fun myapp(){
                     ){
                         Text(
                             text = "Nightlife",
-                            color = Color(0xFF808080),
+                            color = Color(0xFF363636),
                             fontSize = 13.sp,
                             fontWeight = FontWeight.SemiBold,
                             fontFamily = marcellusFont,
