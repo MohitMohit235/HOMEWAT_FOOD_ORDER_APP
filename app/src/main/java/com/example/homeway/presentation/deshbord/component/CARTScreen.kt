@@ -141,17 +141,7 @@ fun CartScreen(modifier: Modifier = Modifier) {
                     modifier = Modifier.height(580.dp)
                     ){
                     item(6){
-                        Cartfood()
-                        Spacer(modifier = Modifier.height(15.dp))
-                        Cartfood()
-                        Spacer(modifier = Modifier.height(15.dp))
-                        Cartfood()
-                        Spacer(modifier = Modifier.height(15.dp))
-                        Cartfood()
-                        Spacer(modifier = Modifier.height(15.dp))
-                        Cartfood()
-                        Spacer(modifier = Modifier.height(15.dp))
-                        Cartfood()
+                        
                     }
                 }
             }

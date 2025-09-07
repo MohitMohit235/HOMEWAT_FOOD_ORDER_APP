@@ -190,7 +190,6 @@ fun topbar(categories: List<String>,
                     )
                 }
             }
-
         }
         Box(modifier = Modifier
             .fillMaxWidth()
@@ -204,7 +203,7 @@ fun topbar(categories: List<String>,
                         modifier = Modifier
                             .tabIndicatorOffset(tabPositions[selectedTabIndex])
                             .height(3.dp),
-                        color = Color(0xFF7A63FF),
+                        color = Color(0xFF6471FF),
 
                         )
                 },
@@ -244,7 +243,7 @@ fun topbar(categories: List<String>,
                                         sheetState = sheetState,
                                         onDismissRequest = { showBottomSheet = false }
                                     ) {
-                                        SEE_ALL()
+                                        FoodGridScreen()
                                     }
                                 }
                             }

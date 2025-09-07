@@ -1,25 +1,19 @@
 package com.example.homeway.presentation.deshbord.component
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FilterList
-import androidx.compose.material.icons.filled.LocalDining
-import androidx.compose.material.icons.filled.LocalOffer
-import androidx.compose.material.icons.filled.Nightlife
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -28,404 +22,117 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.homeway.R
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.material.icons.filled.LocalDining
+import androidx.compose.material.icons.filled.LocalOffer
+import androidx.compose.material.icons.filled.Nightlife
+import androidx.compose.material.icons.filled.Recommend
+import androidx.compose.material.icons.filled.Timer
+import androidx.compose.material.icons.outlined.LocalOffer
+import androidx.compose.material.icons.outlined.Timelapse
+import androidx.compose.material.icons.outlined.Timer
+import androidx.compose.ui.draw.shadow
 
-@Preview
+@Preview()
 @Composable
-fun myapp(){
+fun FilterSectionPreview() {
+    FilterSection()
+}
 
-    val marcellusFont =FontFamily(
-        Font(R.font.marcellus_regular, FontWeight.Normal))
-    Box (
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun FilterSection() {
+    val filters = listOf(
+        Triple(Icons.Default.FilterList, null, "Filters"),
+        Triple(Icons.Outlined.LocalOffer, null, "Offers"),
+        Triple(Icons.Outlined.Timelapse, null, "Schedule"),
+        Triple(null, R.drawable.recommended22, "Recommended"),
+        Triple(null, R.drawable.desserts, "Dessert"),
+        Triple(null, R.drawable.veg_icon, "Veg"),
+        Triple(null, R.drawable.nonveg_icon, "Non-veg"),
+        Triple(null, R.drawable.delivery_bike, "Delivery"),
+        Triple(null, R.drawable.dinner, "Dinner"),
+        Triple(null, R.drawable.night_botel, "Nightlife"),
+
+    )
+
+    LazyRow(
         modifier = Modifier
             .fillMaxWidth()
-            .height(40.dp),
-        contentAlignment = Alignment.Center
+            .height(50.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 10.dp)
+    ) {
+        items(filters.size) { index ->
+            val (icon, imageRes, text) = filters[index]
+            FilterCard(icon = icon,imageRes = imageRes, text = text)
+        }
+    }
+}
 
-
-    ){
+@Composable
+fun FilterCard(
+    icon: ImageVector? = null,
+    imageRes: Int? = null,
+    text: String
+) {
+    Card(
+        modifier = Modifier
+            .wrapContentWidth()
+            .height(30.dp)
+            .shadow(1.dp, RoundedCornerShape(8.dp), clip = false),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
+        shape = RoundedCornerShape(8.dp)
+    ) {
         Row(
             modifier = Modifier
-                .horizontalScroll(rememberScrollState())
-                .width(IntrinsicSize.Min)
-                .height(28.dp)
-                .padding(end = 17.dp, start = 5.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ){
-
-            //======================first card button========================
-
-            val borderWidth = 300.dp
-            Card(
-                modifier = Modifier
-                    .clickable{}
-                    .width(76.dp)
-                    .height(30.dp)
-                    .align(Alignment.CenterVertically),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
-                shape = RoundedCornerShape(10.dp),
-                elevation = CardDefaults.cardElevation(5.dp)
-            ){
-                Row(
-                    modifier = Modifier
-                        .width(66.dp)
-                        .height(27.dp)
-                ) {
-
+                .padding(horizontal = 12.dp, vertical = 8.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ) {
+            when {
+                icon != null -> {
                     Icon(
-                        imageVector = Icons.Default.FilterList,
-                        contentDescription = "Location",
-                        tint = Color(0xFF2D2D2D),
-                        modifier = Modifier
-                            .size(18.dp)
-                            .align(Alignment.CenterVertically)
-                            .padding(start = 8.dp)
+                        imageVector = icon,
+                        contentDescription = text,
+                        tint = Color(0x99000000),
+                        modifier = Modifier.size(20.dp)
                     )
-                    Box(
-                        modifier = Modifier
-                            .weight(0.5f)
-                            .fillMaxHeight()
-                            .padding(5.dp),
-                        contentAlignment = Alignment.CenterStart
-                    ){
-                        Text(
-                            text = "Filters",
-                            color = Color(0xFF313131),
-                            fontSize = 13.sp,
-                            fontWeight = FontWeight.SemiBold,
-                            fontFamily = marcellusFont
-                        )
-                    }
                 }
-            }
-
-            Spacer(modifier = Modifier.width(5.dp))
-
-            //======================second card button========================
-
-            Card(
-                modifier = Modifier
-                    .width(76.dp)
-                    .height(30.dp)
-                    .align(Alignment.CenterVertically),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
-                shape = RoundedCornerShape(10.dp),
-                elevation = CardDefaults.cardElevation(5.dp)
-            ){
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.LocalOffer,
-                        contentDescription = "Location",
-                        tint = Color(0xFF2A2A2A),
-                        modifier = Modifier
-                            .size(18.dp)
-                            .align(Alignment.CenterVertically)
-                            .padding(start = 8.dp)
-                    )
-                    Box(
-                        modifier = Modifier
-                            .weight(0.5f)
-                            .fillMaxHeight()
-                            .padding(5.dp),
-                        contentAlignment = Alignment.CenterStart
-                    ){
-                        Text(
-                            text = "Offers",
-                            color = Color(0xFF242424),
-                            fontSize = 13.sp,
-                            fontWeight = FontWeight.SemiBold,
-                            fontFamily = marcellusFont
-                        )
-                    }
-                }
-            }
-
-            Spacer(modifier = Modifier.width(5.dp))
-            //======================third card button========================
-
-            Card(
-                modifier = Modifier
-                    .width(76.dp)
-                    .height(30.dp)
-                    .align(Alignment.CenterVertically),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
-                shape = RoundedCornerShape(8.dp),
-                elevation = CardDefaults.cardElevation(5.dp)
-            ){
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
+                imageRes != null -> {
                     Image(
-                        painter = painterResource(R.drawable.desserts),
-                        contentDescription = "filter",
+                        painter = painterResource(id = imageRes),
+                        contentDescription = text,
                         contentScale = ContentScale.Fit,
-                        modifier = Modifier
-                            .size(18.dp)
-                            .align(Alignment.CenterVertically)
-                            .padding(start = 8.dp)
+                        modifier = Modifier.size(20.dp)
                     )
-                    Box(
-                        modifier = Modifier
-                            .weight(0.5f)
-                            .fillMaxHeight()
-                            .padding(5.dp),
-                        contentAlignment = Alignment.CenterStart
-                    ){
-                        Text(
-                            text = "Dessert",
-                            color = Color(0xFF2B2B2B),
-                            fontSize = 13.sp,
-                            fontWeight = FontWeight.SemiBold,
-                            fontFamily = marcellusFont,
-                            modifier = Modifier.fillMaxWidth(),
-                            textAlign = TextAlign.Center
-                        )
-                    }
                 }
             }
 
-            Spacer(modifier = Modifier.width(5.dp))
-            //======================four card button========================
+            Spacer(modifier = Modifier.width(4.dp))
 
-            Card(
-                modifier = Modifier
-                    .width(60.dp)
-                    .height(30.dp)
-                    .align(Alignment.CenterVertically),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
-                shape = RoundedCornerShape(8.dp),
-                elevation = CardDefaults.cardElevation(5.dp)
-            ){
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-                    Image(
-                        painter = painterResource(R.drawable.veg_icon),
-                        contentDescription = "filter",
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier
-                            .size(18.dp)
-                            .align(Alignment.CenterVertically)
-                            .padding(start = 6.dp)
-                    )
-                    Box(
-                        modifier = Modifier
-                            .weight(0.5f)
-                            .fillMaxHeight()
-                            .padding(start = 1.dp),
-                        contentAlignment = Alignment.CenterStart
-                    ){
-                        Text(
-                            text = "Veg",
-                            color = Color(0xFF363636),
-                            fontSize = 13.sp,
-                            fontWeight = FontWeight.SemiBold,
-                            fontFamily = marcellusFont,
-                            modifier = Modifier.padding(start = 4.dp),
-                            textAlign = TextAlign.Center
-                        )
-                    }
-                }
-            }
-
-            Spacer(modifier = Modifier.width(5.dp))
-            //=====================================five card button=====================================
-
-
-            Card(
-                modifier = Modifier
-                    .width(86.dp)
-                    .height(30.dp)
-                    .align(Alignment.CenterVertically),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
-                shape = RoundedCornerShape(8.dp),
-                elevation = CardDefaults.cardElevation(5.dp)
-            ){
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-                    Image(
-                        painter = painterResource(R.drawable.nonveg_icon),
-                        contentDescription = "filter",
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier
-                            .size(18.dp)
-                            .align(Alignment.CenterVertically)
-                            .padding(start = 6.dp)
-                    )
-                    Box(
-                        modifier = Modifier
-                            .weight(0.5f)
-                            .fillMaxHeight()
-                            .padding(5.dp),
-                        contentAlignment = Alignment.CenterStart
-                    ){
-                        Text(
-                            text = "Non-veg",
-                            color = Color(0xFF363636),
-                            fontSize = 13.sp,
-                            fontWeight = FontWeight.SemiBold,
-                            fontFamily = marcellusFont,
-                            modifier = Modifier.fillMaxWidth(),
-                            textAlign = TextAlign.Center
-                        )
-                    }
-                }
-            }
-
-            Spacer(modifier = Modifier.width(5.dp))
-            //===============================six card button============================================
-
-            Card(
-                modifier = Modifier
-                    .width(75.dp)
-                    .height(30.dp)
-                    .align(Alignment.CenterVertically),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
-                shape = RoundedCornerShape(8.dp),
-                elevation = CardDefaults.cardElevation(5.dp)
-            ){
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-
-                    Icon(
-                        imageVector = Icons.Default.LocalDining,
-                        contentDescription = "Location",
-                        tint = Color(0xFF808080),
-                        modifier = Modifier
-                            .size(18.dp)
-                            .align(Alignment.CenterVertically)
-                            .padding(start = 6.dp)
-                    )
-                    Box(
-                        modifier = Modifier
-                            .weight(0.5f)
-                            .fillMaxHeight()
-                            .padding(5.dp),
-                        contentAlignment = Alignment.CenterStart
-                    ){
-                        Text(
-                            text = "Dining",
-                            color = Color(0xFF363636),
-                            fontSize = 13.sp,
-                            fontWeight = FontWeight.SemiBold,
-                            fontFamily = marcellusFont,
-                            modifier = Modifier.fillMaxWidth(),
-                            textAlign = TextAlign.Center
-                        )
-                    }
-                }
-            }
-
-            Spacer(modifier = Modifier.width(5.dp))
-            //=============================seven card button===================================
-
-           Card(
-                modifier = Modifier
-                    .width(84.dp)
-                    .height(30.dp)
-                    .align(Alignment.CenterVertically),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
-                shape = RoundedCornerShape(8.dp),
-               elevation = CardDefaults.cardElevation(5.dp)
-            ){
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-                    Image(
-                        painter = painterResource(R.drawable.delivery_bike),
-                        contentDescription = "filter",
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier
-                            .size(18.dp)
-                            .align(Alignment.CenterVertically)
-                            .padding(start = 6.dp)
-                    )
-                    Box(
-                        modifier = Modifier
-                            .weight(0.5f)
-                            .fillMaxHeight()
-                            .padding(5.dp),
-                        contentAlignment = Alignment.CenterStart
-                    ){
-                        Text(
-                            text = "Delivery",
-                            color = Color(0xFF363636),
-                            fontSize = 13.sp,
-                            fontWeight = FontWeight.SemiBold,
-                            fontFamily = marcellusFont,
-                            modifier = Modifier.fillMaxWidth(),
-                            textAlign = TextAlign.Center
-                        )
-                    }
-                }
-            }
-
-            Spacer(modifier = Modifier.width(5.dp))
-//============================eight card button==============================
-
-            Card(
-                modifier = Modifier
-                    .width(86.dp)
-                    .height(30.dp)
-                    .align(Alignment.CenterVertically),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
-                shape = RoundedCornerShape(8.dp),
-                elevation = CardDefaults.cardElevation(5.dp)
-            ){
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-
-                    Icon(
-                        imageVector = Icons.Default.Nightlife,
-                        contentDescription = "Location",
-                        tint = Color(0xFF808080),
-                        modifier = Modifier
-                            .size(18.dp)
-                            .align(Alignment.CenterVertically)
-                            .padding(start = 6.dp)
-                    )
-                    Box(
-                        modifier = Modifier
-                            .weight(0.5f)
-                            .fillMaxHeight()
-                            .padding(5.dp),
-                        contentAlignment = Alignment.CenterStart
-                    ){
-                        Text(
-                            text = "Nightlife",
-                            color = Color(0xFF363636),
-                            fontSize = 13.sp,
-                            fontWeight = FontWeight.SemiBold,
-                            fontFamily = marcellusFont,
-                            modifier = Modifier.fillMaxWidth(),
-                            textAlign = TextAlign.Center
-                        )
-                    }
-                }
-            }
-
-
+            Text(
+                text = text,
+                color = Color(0x99000000),
+                fontSize = 13.sp,
+                fontWeight = FontWeight.SemiBold
+            )
         }
     }
 }

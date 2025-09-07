@@ -16,6 +16,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -39,6 +40,7 @@ import com.example.homeway.R
                 .background(Color(0xFFF5F8FF))
         ) {
 
+            val bookedFoods = remember { mutableStateListOf<FoodItem>() }
             var selectedTab by remember { mutableStateOf(0) }
             val categories = listOf(
                 "ALL", "Pizza", "Burger", "Pasta", "Noodle",
@@ -57,23 +59,23 @@ import com.example.homeway.R
                     selectedTabIndex = selectedTab,
                     onTabSelected = { selectedTab = it })
 
-                LazyColumn(
+                Column(
                     modifier = Modifier
                         .fillMaxSize()
                         .fillMaxHeight()
-                        .padding(vertical = 20.dp),
+                        .padding(vertical = 20.dp, horizontal = 20.dp),
                     verticalArrangement = Arrangement.spacedBy(30.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    contentPadding = PaddingValues(horizontal = 16.dp)
+
                 ) {
-                    items(10) {
+
 
                         Spacer(modifier = Modifier.width(10.dp))
 
                         My_preview()
 
                         Spacer(modifier = Modifier.padding(vertical = 10.dp))
-                        myapp()
+
 
                         Spacer(modifier = Modifier.height(20.dp))
 
@@ -83,7 +85,8 @@ import com.example.homeway.R
                             restorentplace = "Lashkar , Gwalior",
                             time = "20 mins • 2km",
                             veg_nonveg = R.drawable.veg_icon,
-                            offer = "10% OFF up to two"
+                            offer = "10% OFF up to two",
+                            onBookClick = { bookedFoods.add(it) }
                         )
 
                         Spacer(modifier = Modifier.height(20.dp))
@@ -94,7 +97,8 @@ import com.example.homeway.R
                             restorentplace = "City Center , Gwalior",
                             time = "20 mins • 2km",
                             veg_nonveg = R.drawable.nonveg_icon,
-                            offer = "10% OFF up to two"
+                            offer = "10% OFF up to two",
+                            onBookClick = { bookedFoods.add(it) }
                         )
 
                         Spacer(modifier = Modifier.height(20.dp))
@@ -105,7 +109,8 @@ import com.example.homeway.R
                             restorentplace = "Maharaja Complex DD Nagar , Gwalior",
                             time = "20 mins • 2km",
                             veg_nonveg = R.drawable.nonveg_icon,
-                            offer = "10% OFF up to two"
+                            offer = "10% OFF up to two",
+                            onBookClick = { bookedFoods.add(it) }
                         )
 
                         Spacer(modifier = Modifier.height(20.dp))
@@ -116,7 +121,8 @@ import com.example.homeway.R
                             restorentplace = "Phool Bagh , Gwalior",
                             time = "20 mins • 2km",
                             veg_nonveg = R.drawable.nonveg_icon,
-                            offer = "10% OFF up to two"
+                            offer = "10% OFF up to two",
+                            onBookClick = { bookedFoods.add(it) }
                         )
 
                         Spacer(modifier = Modifier.height(20.dp))
@@ -127,7 +133,8 @@ import com.example.homeway.R
                             restorentplace = "Gandhi Nagar , Gwalior",
                             time = "20 mins • 2km",
                             veg_nonveg = R.drawable.veg_icon,
-                            offer = "10% OFF up to two"
+                            offer = "10% OFF up to two",
+                            onBookClick = { bookedFoods.add(it) }
                         )
 
                         Spacer(modifier = Modifier.height(20.dp))
@@ -138,7 +145,8 @@ import com.example.homeway.R
                             restorentplace = "City Center , Gwalior",
                             time = "20 mins • 2km",
                             veg_nonveg = R.drawable.veg_icon,
-                            offer = "10% OFF up to two"
+                            offer = "10% OFF up to two",
+                            onBookClick = { bookedFoods.add(it) }
                         )
 
                         Spacer(modifier = Modifier.height(20.dp))
@@ -149,7 +157,8 @@ import com.example.homeway.R
                             restorentplace = "DD Nagar,Gwalior",
                             time = "20 mins • 2km",
                             veg_nonveg = R.drawable.nonveg_icon,
-                            offer = "10% OFF up to two"
+                            offer = "10% OFF up to two",
+                            onBookClick = { bookedFoods.add(it) }
                         )
 
                         Spacer(modifier = Modifier.height(20.dp))
@@ -160,7 +169,8 @@ import com.example.homeway.R
                             restorentplace = "Phool Bagh,Gwalior",
                             time = "20 mins • 2km",
                             veg_nonveg = R.drawable.veg_icon,
-                            offer = "10% OFF up to two"
+                            offer = "10% OFF up to two",
+                            onBookClick = { bookedFoods.add(it) }
                         )
 
                     }
@@ -187,7 +197,7 @@ import com.example.homeway.R
 
         }
     }
-}
+
 
 
 

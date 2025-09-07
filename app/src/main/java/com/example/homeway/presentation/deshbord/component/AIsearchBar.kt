@@ -1,6 +1,7 @@
 package com.example.homeway.presentation.deshbord.component
 
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -25,14 +26,15 @@ import androidx.compose.material.icons.filled.PhotoLibrary
 import androidx.compose.material.icons.outlined.MicNone
 import androidx.compose.material.icons.outlined.RecordVoiceOver
 import androidx.compose.material.icons.outlined.SavedSearch
-import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardElevation
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -51,58 +53,36 @@ fun AIsearch(modifier: Modifier = Modifier) {
         Font(R.font.lato_regular, FontWeight.Normal)
     )
 
-    Surface(modifier = Modifier.fillMaxSize(), color = Color(0xFF000000)) {
+    Surface(modifier = Modifier.fillMaxSize(), color = Color(0xFF7B7B7B)) {
 
-        Box(modifier = Modifier.fillMaxSize().background(Color(0xFF232323)),
-            contentAlignment = Alignment.Center
+        Box(modifier = Modifier.fillMaxSize()
+            .background(Color(0xFFFFFFFF)),
+            contentAlignment = Alignment.TopCenter
         ){
+
+
 
             Row(
                 modifier = Modifier
                     .padding(start = 15.dp)
                     .fillMaxWidth()
-                    .padding(bottom = 750.dp, end = 15.dp),
+                    .padding(top =  30.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(110.dp)
             ){
-
-                Box(
-                    modifier = Modifier
-                        .size(30.dp)
-                        .clip(CircleShape)
-                        .background(Color.Black.copy(alpha = 0.2f))
-                ){
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
                         contentDescription = null,
-                        tint = Color.White.copy(alpha = 0.6f),
+                        tint = Color.Black,
                         modifier = Modifier.padding(7.dp)
                     )
-                }
-                Spacer(modifier = Modifier.width(70.dp))
-
-                Icon(
-                    imageVector = Icons.Outlined.Settings,
-                    contentDescription = null,
-                    tint = Color.White.copy(alpha = 0.6f),
-                    modifier = Modifier.padding(7.dp)
-                )
-
             }
 
         Column(
-            modifier = Modifier,
+            modifier = Modifier.padding(top = 150.dp),
             verticalArrangement = Arrangement.spacedBy(15.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-
-            Text(
-                text = "Where should we begin?",
-                fontSize = 20.sp,
-                color = Color.White,
-                fontFamily =jonefont,
-                fontWeight = FontWeight.Medium
-            )
 
             Card(
                 modifier = Modifier
@@ -110,7 +90,8 @@ fun AIsearch(modifier: Modifier = Modifier) {
                     .height(50.dp)
                     .clip(RoundedCornerShape(30.dp))
                     .align(Alignment.CenterHorizontally),
-                colors = CardDefaults.cardColors(containerColor = Color(0xFF454545)),
+                colors = CardDefaults.cardColors(containerColor = Color(0xFFE3E5FC)),
+                elevation = CardDefaults.cardElevation(3.dp)
             ) {
 
                 Row(
@@ -124,14 +105,15 @@ fun AIsearch(modifier: Modifier = Modifier) {
                     Icon(
                         imageVector = Icons.Default.Add,
                         contentDescription = null,
-                        tint = Color.White.copy(alpha = 0.8f)
+                        tint = Color(0xFF3B3B3B),
                         )
 
                     Text(
                         text = "Ask anything about food",
-                        color = Color.White.copy(alpha = 0.5f),
+                        color = Color.Black.copy(alpha = 0.5f),
                         fontFamily = jonefont,
-                        fontSize = 15.sp
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Medium
                     )
 
                     Spacer(modifier = Modifier.width(45.dp))
@@ -139,19 +121,19 @@ fun AIsearch(modifier: Modifier = Modifier) {
                     Icon(
                         imageVector = Icons.Outlined.MicNone,
                         contentDescription = null,
-                        tint = Color.White.copy(alpha = 0.8f),
+                        tint = Color(0xFF3B3B3B),
                     )
 
                     Box(
                         modifier = Modifier
                             .size(30.dp)
                             .clip(CircleShape)
-                            .background(Color.Black.copy(alpha = 0.2f))
+                            .background(Color.White)
                     ){
                         Icon(
                             imageVector = Icons.Outlined.RecordVoiceOver,
                             contentDescription = null,
-                            tint = Color.White.copy(alpha = 0.6f),
+                            tint = Color(0xFF3B3B3B),
                             modifier = Modifier.padding(7.dp)
                         )
                     }
@@ -168,7 +150,7 @@ fun AIsearch(modifier: Modifier = Modifier) {
                 Icon(
                     imageVector = Icons.Default.NewLabel,
                     contentDescription = null,
-                    tint = Color.White.copy(alpha = 0.5f),
+                    tint = Color(0xFF3B3B3B),
                 )
 
                 Spacer(modifier = Modifier.width(20.dp))
@@ -176,7 +158,7 @@ fun AIsearch(modifier: Modifier = Modifier) {
                 Icon(
                     imageVector = Icons.Outlined.SavedSearch,
                     contentDescription = null,
-                    tint = Color.White.copy(alpha = 0.5f),
+                    tint = Color(0xFF3B3B3B),
                 )
 
                 Spacer(modifier = Modifier.width(20.dp))
@@ -184,7 +166,7 @@ fun AIsearch(modifier: Modifier = Modifier) {
                 Icon(
                     imageVector = Icons.Default.PhotoLibrary,
                     contentDescription = null,
-                    tint = Color.White.copy(alpha = 0.5f),
+                    tint = Color(0xFF3B3B3B),
                 )
 
             }

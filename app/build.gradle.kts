@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.ui)
     implementation(libs.androidx.foundation)
     implementation(libs.foundation)
+    implementation(libs.androidx.compose.ui.ui)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -65,6 +66,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-text-google-fonts:1.6.0")
     implementation("androidx.compose.material:material:1.6.1")
     implementation("io.coil-kt:coil-compose:2.4.0")
+    implementation("com.google.accompanist:accompanist-flowlayout:0.30.1")
 
 
 

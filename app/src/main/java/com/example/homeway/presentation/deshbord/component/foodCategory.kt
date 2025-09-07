@@ -2,6 +2,7 @@ package com.example.homeway.presentation.deshbord.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -18,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -29,69 +31,42 @@ import com.example.homeway.R
 
 
 @Composable
-fun MY_foodCategory(img: Int, title: String, Discription : String) {
+fun MY_foodCategory(img: Int, title: String) {
 
-    val jonefont = FontFamily(
-        Font(R.font.lato_regular, FontWeight.Normal)
-    )
-
-    Card (
-        modifier = Modifier
-            .width(300.dp)
-            .height(60.dp)
-            .clip(RoundedCornerShape(10.dp )),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
-        elevation = CardDefaults.cardElevation(10.dp)
-    ){
-        Row (
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween){
-
-            Image(
-                painter = painterResource(id = img),
-                contentDescription = null,
-                modifier = Modifier.clip(RoundedCornerShape(10.dp)))
+      Column (
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+            Box(
+                modifier = Modifier
+                    .height(50.dp)
+                    .width(50.dp)
+                    .clip(RoundedCornerShape(60.dp))
+            ) {
+                Image(
+                    painter = painterResource(id = img),
+                    contentDescription = null,
+                    contentScale = ContentScale.FillBounds
+                )
+            }
 
             Spacer(modifier = Modifier.width(5.dp))
 
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.Start
-
-            ) {
-                    Text(
-                        text = title,
-                        fontFamily = jonefont,
-                        fontSize = 19.sp,
-                        color = Color.Black.copy(alpha = 0.80f)
-                    )
-
-                Spacer(modifier = Modifier.height(4.dp))
-
-                    Text(
-                        text = Discription,
-                        fontSize = 12.sp,
-                        color = Color.Black.copy(alpha = 0.60f),
-                        fontFamily = jonefont
-                    )
-            }
-
+            Text(
+                text = title,
+                fontFamily = FontFamily.SansSerif,
+                fontWeight = FontWeight.Normal,
+                fontSize = 12.sp,
+                color = Color.Black.copy(alpha = 0.6f)
+            )
         }
-
-    }
-    
-}
-
+     }
 
 @Preview
 @Composable
 private fun oko() {
     MY_foodCategory(
         img = R.drawable.chole_bhature,
-        title = "Biryani",
-        Discription = "Chole Bhature is a famous North Indian dish" +
-            " consisting of spicy.")
+        title = "Biryani"
+    )
 }

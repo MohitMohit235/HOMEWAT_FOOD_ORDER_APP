@@ -49,14 +49,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.homeway.presentation.deshbord.component.AIsearch
-import com.example.homeway.presentation.deshbord.component.BlackFilterScreen
 import com.example.homeway.presentation.deshbord.component.CallmainScreen
-import com.example.homeway.presentation.deshbord.component.CartScreen
-import com.example.homeway.presentation.deshbord.component.FoodScreen
-import com.example.homeway.presentation.deshbord.component.SEE_ALL
-import com.example.homeway.presentation.deshbord.component.checkout
-import java.nio.file.WatchEvent
+
+
 
 
 class MainActivity : ComponentActivity() {
@@ -78,19 +73,19 @@ class MainActivity : ComponentActivity() {
 
          //BlackFilterScreen()
 
-      //CallmainScreen()
+      CallmainScreen()
 
       //   CartScreen()
 
-       //  SEE_ALL()
+
 
        //  checkout()
 
       //  FourColumnsFoodCategory()
 
-         FoodScreen(categories = categories,
-             selectedTabIndex = selectedTab,
-             onTabSelected = { selectedTab = it }, time = "30-60 min 3km")
+//         FoodScreen(categories = categories,
+//             selectedTabIndex = selectedTab,
+//             onTabSelected = { selectedTab = it }, time = "30-60 min 3km")
 
       }
     }
