@@ -7,6 +7,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -27,7 +28,6 @@ import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Place
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.TabRowDefaults
@@ -62,9 +62,7 @@ import com.example.homeway.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun topbar(categories: List<String>,
-           selectedTabIndex: Int,
-           onTabSelected: (Int) -> Unit){
+fun topbar(){
     val marcellusFont =FontFamily(
         Font(R.font.marcellus_regular, FontWeight.Normal)
     )
@@ -76,7 +74,6 @@ fun topbar(categories: List<String>,
 
     Box(modifier = Modifier
         .fillMaxWidth()
-        .height(134.dp)
         .background(Color(0xFFFFFFFF))
         .drawBehind {
             val shadowHeight = 2.dp.toPx()
@@ -87,10 +84,10 @@ fun topbar(categories: List<String>,
             )
         }
     ) {
-        Column(modifier = Modifier.padding(3.dp)) {
             Row(
                 modifier = Modifier
-                    .padding(top = 40.dp)
+                    .padding(horizontal = 3.dp, vertical = 3.dp)
+                    .padding(top = 25.dp)
                     .fillMaxWidth()
                     .height(30.dp),
                 horizontalArrangement = Arrangement.Absolute.Left,
@@ -116,7 +113,9 @@ fun topbar(categories: List<String>,
                 Spacer(modifier = Modifier.width(4.dp))
                 VerticalDivider(
                     color = Color(0xFF6471FF),
-                    modifier = Modifier.height(15.dp).padding(vertical = 2.dp)
+                    modifier = Modifier
+                        .height(15.dp)
+                        .padding(vertical = 2.dp)
                 )
 
                 Text(
@@ -190,68 +189,6 @@ fun topbar(categories: List<String>,
                     )
                 }
             }
-        }
-        Box(modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 97.dp), contentAlignment = Alignment.Center) {
-            ScrollableTabRow(
-                selectedTabIndex = selectedTabIndex,
-                backgroundColor = Color.White,
-                edgePadding = 0.dp,
-                indicator = { tabPositions ->
-                    TabRowDefaults.Indicator(
-                        modifier = Modifier
-                            .tabIndicatorOffset(tabPositions[selectedTabIndex])
-                            .height(3.dp),
-                        color = Color(0xFF6471FF),
-
-                        )
-                },
-                divider = {}
-            ) {
-                categories.forEachIndexed { index, category ->
-                    Tab(
-                        selected = selectedTabIndex == index,
-                        onClick = { onTabSelected(index) },
-                        selectedContentColor = Color.Black,
-                        unselectedContentColor = Color.Black.copy(alpha = 0.20f)
-                    ) {
-                        Row(
-                            horizontalArrangement = Arrangement.Center,
-                            verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
-                        ) {
-                            Text(
-                                text = category,
-                                fontSize = 15.sp,
-                                fontWeight = if (selectedTabIndex == index) FontWeight.Bold else FontWeight.Normal,
-                                fontFamily = marcellusFont,
-                                modifier = Modifier.padding(end = 20.dp)
-                            )
-
-                            if (category == "See all") {
-                                Icon(
-                                    imageVector = Icons.Default.KeyboardArrowDown,
-                                    contentDescription = "Arrow",
-                                    tint = Color(0xFF6471FF),
-                                    modifier = Modifier.size(18.dp)
-                                        .clickable{showBottomSheet=true}
-                                )
-                                if (showBottomSheet) {
-                                    ModalBottomSheet(
-                                        modifier = Modifier.fillMaxHeight(),
-                                        sheetState = sheetState,
-                                        onDismissRequest = { showBottomSheet = false }
-                                    ) {
-                                        FoodGridScreen()
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 }
 
@@ -261,11 +198,124 @@ private fun llll() {
 
     var selectedTab by remember { mutableStateOf(0) }
     val categories = listOf(
-        "ALL", "Pizza", "Burger", "Pasta", "Noodle",
-        "Curry", "Fish", "Dal fry", "Biryani", "See all",
+        CategoryItem("All", R.drawable.all),
+        CategoryItem("Pizza", R.drawable.pizzzza),
+        CategoryItem("Burger", R.drawable.burgerssss),
+        CategoryItem("Pasta", R.drawable.pastaaa),
+        CategoryItem("Curry", R.drawable.curryyyy),
+        CategoryItem("Dal", R.drawable.dals),
+        CategoryItem("Biryani", R.drawable.biryanidish),
+        CategoryItem("Noodle", R.drawable.noodlessss),
+        CategoryItem("Fish", R.drawable.fishh),
+        CategoryItem("See all",R.drawable.seeall),
+    )
 
-        )
-    topbar( categories = categories,
+    Foodhorizontal(
+        categories = categories,
         selectedTabIndex = selectedTab,
-        onTabSelected = { selectedTab = it })
+        onTabSelected = { index ->
+            selectedTab = index
+        }
+    )
+
+
+    
+}
+
+
+
+data class CategoryItem(
+    val name: String,
+    val imgs: Int
+)
+
+
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun Foodhorizontal(
+    categories: List<CategoryItem>,
+    selectedTabIndex: Int,
+    onTabSelected: (Int) -> Unit
+) {
+
+
+    val marcellusFont =FontFamily(
+        Font(R.font.mergeone_regular, FontWeight.Normal)
+    )
+    var showBottomSheet by remember { mutableStateOf(false) }
+    val sheetState = rememberModalBottomSheetState(
+        skipPartiallyExpanded = false,
+    )
+
+    Box(modifier = Modifier
+        .fillMaxWidth()
+        ) {
+        ScrollableTabRow(
+            selectedTabIndex = selectedTabIndex,
+            backgroundColor = Color.Transparent,
+            edgePadding = 0.dp,
+            indicator = { tabPositions ->
+                TabRowDefaults.Indicator(
+                    modifier = Modifier
+                        .tabIndicatorOffset(tabPositions[selectedTabIndex])
+                        .padding(end = 40.dp)
+                        .height(3.dp),
+                    color = Color(0xFF6471FF),
+
+                    )
+            },
+            divider = {}
+        ) {
+            categories.forEachIndexed { index, category ->
+                Column(
+                    horizontalAlignment = Alignment.Start,
+                    verticalArrangement = Arrangement.Center,
+                    modifier = Modifier
+                        .clickable { onTabSelected(index) }
+                ){
+                    Column (
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                    ) {
+                        Image(
+                            painter = painterResource(id = category.imgs),
+                            contentDescription = category.name,
+                            modifier = Modifier
+                                .size(50.dp)
+                        )
+
+                       Row (modifier = Modifier.padding(top = 5.dp)){
+                           Text(
+                               text = category.name,
+                               fontSize = 15.sp,
+                               fontFamily = marcellusFont,
+                               fontWeight = if (selectedTabIndex == index) FontWeight.Bold else FontWeight.Normal
+                           )
+
+                           if (category.name == "See all") {
+                               Icon(
+                                   imageVector = Icons.Default.KeyboardArrowDown,
+                                   contentDescription = "Arrow",
+                                   tint = Color(0xFF6471FF),
+                                   modifier = Modifier.size(16.dp)
+                                       .clickable { showBottomSheet = true }
+                               )
+                               if (showBottomSheet) {
+                                   ModalBottomSheet(
+                                       modifier = Modifier.fillMaxHeight(),
+                                       sheetState = sheetState,
+                                       onDismissRequest = { showBottomSheet = false }
+                                   ) {
+                                       FoodGridScreen()
+                                   }
+                               }
+                           }
+                       }
+                    }
+                }
+            }
+        }
+    }
 }

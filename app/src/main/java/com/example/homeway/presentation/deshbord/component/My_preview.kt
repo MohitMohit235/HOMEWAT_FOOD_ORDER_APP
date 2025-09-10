@@ -43,8 +43,8 @@ fun My_preview() {
     )
 
     Card(modifier = Modifier
-        .width(600.dp)
-        .height(180.dp),
+        .width(350.dp)
+        .height(150.dp),
         shape = RoundedCornerShape(12.dp),
     ){
 

@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -21,15 +20,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.OutlinedCard
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -39,19 +35,31 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.homeway.presentation.deshbord.component.CallmainScreen
-
-
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateColor
+import androidx.compose.animation.core.*
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.BasicText
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.*
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.delay
 
 
 class MainActivity : ComponentActivity() {
@@ -62,7 +70,9 @@ class MainActivity : ComponentActivity() {
 
 
 
-     Surface (modifier = Modifier.fillMaxSize()){
+
+
+            Surface (modifier = Modifier.fillMaxSize()){
          var selectedTab by remember { mutableStateOf(0) }
          val categories = listOf(
              "Overview", "Online","Review","Menu",
@@ -97,12 +107,15 @@ class MainActivity : ComponentActivity() {
 @Composable
  fun FoodOdringCard(DishName: String, Discription: String, Price: String, img: Int,veg: Int) {
 
+    var hasOverflow by remember { mutableStateOf(false) }
+    var expanded by remember { mutableStateOf(false) }
+
     val jonefont = FontFamily(
         Font(R.font.mergeone_regular, FontWeight.Normal)
     )
     Box(
         modifier = Modifier
-            .height(200.dp)
+            .height(180.dp)
             .width(380.dp)
             .background(Color.White)
     ) {
@@ -127,27 +140,9 @@ class MainActivity : ComponentActivity() {
             Column (
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(100.dp),
+                        .height(150.dp),
                 horizontalAlignment = Alignment.Start
             ){
-
-                Row (
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.End
-                ){
-                    Image(
-                        painter = painterResource(id = veg),
-                        contentDescription = "filter",
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier
-                            .size(30.dp)
-                            .padding(end = 10.dp)
-
-                    )
-
-                }
-
-
                 Row (
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
@@ -159,6 +154,16 @@ class MainActivity : ComponentActivity() {
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.Black.copy(alpha = 0.8f)
+                    )
+
+                    Image(
+                        painter = painterResource(id = veg),
+                        contentDescription = "filter",
+                        contentScale = ContentScale.Fit,
+                        modifier = Modifier
+                            .size(30.dp)
+                            .padding(end = 10.dp)
+
                     )
                 }
 
@@ -179,17 +184,80 @@ class MainActivity : ComponentActivity() {
 
                 Spacer(modifier = Modifier.height(5.dp))
 
-                Text(
-                    text =Discription,
-                    fontFamily =jonefont,
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black.copy(alpha = 0.5f),
-                    modifier = Modifier
-                        .padding(end = 5.dp)
-                )
+                Column(modifier = Modifier
+                    .width(170.dp)
+                    .height(100.dp)
+                    .padding(end = 5.dp)) {
+
+
+                    Text(
+                        text = Discription,
+                        fontFamily = jonefont,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Black.copy(alpha = 0.5f),
+                        modifier = Modifier
+                            .width(160.dp)
+                            .padding(end = 5.dp),
+                        maxLines = if (expanded) Int.MAX_VALUE else 3,
+                        overflow = TextOverflow.Ellipsis,
+                        onTextLayout = { result ->
+                            if (result.hasVisualOverflow) {
+                                hasOverflow= true
+                            }
+                        }
+                    )
+                    if (hasOverflow) {
+                        TextButton(onClick = { expanded = !expanded }
+                            ) {
+                            Text(
+                                if (expanded) "Less" else "More" ,
+                                color = Color.Black.copy(alpha = 0.8f),
+                                fontFamily = jonefont,
+                                fontSize = 12.sp
+                            )
+                        }
+                    }
+                }
             }
 
+        }
+
+        Box(
+            modifier = Modifier
+                .width(150.dp)
+                .padding(start = 23.dp)
+                .padding(top = 120.dp),
+            contentAlignment = Alignment.CenterStart
+        ) {
+
+            androidx.compose.material3.OutlinedButton(
+                modifier = Modifier
+                    .width(120.dp)
+                    .height(40.dp),
+                border = BorderStroke(width = 1.dp, color = Color(0xFF6471FF)),
+                onClick = {},
+                colors = androidx.compose.material3.ButtonDefaults.buttonColors(
+                    containerColor = Color.White
+                )
+            ) {
+
+                Icon(
+                    Icons.Default.Add,
+                    contentDescription = null,
+                    tint = Color(0xFF6471FF),
+                    modifier = Modifier.size(15.dp)
+
+                )
+
+                Text(
+                    text = "ADD",
+                    fontSize = 18.sp,
+                    fontFamily = FontFamily.SansSerif,
+                    fontWeight = FontWeight.Medium,
+                    color = Color(0xFF6471FF)
+                )
+            }
         }
     }
 }
@@ -205,11 +273,18 @@ class MainActivity : ComponentActivity() {
 @Preview
 @Composable
 private fun ppp() {
+
     FoodOdringCard(
-        veg = R.drawable.circal_veg,
+        veg = R.drawable.veg_icon,
         img = R.drawable.chole_bhature,
         DishName = "Chole Bhature",
         Price = "240",
-        Discription = "Famous chole bhature."
+        Discription = "Famous chole bhature oierhgwueu bgieir bwiefh wiehffiwf hiwewh iiwei aaj jwjo  weoi ."
     )
+
+
+
 }
+
+
+

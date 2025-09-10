@@ -1,6 +1,8 @@
 package com.example.homeway.presentation.deshbord.component
 
 
+
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -15,7 +17,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -26,16 +27,19 @@ import androidx.compose.material.icons.filled.PhotoLibrary
 import androidx.compose.material.icons.outlined.MicNone
 import androidx.compose.material.icons.outlined.RecordVoiceOver
 import androidx.compose.material.icons.outlined.SavedSearch
-import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CardElevation
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -53,20 +57,18 @@ fun AIsearch(modifier: Modifier = Modifier) {
         Font(R.font.lato_regular, FontWeight.Normal)
     )
 
-    Surface(modifier = Modifier.fillMaxSize(), color = Color(0xFF7B7B7B)) {
+    Surface(modifier = Modifier.fillMaxSize(), color = Color(0xFF454545)) {
 
-        Box(modifier = Modifier.fillMaxSize()
-            .background(Color(0xFFFFFFFF)),
+        Box(modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White),
             contentAlignment = Alignment.TopCenter
         ){
-
-
-
             Row(
                 modifier = Modifier
                     .padding(start = 15.dp)
                     .fillMaxWidth()
-                    .padding(top =  30.dp),
+                    .padding(top = 30.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(110.dp)
             ){
@@ -84,11 +86,16 @@ fun AIsearch(modifier: Modifier = Modifier) {
             horizontalAlignment = Alignment.CenterHorizontally
         ){
 
-            Card(
+            OutlinedCard(
+                border = BorderStroke(width = 2.dp,
+                    brush = Brush.horizontalGradient(
+                        listOf(
+                    Color.Cyan,
+                    Color.Magenta))),
+
                 modifier = Modifier
                     .width(350.dp)
                     .height(50.dp)
-                    .clip(RoundedCornerShape(30.dp))
                     .align(Alignment.CenterHorizontally),
                 colors = CardDefaults.cardColors(containerColor = Color(0xFFE3E5FC)),
                 elevation = CardDefaults.cardElevation(3.dp)
@@ -96,8 +103,8 @@ fun AIsearch(modifier: Modifier = Modifier) {
 
                 Row(
                     modifier = Modifier
-                    .fillMaxSize()
-                    .padding(start = 15.dp),
+                        .fillMaxSize()
+                        .padding(start = 15.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(10.dp)
                 ){
@@ -170,14 +177,8 @@ fun AIsearch(modifier: Modifier = Modifier) {
                 )
 
             }
-
-
         }
       }
-
-
-
     }
 }
-
 

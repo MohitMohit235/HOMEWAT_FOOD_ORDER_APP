@@ -54,10 +54,7 @@ import com.example.homeway.R
             ) {
 
 
-                topbar(
-                    categories = categories,
-                    selectedTabIndex = selectedTab,
-                    onTabSelected = { selectedTab = it })
+                topbar()
 
                 Column(
                     modifier = Modifier

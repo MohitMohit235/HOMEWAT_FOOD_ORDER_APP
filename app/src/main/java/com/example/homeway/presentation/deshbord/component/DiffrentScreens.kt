@@ -53,9 +53,7 @@ fun Pizzascreen(){
         ) {
 
             item {
-                topbar( categories = categories,
-                    selectedTabIndex = selectedTab,
-                    onTabSelected = { selectedTab = it })
+                topbar()
                 Spacer(modifier = Modifier.height(20.dp))
             }
             stickyHeader {
@@ -193,9 +191,7 @@ fun Bugerscreen(){
     ) {
 
         item {
-            topbar( categories = categories,
-                selectedTabIndex = selectedTab,
-                onTabSelected = { selectedTab = it })
+            topbar()
 
             Spacer(modifier = Modifier.height(20.dp))
         }
@@ -338,9 +334,7 @@ fun Pastascreen(){
     ) {
 
         item {
-            topbar( categories = categories,
-                selectedTabIndex = selectedTab,
-                onTabSelected = { selectedTab = it })
+            topbar()
 
             Spacer(modifier = Modifier.height(20.dp))
         }
@@ -490,9 +484,7 @@ fun Noodlescreen(){
     ) {
 
         item {
-            topbar( categories = categories,
-                selectedTabIndex = selectedTab,
-                onTabSelected = { selectedTab = it })
+            topbar()
 
             Spacer(modifier = Modifier.height(20.dp))
         }
@@ -636,9 +628,7 @@ fun Curryscreen(){
     ) {
 
         item {
-            topbar( categories = categories,
-                selectedTabIndex = selectedTab,
-                onTabSelected = { selectedTab = it })
+            topbar()
 
             Spacer(modifier = Modifier.height(20.dp))
         }
@@ -787,9 +777,7 @@ fun Fishscreen(){
     ) {
 
         item {
-            topbar( categories = categories,
-                selectedTabIndex = selectedTab,
-                onTabSelected = { selectedTab = it })
+            topbar()
 
             Spacer(modifier = Modifier.height(20.dp))
         }
@@ -933,9 +921,7 @@ fun Dalsscreen(){
     ) {
 
         item {
-            topbar( categories = categories,
-                selectedTabIndex = selectedTab,
-                onTabSelected = { selectedTab = it })
+            topbar()
 
             Spacer(modifier = Modifier.height(20.dp))
         }
@@ -1077,9 +1063,7 @@ fun Biryaniscreen(){
     ) {
 
         item {
-            topbar( categories = categories,
-                selectedTabIndex = selectedTab,
-                onTabSelected = { selectedTab = it })
+            topbar()
 
             Spacer(modifier = Modifier.height(20.dp))
         }

@@ -1,5 +1,6 @@
 package com.example.homeway.presentation.deshbord.component
 
+import android.graphics.pdf.content.PdfPageGotoLinkContent
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -12,45 +13,42 @@ import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material3.*
+import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ScrollableTabRow
-import androidx.compose.material.Surface
-import androidx.compose.material.Tab
-import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
+import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FilterList
-import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.filled.KeyboardArrowRight
-import androidx.compose.material.icons.filled.Place
+import androidx.compose.material.icons.outlined.BookmarkBorder
+import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.LocalOffer
 import androidx.compose.material.icons.outlined.MicNone
 import androidx.compose.material.icons.outlined.Search
+import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material.icons.outlined.Timelapse
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.RadioButtonDefaults
-import androidx.compose.material3.SmallFloatingActionButton
-import androidx.compose.material3.Switch
-import androidx.compose.material3.SwitchDefaults
-import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -58,9 +56,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -79,7 +74,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.rememberNavController
 import com.example.homeway.R
+import com.google.android.datatransport.runtime.Destination
+
+
 
 
 @Composable
@@ -196,7 +195,7 @@ fun ImageRadioList(
     }
 }
 
-@Preview
+//@Preview
 @Composable
 fun MORE_EXPLORE(){
 
@@ -204,12 +203,12 @@ fun MORE_EXPLORE(){
         modifier = Modifier
             .height(125.dp)
             .fillMaxWidth()
+           // .background(Color.White)
 
     ){
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(start = 5.dp)
         ){
             Text(
                 text = "EXPLORE MORE",
@@ -227,8 +226,8 @@ fun MORE_EXPLORE(){
                 modifier = Modifier
                     .horizontalScroll(rememberScrollState())
                     .width(IntrinsicSize.Min)
-                    .height(130.dp)
-                    .padding(start = 8.dp, end = 8.dp),
+                    .height(100.dp)
+                    .padding(start = 5.dp, end = 8.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(15.dp)
             ) {
@@ -249,9 +248,10 @@ fun MORE_EXPLORE(){
 fun MoreCard(imag : Int, Text : String) {
     Card(
         modifier = Modifier
-            .width(70.dp)
+            .width(60.dp)
             .height(70.dp)
-            .shadow(1.dp, shape = RoundedCornerShape(8.dp), clip = false),
+            .border(BorderStroke(width = 1.dp, color = Color.Gray.copy(alpha = 0.4f)), shape = RoundedCornerShape(5.dp))
+           .shadow(2.dp, shape = RoundedCornerShape(5.dp), clip = true),
         colors = CardDefaults.cardColors(Color.White),
         shape = RoundedCornerShape(5.dp)
     ){
@@ -266,8 +266,8 @@ fun MoreCard(imag : Int, Text : String) {
         Text(
             text =Text,
             fontFamily = FontFamily.SansSerif,
-            fontSize = 10.sp,
-            fontWeight = FontWeight.Normal,
+            fontSize = 8.sp,
+            fontWeight = FontWeight.Medium,
             letterSpacing = 1.sp,
             color = Color.Black.copy(alpha = 0.6f),
             modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 5.dp)
@@ -340,7 +340,7 @@ fun NormalSearchBar() {
 
 
 
-@Preview
+//@Preview
 @Composable
 fun NormalFilterSection() {
     val filters = listOf(
@@ -474,3 +474,53 @@ fun NOrmalFilterCard(
 //                }
 //            }
 //
+
+
+//@Preview
+@Composable
+fun AnimatedBottomNavDemo() {
+    var selectedItem by remember { mutableStateOf(0) }
+    var currentTheme by remember { mutableStateOf(ThemeType.Light) }
+
+    val items = listOf(
+        NavItem("Home", Icons.Outlined.Home),
+        NavItem("Favorites", Icons.Outlined.BookmarkBorder),
+        NavItem("Profile", Icons.Outlined.ShoppingCart)
+    )
+
+
+
+    Scaffold(
+        bottomBar = {
+            NavigationBar(
+                containerColor = NavigationBarDefaults.containerColor,
+                tonalElevation = 8.dp
+            ) {
+                items.forEachIndexed { index, item ->
+                    NavigationBarItem(
+                        icon = { Icon(item.icon, contentDescription = item.label) },
+                        selected = selectedItem == index,
+                        onClick = { selectedItem = index },
+                        colors = NavigationBarItemDefaults.colors(
+                            selectedIconColor = Color(0xFF6471FF),
+                            indicatorColor = Color(0xFFCBCFFF),
+                            unselectedIconColor = Color.Black.copy(alpha = 0.5f)
+                        )
+                    )
+                }
+            }
+        }
+    ) { innerPadding ->
+
+        when (selectedItem) {
+            0 -> Text("Home Screen", modifier = Modifier.padding(innerPadding))
+            1 -> Text("Favorites Screen", modifier = Modifier.padding(innerPadding))
+            2 -> Text("Profile Screen", modifier = Modifier.padding(innerPadding))
+        }
+
+    }
+}
+
+enum class ThemeType { Light, Dark, Green }
+
+data class NavItem(val label: String, val icon: ImageVector)

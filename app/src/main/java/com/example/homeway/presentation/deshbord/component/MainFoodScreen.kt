@@ -323,7 +323,7 @@ fun FoodScreen(categories: List<String>,
                         FoodOdringCard(
                             img = R.drawable.chole_bhature,
                             DishName = "Chole Bhature",
-                            Discription = "when this is set, it will force the emu to use the",
+                            Discription = "when this is set, it skdksfk oodfjn osdn fnds sidfiasnd sid nfsaodn sdnfoas nfsad will force the emu to use the",
                             Price = "210",
                             veg = R.drawable.veg_icon
                         )
@@ -405,7 +405,7 @@ fun FoodScreen(categories: List<String>,
                             DishName = "Rasgulla",
                             Discription = "when this is set, it will force the emu to use the",
                             Price = "130",
-                            veg = R.drawable.desserts
+                            veg = R.drawable.icondess
                         )
 
                     }

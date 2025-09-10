@@ -1,9 +1,13 @@
 package com.example.homeway.presentation.deshbord.component
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -52,7 +56,13 @@ import androidx.compose.ui.draw.shadow
 @Preview()
 @Composable
 fun FilterSectionPreview() {
-    FilterSection()
+    Box(
+        modifier = Modifier
+
+            .background(Color.White)
+    ) {
+        FilterSection()
+    }
 }
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -60,9 +70,9 @@ fun FilterSectionPreview() {
 fun FilterSection() {
     val filters = listOf(
         Triple(Icons.Default.FilterList, null, "Filters"),
-        Triple(Icons.Outlined.LocalOffer, null, "Offers"),
-        Triple(Icons.Outlined.Timelapse, null, "Schedule"),
         Triple(null, R.drawable.recommended22, "Recommended"),
+        Triple(Icons.Outlined.Timelapse, null, "Schedule"),
+        Triple(Icons.Outlined.LocalOffer, null, "Offers"),
         Triple(null, R.drawable.desserts, "Dessert"),
         Triple(null, R.drawable.veg_icon, "Veg"),
         Triple(null, R.drawable.nonveg_icon, "Non-veg"),
@@ -74,10 +84,9 @@ fun FilterSection() {
 
     LazyRow(
         modifier = Modifier
-            .fillMaxWidth()
-            .height(50.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 10.dp)
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
+        contentPadding = PaddingValues(horizontal = 5.dp, vertical = 5.dp)
     ) {
         items(filters.size) { index ->
             val (icon, imageRes, text) = filters[index]
@@ -94,15 +103,14 @@ fun FilterCard(
 ) {
     Card(
         modifier = Modifier
-            .wrapContentWidth()
-            .height(30.dp)
-            .shadow(1.dp, RoundedCornerShape(8.dp), clip = false),
+            .border(BorderStroke(width = 1.dp, color = Color.Gray.copy(alpha = 0.4f)), shape = RoundedCornerShape(8.dp))
+            .shadow(2.dp, RoundedCornerShape(8.dp), clip = false),
         colors = CardDefaults.cardColors(containerColor = Color.White),
         shape = RoundedCornerShape(8.dp)
     ) {
         Row(
             modifier = Modifier
-                .padding(horizontal = 12.dp, vertical = 8.dp),
+                .padding(horizontal = 5.dp, vertical = 5.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
@@ -125,13 +133,14 @@ fun FilterCard(
                 }
             }
 
-            Spacer(modifier = Modifier.width(4.dp))
+            Spacer(modifier = Modifier.width(5.dp))
 
             Text(
                 text = text,
                 color = Color(0x99000000),
                 fontSize = 13.sp,
-                fontWeight = FontWeight.SemiBold
+                letterSpacing = 1.sp,
+                fontWeight = FontWeight.Normal
             )
         }
     }
