@@ -6,7 +6,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -19,21 +18,22 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.outlined.BookmarkBorder
 import androidx.compose.material.icons.outlined.Home
@@ -70,6 +70,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -77,8 +78,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
 import com.example.homeway.R
 import com.google.android.datatransport.runtime.Destination
-
-
+import java.util.Locale.filter
 
 
 @Composable
@@ -195,7 +195,7 @@ fun ImageRadioList(
     }
 }
 
-//@Preview
+@Preview
 @Composable
 fun MORE_EXPLORE(){
 
@@ -203,7 +203,7 @@ fun MORE_EXPLORE(){
         modifier = Modifier
             .height(125.dp)
             .fillMaxWidth()
-           // .background(Color.White)
+          .background(Color.White)
 
     ){
         Column(
@@ -232,8 +232,8 @@ fun MORE_EXPLORE(){
                 horizontalArrangement = Arrangement.spacedBy(15.dp)
             ) {
 
-              MoreCard(imag = R.drawable.imgofffffer, Text = "Offers")
-                MoreCard(imag = R.drawable.train_img, Text = "Train")
+              MoreCard(imag = R.drawable.offersca, Text = "Offers")
+                MoreCard(imag = R.drawable.train_img, Text = "Food\non train")
                 MoreCard(imag = R.drawable.lunch, Text = "Lunch")
                 MoreCard(imag = R.drawable.tiffin, Text = "Tiffin Box")
                 MoreCard(imag = R.drawable.heath, Text = "Health")
@@ -246,33 +246,46 @@ fun MORE_EXPLORE(){
 
 @Composable
 fun MoreCard(imag : Int, Text : String) {
+
+    val jonefont = FontFamily(
+        Font(R.font.lexend_regular, FontWeight.Normal)
+    )
+
     Card(
         modifier = Modifier
             .width(60.dp)
             .height(70.dp)
-            .border(BorderStroke(width = 1.dp, color = Color.Gray.copy(alpha = 0.4f)), shape = RoundedCornerShape(5.dp))
-           .shadow(2.dp, shape = RoundedCornerShape(5.dp), clip = true),
+            .border(BorderStroke(width = 1.dp, color = Color.Gray.copy(alpha = 0.2f)), shape = RoundedCornerShape(10.dp)),
+        elevation = CardDefaults.cardElevation(10.dp),
         colors = CardDefaults.cardColors(Color.White),
-        shape = RoundedCornerShape(5.dp)
+        shape = RoundedCornerShape(10.dp)
     ){
-        Image(
-            painter = painterResource(id = imag),
-            contentDescription = null,
-            modifier = Modifier
-                .size(50.dp)
-                .align(Alignment.CenterHorizontally)
-                .padding(top = 10.dp)
-        )
-        Text(
-            text =Text,
-            fontFamily = FontFamily.SansSerif,
-            fontSize = 8.sp,
-            fontWeight = FontWeight.Medium,
-            letterSpacing = 1.sp,
-            color = Color.Black.copy(alpha = 0.6f),
-            modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 5.dp)
-        )
 
+        Column (
+            modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+
+            Image(
+                painter = painterResource(id = imag),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(45.dp)
+                    .align(Alignment.CenterHorizontally)
+                    .padding(top = 5.dp)
+            )
+            Text(
+                text = Text,
+                fontFamily = jonefont,
+                fontSize = 8.sp,
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Normal,
+                letterSpacing = 1.sp,
+                color = Color.Black,
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
+        }
     }
 }
 
@@ -337,36 +350,37 @@ fun NormalSearchBar() {
     }
 }
 
+data class NormalFilterItem(
+    val leadingIcon: ImageVector? = null,
+    val text: String,
+    val trailingIcon: ImageVector? = null
+)
 
 
 
-//@Preview
 @Composable
 fun NormalFilterSection() {
     val filters = listOf(
-        Triple(Icons.Default.FilterList, null, "Filters"),
-        Triple(Icons.Outlined.LocalOffer, null, "Offers"),
-        Triple(Icons.Outlined.Timelapse, null, "Schedule"),
-        Triple(null, R.drawable.recommended22, "Recommended"),
-//        Triple(null, R.drawable.desserts, "Dessert"),
-//        Triple(null, R.drawable.veg_icon, "Veg"),
-//        Triple(null, R.drawable.nonveg_icon, "Non-veg"),
-//        Triple(null, R.drawable.delivery_bike, "Delivery"),
-//        Triple(null, R.drawable.dinner, "Dinner"),
-//        Triple(null, R.drawable.night_botel, "Nightlife"),
-
-        )
+        FilterItem(leadingIcon = Icons.Default.FilterList, text = "Filters", trailingIcon = Icons.Default.ArrowDropDown),
+        FilterItem(text = "Schedule", trailingIcon = Icons.Default.ArrowDropDown),
+        FilterItem(text = "Under 30 mins"),
+        FilterItem(text = "Under₹150"),
+        FilterItem(text = "Rating 4.0+"),
+        FilterItem(text = "Pure Veg"),
+        FilterItem(text = "Dessert")
+    )
 
     LazyRow(
-        modifier = Modifier
-            .width(350.dp)
-            .height(50.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        contentPadding = PaddingValues(horizontal = 5.dp ,vertical = 10.dp)
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
+        contentPadding = PaddingValues(horizontal = 5.dp, vertical = 5.dp)
     ) {
-        items(filters.size) { index ->
-            val (icon, imageRes, text) = filters[index]
-            FilterCard(icon = icon,imageRes = imageRes, text = text)
+        items(filters) { filter ->
+            FilterCard(
+                leadingIcon = filter.leadingIcon,
+                text = filter.text,
+                trailingIcon = filter.trailingIcon
+            )
         }
     }
 }

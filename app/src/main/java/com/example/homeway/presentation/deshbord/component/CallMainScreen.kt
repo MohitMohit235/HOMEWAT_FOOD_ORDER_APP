@@ -44,22 +44,10 @@ import kotlinx.coroutines.launch
 fun CallmainScreen() {
     Box(modifier = Modifier
         .fillMaxSize()
-        .background(Color(0xFFF5F8FF))) {
+        .background(Color(0xFFFFFFFF))) {
 
         val bookedFoods = remember { mutableStateListOf<FoodItem>() }
-        var selectedTab by remember { mutableStateOf(0) }
-        val categories = listOf(
-            CategoryItem("All", R.drawable.all),
-            CategoryItem("Pizza", R.drawable.pizzzza),
-            CategoryItem("Burger", R.drawable.burgerssss),
-            CategoryItem("Pasta", R.drawable.pastaaa),
-            CategoryItem("Curry", R.drawable.curryyyy),
-            CategoryItem("Dal", R.drawable.dals),
-            CategoryItem("Biryani", R.drawable.biryanidish),
-            CategoryItem("Noodle", R.drawable.noodlessss),
-            CategoryItem("Fish", R.drawable.fishh),
-            CategoryItem("See all", R.drawable.heath),
-        )
+
 
         val listState = rememberLazyListState()
         val coroutineScope = rememberCoroutineScope()
@@ -89,31 +77,20 @@ fun CallmainScreen() {
             }
         }
 
-                item {
-                    Foodhorizontal(
-                        categories = categories,
-                        selectedTabIndex = selectedTab,
-                        onTabSelected = { index ->
-                            selectedTab = index
-                        }
-                    )
-
-                }
-
             item() {
                 Spacer(modifier = Modifier.height(10.dp))
                 Column (
                     modifier = Modifier.padding(horizontal = 10.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ){
-                    Spacer(modifier = Modifier.height(16.dp))
-                    My_preview()
+
                     Spacer(modifier = Modifier.height(10.dp))
                     FilterSection()
                     Spacer(modifier = Modifier.height(10.dp))
                     MORE_EXPLORE()
-                    Spacer(modifier = Modifier.height(15.dp))
-
+                    Spacer(modifier = Modifier.height(16.dp))
+                    My_preview()
+                    Spacer(modifier = Modifier.height(16.dp))
                     Text(
                         text = "360 RESTAURANTS TO YOU",
                         color = Color.Black.copy(alpha = 0.6f),
@@ -122,7 +99,7 @@ fun CallmainScreen() {
                         fontFamily = FontFamily.SansSerif,
                         letterSpacing = 2.sp,
                         modifier = Modifier
-                            .padding(top = 6.dp)
+                            .align(Alignment.Start)
                     )
                     Spacer(modifier = Modifier.height(5.dp))
 

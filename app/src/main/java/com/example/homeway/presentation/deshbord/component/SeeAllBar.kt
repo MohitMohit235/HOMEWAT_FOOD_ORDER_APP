@@ -28,7 +28,7 @@ import com.example.homeway.R
     val foodList = listOf(
         FoodItem(R.drawable.penne_pasta, "Penne Pasta"),
         FoodItem(R.drawable.burger_img, "Cheese Burger"),
-        FoodItem(R.drawable.pizza_img, "Pizza"),
+        FoodItem(R.drawable.pastaaa, "Pizza"),
         FoodItem(R.drawable.img_1, "Veg Pasta"),
         FoodItem(R.drawable.img7, "Chicken Wings"),
         FoodItem(R.drawable.penne_pasta, "Penne Pasta"),
@@ -81,9 +81,9 @@ import com.example.homeway.R
             columns = GridCells.Fixed(4),
             modifier = Modifier
                 .fillMaxSize()
-                .padding(10.dp),
+                .padding(5.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             items(foodList) { food ->
                 MY_foodCategory(img = food.img, title = food.title)

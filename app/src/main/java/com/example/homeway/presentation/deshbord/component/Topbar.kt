@@ -207,7 +207,7 @@ private fun llll() {
         CategoryItem("Biryani", R.drawable.biryanidish),
         CategoryItem("Noodle", R.drawable.noodlessss),
         CategoryItem("Fish", R.drawable.fishh),
-        CategoryItem("See all",R.drawable.seeall),
+        CategoryItem("See all",R.drawable.seeallfood),
     )
 
     Foodhorizontal(
@@ -241,7 +241,7 @@ fun Foodhorizontal(
 
 
     val marcellusFont =FontFamily(
-        Font(R.font.mergeone_regular, FontWeight.Normal)
+        Font(R.font.lexend_regular, FontWeight.Normal)
     )
     var showBottomSheet by remember { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState(
@@ -259,7 +259,7 @@ fun Foodhorizontal(
                 TabRowDefaults.Indicator(
                     modifier = Modifier
                         .tabIndicatorOffset(tabPositions[selectedTabIndex])
-                        .padding(end = 40.dp)
+                        .padding(start = 4.dp)
                         .height(3.dp),
                     color = Color(0xFF6471FF),
 
@@ -268,16 +268,15 @@ fun Foodhorizontal(
             divider = {}
         ) {
             categories.forEachIndexed { index, category ->
-                Column(
-                    horizontalAlignment = Alignment.Start,
-                    verticalArrangement = Arrangement.Center,
-                    modifier = Modifier
-                        .clickable { onTabSelected(index) }
+                Tab(
+                    selected = selectedTabIndex == index,
+                    onClick = { onTabSelected(index) },
+                    modifier = Modifier.padding(horizontal = 1.5.dp)
                 ){
                     Column (
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally,
-                        modifier = Modifier
+                        modifier = Modifier.padding(bottom = 10.dp)
                     ) {
                         Image(
                             painter = painterResource(id = category.imgs),
@@ -289,8 +288,9 @@ fun Foodhorizontal(
                        Row (modifier = Modifier.padding(top = 5.dp)){
                            Text(
                                text = category.name,
-                               fontSize = 15.sp,
+                               fontSize = 12.sp,
                                fontFamily = marcellusFont,
+                               color = if (selectedTabIndex == index) Color.Black else Color.Black.copy(alpha = 0.5f),
                                fontWeight = if (selectedTabIndex == index) FontWeight.Bold else FontWeight.Normal
                            )
 

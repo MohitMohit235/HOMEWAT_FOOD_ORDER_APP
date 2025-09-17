@@ -27,6 +27,7 @@ import androidx.compose.material.icons.filled.PhotoLibrary
 import androidx.compose.material.icons.outlined.MicNone
 import androidx.compose.material.icons.outlined.RecordVoiceOver
 import androidx.compose.material.icons.outlined.SavedSearch
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Surface
@@ -34,10 +35,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
@@ -47,6 +46,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.homeway.R
+
+
+
 
 @Preview
 @Composable
@@ -61,27 +63,48 @@ fun AIsearch(modifier: Modifier = Modifier) {
 
         Box(modifier = Modifier
             .fillMaxSize()
-            .background(Color.White),
+            .background(Color.Black.copy(alpha = 0.5f)),
             contentAlignment = Alignment.TopCenter
         ){
+
+         Box(
+            modifier= Modifier
+                .align(Alignment.Center)
+                .padding(top = 100.dp)
+         ){
+             Image(
+                 painter = painterResource(R.drawable.aibackground),
+                 contentDescription = "AI Background",
+                 contentScale = ContentScale.Crop,
+                 modifier = Modifier.size(600.dp)
+             )
+         }
             Row(
                 modifier = Modifier
-                    .padding(start = 15.dp)
+                    .padding(horizontal = 10.dp)
                     .fillMaxWidth()
                     .padding(top = 30.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(110.dp)
+                horizontalArrangement = Arrangement.SpaceBetween
             ){
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
                         contentDescription = null,
-                        tint = Color.Black,
+                        tint = Color.Gray.copy(alpha = 0.8f),
                         modifier = Modifier.padding(7.dp)
                     )
+
+                Icon(
+                    imageVector = Icons.Outlined.Settings,
+                    contentDescription = null,
+                    tint = Color.Gray.copy(alpha = 0.8f),
+                    modifier = Modifier.padding(7.dp)
+                )
+
             }
 
         Column(
-            modifier = Modifier.padding(top = 150.dp),
+            modifier = Modifier.padding(top = 120.dp),
             verticalArrangement = Arrangement.spacedBy(15.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ){
@@ -97,7 +120,7 @@ fun AIsearch(modifier: Modifier = Modifier) {
                     .width(350.dp)
                     .height(50.dp)
                     .align(Alignment.CenterHorizontally),
-                colors = CardDefaults.cardColors(containerColor = Color(0xFFE3E5FC)),
+                colors = CardDefaults.cardColors(containerColor = Color(0xFFFFF0F0)),
                 elevation = CardDefaults.cardElevation(3.dp)
             ) {
 
@@ -145,37 +168,6 @@ fun AIsearch(modifier: Modifier = Modifier) {
                         )
                     }
                 }
-            }
-
-            Row(
-                modifier = Modifier
-                    .height(50.dp)
-                    .width(350.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ){
-                Icon(
-                    imageVector = Icons.Default.NewLabel,
-                    contentDescription = null,
-                    tint = Color(0xFF3B3B3B),
-                )
-
-                Spacer(modifier = Modifier.width(20.dp))
-
-                Icon(
-                    imageVector = Icons.Outlined.SavedSearch,
-                    contentDescription = null,
-                    tint = Color(0xFF3B3B3B),
-                )
-
-                Spacer(modifier = Modifier.width(20.dp))
-                
-                Icon(
-                    imageVector = Icons.Default.PhotoLibrary,
-                    contentDescription = null,
-                    tint = Color(0xFF3B3B3B),
-                )
-
             }
         }
       }

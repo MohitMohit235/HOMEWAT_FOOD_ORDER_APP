@@ -42,7 +42,9 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.LocalDining
 import androidx.compose.material.icons.filled.LocalOffer
 import androidx.compose.material.icons.filled.Nightlife
@@ -52,6 +54,7 @@ import androidx.compose.material.icons.outlined.LocalOffer
 import androidx.compose.material.icons.outlined.Timelapse
 import androidx.compose.material.icons.outlined.Timer
 import androidx.compose.ui.draw.shadow
+import java.util.Locale.filter
 
 @Preview()
 @Composable
@@ -65,83 +68,96 @@ fun FilterSectionPreview() {
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
+data class FilterItem(
+    val leadingIcon: ImageVector? = null,
+    val text: String,
+    val trailingIcon: ImageVector? = null
+)
+
+
 @Composable
 fun FilterSection() {
     val filters = listOf(
-        Triple(Icons.Default.FilterList, null, "Filters"),
-        Triple(null, R.drawable.recommended22, "Recommended"),
-        Triple(Icons.Outlined.Timelapse, null, "Schedule"),
-        Triple(Icons.Outlined.LocalOffer, null, "Offers"),
-        Triple(null, R.drawable.desserts, "Dessert"),
-        Triple(null, R.drawable.veg_icon, "Veg"),
-        Triple(null, R.drawable.nonveg_icon, "Non-veg"),
-        Triple(null, R.drawable.delivery_bike, "Delivery"),
-        Triple(null, R.drawable.dinner, "Dinner"),
-        Triple(null, R.drawable.night_botel, "Nightlife"),
-
+        FilterItem(leadingIcon = Icons.Default.FilterList, text = "Filters", trailingIcon = Icons.Default.ArrowDropDown),
+        FilterItem(text = "Schedule", trailingIcon = Icons.Default.ArrowDropDown),
+        FilterItem(text = "Under 30 mins"),
+        FilterItem(text = "Under₹150"),
+        FilterItem(text = "Rating 4.0+"),
+        FilterItem(text = "Pure Veg"),
+        FilterItem(text = "Dessert")
     )
 
     LazyRow(
-        modifier = Modifier
-            .fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(10.dp),
         contentPadding = PaddingValues(horizontal = 5.dp, vertical = 5.dp)
     ) {
-        items(filters.size) { index ->
-            val (icon, imageRes, text) = filters[index]
-            FilterCard(icon = icon,imageRes = imageRes, text = text)
+        items(filters) { filter ->
+            FilterCard(
+                leadingIcon = filter.leadingIcon,
+                text = filter.text,
+                trailingIcon = filter.trailingIcon
+            )
         }
     }
 }
 
 @Composable
 fun FilterCard(
-    icon: ImageVector? = null,
-    imageRes: Int? = null,
-    text: String
+    leadingIcon: ImageVector? = null,
+    text: String,
+    trailingIcon: ImageVector? = null
 ) {
+    val jonefont = FontFamily(
+        Font(R.font.lexend_regular, FontWeight.Normal)
+    )
+
     Card(
         modifier = Modifier
-            .border(BorderStroke(width = 1.dp, color = Color.Gray.copy(alpha = 0.4f)), shape = RoundedCornerShape(8.dp))
-            .shadow(2.dp, RoundedCornerShape(8.dp), clip = false),
+            .border(
+                BorderStroke(width = 1.dp, color = Color.Gray.copy(alpha = 0.3f)),
+                shape = RoundedCornerShape(8.dp)
+            )
+            .shadow(1.dp, RoundedCornerShape(8.dp), clip = false),
         colors = CardDefaults.cardColors(containerColor = Color.White),
         shape = RoundedCornerShape(8.dp)
     ) {
         Row(
             modifier = Modifier
-                .padding(horizontal = 5.dp, vertical = 5.dp),
+                .padding(horizontal = 10.dp, vertical = 5.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
-            when {
-                icon != null -> {
-                    Icon(
-                        imageVector = icon,
-                        contentDescription = text,
-                        tint = Color(0x99000000),
-                        modifier = Modifier.size(20.dp)
-                    )
-                }
-                imageRes != null -> {
-                    Image(
-                        painter = painterResource(id = imageRes),
-                        contentDescription = text,
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier.size(20.dp)
-                    )
-                }
+
+            leadingIcon?.let {
+                Icon(
+                    imageVector = it,
+                    contentDescription = text,
+                    tint = Color(0xFF000000),
+                    modifier = Modifier.size(12.dp)
+                )
+                Spacer(modifier = Modifier.width(5.dp))
             }
 
-            Spacer(modifier = Modifier.width(5.dp))
 
             Text(
                 text = text,
-                color = Color(0x99000000),
-                fontSize = 13.sp,
-                letterSpacing = 1.sp,
+                color = Color.Black,
+                fontSize = 12.sp,
+                fontFamily = jonefont,
                 fontWeight = FontWeight.Normal
             )
+
+
+            trailingIcon?.let {
+                Spacer(modifier = Modifier.width(5.dp))
+                Icon(
+                    imageVector = it,
+                    contentDescription = text,
+                    tint = Color(0xFF000000),
+                    modifier = Modifier.size(16.dp)
+                )
+            }
         }
     }
 }

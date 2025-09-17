@@ -1,6 +1,7 @@
 package com.example.homeway.presentation.deshbord.component
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -29,7 +30,9 @@ import androidx.compose.material.icons.outlined.Percent
 import androidx.compose.material.icons.outlined.Timer
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardElevation
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Surface
@@ -43,6 +46,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -70,16 +74,18 @@ fun foodcard(img: Int,
     var isBookmarked by remember { mutableStateOf(false) }
 
     val marcellusFont = FontFamily(
-        Font(R.font.lato_regular, FontWeight.Normal)
+        Font(R.font.lexend_regular, FontWeight.Normal)
     )
 
 
 
-    Card(
+    OutlinedCard(
         modifier = Modifier
             .height(262.dp)
-            .width(360.dp),
-        colors = CardDefaults.cardColors(Color(0xFFEDEEFF))
+            .width(360.dp)
+        .shadow(elevation = 10.dp,shape = RoundedCornerShape(12.dp),clip = false),
+        colors = CardDefaults.cardColors(Color(0xFFEDEEFF)),
+        border = BorderStroke(width = 2.dp, color = Color.Gray.copy(alpha = 0.2f))
     ) {
 
         Column(
@@ -116,6 +122,7 @@ fun foodcard(img: Int,
                         Text(
                             text = "Penna Pasta • ₹360",
                             fontSize = 10.sp,
+                            fontFamily = marcellusFont,
                             fontWeight = FontWeight.Normal,
                             color = Color.White,
                             modifier = Modifier
@@ -157,9 +164,9 @@ fun foodcard(img: Int,
                             .align(Alignment.TopEnd)
                     ) {
                         Icon(
-                            imageVector = if (isBookmarked) Icons.Filled.Bookmark else Icons.Filled.BookmarkBorder,
+                            imageVector = if (isBookmarked) Icons.Filled.Bookmark else Icons.Outlined.BookmarkBorder,
                             contentDescription = "Bookmark",
-                            tint = if (isBookmarked) Color(0xFF6471FF) else Color.Gray
+                            tint = if (isBookmarked) Color(0xFFFFFFFF) else Color.Gray
                         )
                     }
                 }
@@ -168,7 +175,7 @@ fun foodcard(img: Int,
             Box(
                 modifier = Modifier
                     .width(380.dp)
-                    .padding(horizontal = 5.dp)
+                    .padding(horizontal = 10.dp)
 
 
             ) {
@@ -269,8 +276,11 @@ fun foodcard(img: Int,
 @Preview
     @Composable
     fun KokPreview() {
-        val bookedFoods = remember { mutableStateListOf<FoodItem>() }
-
+    val bookedFoods = remember { mutableStateListOf<FoodItem>() }
+   Box (
+        modifier = Modifier.fillMaxSize().background(Color.White),
+       contentAlignment = Alignment.Center
+    ){
         foodcard(
             img = R.drawable.penne_pasta,
             dishname = "7 Hill Restaurant",
@@ -281,3 +291,4 @@ fun foodcard(img: Int,
             onBookClick = { bookedFoods.add(it) }
         )
     }
+}

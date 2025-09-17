@@ -62,7 +62,7 @@ fun FilterPreview() {
 fun RadioButtonSingleSelection() {
 
     val jonefont =FontFamily(
-        Font(R.font.joan_regular, FontWeight.Normal))
+        Font(R.font.lexend_regular, FontWeight.Normal))
     val radioOptions = listOf("Popularity",
         "Rating:High to Low",
         "Cost:Low to High",
@@ -115,7 +115,8 @@ fun FILTER( text: String,
 
     var selectedOption by remember { mutableStateOf("Option 1") }
     val jonefont =FontFamily(
-        Font(R.font.joan_regular, FontWeight.Normal))
+        Font(R.font.lexend_regular, FontWeight.Normal))
+
     val filterOptions = listOf("Sort by", "Rating", "Cost for two", "More filter")
     var selectedFilter by remember { mutableStateOf("Sort by") }
 
@@ -153,12 +154,13 @@ fun FILTER( text: String,
                     fontWeight = FontWeight.Normal,
                     fontFamily =jonefont,
                     modifier = Modifier
-                    .padding(start = 28.dp))
+                    .padding(start = 25.dp))
 
-            Spacer(modifier = Modifier.width(3.dp))
+            Spacer(modifier = Modifier.width(5.dp))
 
                 Text(text = selectedFilter,
                     fontSize = 10.sp,
+                    fontFamily = jonefont,
                     color = Color.Gray,
                     modifier = Modifier
                         .padding(top = 5.dp)

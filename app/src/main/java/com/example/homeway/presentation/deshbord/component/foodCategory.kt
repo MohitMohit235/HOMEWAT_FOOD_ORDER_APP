@@ -33,7 +33,11 @@ import com.example.homeway.R
 @Composable
 fun MY_foodCategory(img: Int, title: String) {
 
+    val jonefont =FontFamily(
+        Font(R.font.lexend_regular, FontWeight.Normal))
+
       Column (
+          modifier = Modifier.width(100.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
@@ -46,7 +50,7 @@ fun MY_foodCategory(img: Int, title: String) {
                 Image(
                     painter = painterResource(id = img),
                     contentDescription = null,
-                    contentScale = ContentScale.FillBounds
+                    contentScale = ContentScale.Crop
                 )
             }
 
@@ -54,7 +58,7 @@ fun MY_foodCategory(img: Int, title: String) {
 
             Text(
                 text = title,
-                fontFamily = FontFamily.SansSerif,
+                fontFamily = jonefont,
                 fontWeight = FontWeight.Normal,
                 fontSize = 12.sp,
                 color = Color.Black.copy(alpha = 0.6f)
@@ -67,6 +71,6 @@ fun MY_foodCategory(img: Int, title: String) {
 private fun oko() {
     MY_foodCategory(
         img = R.drawable.chole_bhature,
-        title = "Biryani"
+        title = "Chicken Wings"
     )
 }

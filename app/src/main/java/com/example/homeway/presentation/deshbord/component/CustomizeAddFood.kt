@@ -16,6 +16,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Checkbox
+import androidx.compose.material.CheckboxDefaults
 import androidx.compose.material.Surface
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Text
@@ -43,7 +45,7 @@ import com.example.homeway.R
 fun CustomizeFoodScreen(image : Int, Dishname : String, Price: Int) {
 
     val cardfont = FontFamily(
-        Font(R.font.opensans_regular, FontWeight.Normal)
+        Font(R.font.mergeone_regular, FontWeight.Normal)
     )
 
     var checkbox by remember { mutableStateOf(false) }
@@ -89,6 +91,7 @@ fun CustomizeFoodScreen(image : Int, Dishname : String, Price: Int) {
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
                         fontFamily =cardfont,
+                        lineHeight = 10.sp,
                         color = Color.Black.copy(alpha = 0.6f)
                     )
 
@@ -103,7 +106,12 @@ fun CustomizeFoodScreen(image : Int, Dishname : String, Price: Int) {
 
                 Checkbox(
                     checked = checkbox,
-                    onCheckedChange = { checkbox = it }
+                    onCheckedChange = { checkbox = it },
+                    colors = CheckboxDefaults.colors(
+                        checkedColor = Color(0xFF6471FF),
+                        uncheckedColor = Color.Gray
+
+                    )
                 )
 
             }
@@ -121,7 +129,7 @@ fun CustomizeFoodScreen(image : Int, Dishname : String, Price: Int) {
 private fun cus() {
     CustomizeFoodScreen(
     image =R.drawable.jirarice,
-        Dishname = "jira rice",
+        Dishname = "Hing rice",
         Price = 140
     )
 }
