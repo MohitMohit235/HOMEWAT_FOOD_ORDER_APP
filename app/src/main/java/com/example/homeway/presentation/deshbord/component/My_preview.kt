@@ -53,90 +53,46 @@ fun My_preview() {
     )
 
     Card(modifier = Modifier
-        .width(320.dp)
-        .height(110.dp),
-        shape = RoundedCornerShape(12.dp),
+        .fillMaxWidth()
+        .height(174.dp)
+        .padding(5.dp),
+        shape = RoundedCornerShape(10.dp),
     ){
-        Box(modifier = Modifier
-            .weight(0.35f)
-            .background(
-                brush = Brush.horizontalGradient(
-                    colors = listOf(
-                        Color(0xFF819AFF),
-                        Color(0xFF819AFF),
-                        Color(0xFFFBDACD)
-                    )
-                )
-            )
-            .fillMaxHeight(),
-            contentAlignment = Alignment.CenterStart
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
         ) {
+            Image(
+                painter = painterResource(R.drawable.diwalibanner),
+                contentDescription = "offers_preview_screen_card",
+                contentScale = ContentScale.Crop)
+            Box (
+                modifier = Modifier
+                    .padding(end = 50.dp)
+                    .size(150.dp)
+                    .align(Alignment.TopCenter)
+
+
+            ){
+                Image(
+                    painter = painterResource(R.drawable.diwalilogo),
+                    contentDescription = "diwali_logo"
+                )
+            }
 
             Box (
                 modifier = Modifier
                     .align(Alignment.CenterEnd)
-                    .width(160.dp)
+
+
             ){
                 Image(
-                    painter = painterResource(R.drawable.previewmainimg),
-                    contentDescription = "preview Image",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.size(180.dp)
+                    painter = painterResource(R.drawable.fooditem),
+                    contentDescription = "diwali_logo",
+                    contentScale = ContentScale.Crop
                 )
             }
-
-            Box{
-                Column(
-                    modifier = Modifier,
-                    horizontalAlignment = Alignment.Start
-
-                ){
-                    Text(
-                        text = "FIRST ORDER",
-                        color = Color.Black,
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.ExtraBold,
-                        fontFamily = josefinSans,
-                        modifier = Modifier.padding(start = 8.dp)
-                    )
-
-
-                    Row(verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(4.dp)
-                    ) {
-                        Text(
-                            text = "40% OFF",
-                            color = Color.White,
-                            fontSize = 30.sp,
-                            fontWeight = FontWeight.Bold,
-                            fontFamily = josefinSans,
-                            modifier = Modifier.padding(start = 10.dp)
-                        )
-
-                    }
-
-                    Spacer(modifier = Modifier.height(5.dp))
-                    Box(modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(end = 225.dp, start = 30.dp)
-                        .background(Color(0xFFEF4949))
-                        .align(Alignment.Start)
-                    ) {
-
-                            Text(
-                                text = "Check out",
-                                fontSize = 11.sp,
-                                fontWeight = FontWeight.SemiBold,
-                                color = Color.White,
-                                fontFamily = josefinSans,
-                                modifier = Modifier.padding(  5.dp)
-                            )
-
-                    }
-                }
-            }
-
-      }
+        }
    }
 }
 

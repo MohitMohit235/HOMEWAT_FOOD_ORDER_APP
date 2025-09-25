@@ -656,7 +656,7 @@ private fun res(
 }
 
 
-
+@Preview
 @Composable
 private fun Similar() {
     val MergFont = FontFamily(

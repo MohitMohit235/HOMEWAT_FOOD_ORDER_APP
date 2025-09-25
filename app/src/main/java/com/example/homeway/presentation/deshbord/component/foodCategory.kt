@@ -1,5 +1,6 @@
 package com.example.homeway.presentation.deshbord.component
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -30,6 +31,7 @@ import androidx.compose.ui.unit.sp
 import com.example.homeway.R
 
 
+@SuppressLint("SuspiciousIndentation")
 @Composable
 fun MY_foodCategory(img: Int, title: String) {
 

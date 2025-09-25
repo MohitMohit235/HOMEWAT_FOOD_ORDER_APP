@@ -22,11 +22,8 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.NewLabel
-import androidx.compose.material.icons.filled.PhotoLibrary
 import androidx.compose.material.icons.outlined.MicNone
 import androidx.compose.material.icons.outlined.RecordVoiceOver
-import androidx.compose.material.icons.outlined.SavedSearch
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.OutlinedCard
@@ -67,18 +64,6 @@ fun AIsearch(modifier: Modifier = Modifier) {
             contentAlignment = Alignment.TopCenter
         ){
 
-         Box(
-            modifier= Modifier
-                .align(Alignment.Center)
-                .padding(top = 100.dp)
-         ){
-             Image(
-                 painter = painterResource(R.drawable.aibackground),
-                 contentDescription = "AI Background",
-                 contentScale = ContentScale.Crop,
-                 modifier = Modifier.size(600.dp)
-             )
-         }
             Row(
                 modifier = Modifier
                     .padding(horizontal = 10.dp)
@@ -93,14 +78,6 @@ fun AIsearch(modifier: Modifier = Modifier) {
                         tint = Color.Gray.copy(alpha = 0.8f),
                         modifier = Modifier.padding(7.dp)
                     )
-
-                Icon(
-                    imageVector = Icons.Outlined.Settings,
-                    contentDescription = null,
-                    tint = Color.Gray.copy(alpha = 0.8f),
-                    modifier = Modifier.padding(7.dp)
-                )
-
             }
 
         Column(
@@ -120,14 +97,13 @@ fun AIsearch(modifier: Modifier = Modifier) {
                     .width(350.dp)
                     .height(50.dp)
                     .align(Alignment.CenterHorizontally),
-                colors = CardDefaults.cardColors(containerColor = Color(0xFFFFF0F0)),
+                colors = CardDefaults.cardColors(containerColor = Color(0xEBFFFFFF)),
                 elevation = CardDefaults.cardElevation(3.dp)
             ) {
 
                 Row(
                     modifier = Modifier
-                        .fillMaxSize()
-                        .padding(start = 15.dp),
+                        .padding(10.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(10.dp)
                 ){

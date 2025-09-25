@@ -72,8 +72,8 @@ fun CallmainScreen() {
                 ){
 
 
-                SearchBar( texts = listOf("Search", "Restaurants name", "Foods name", "According to your mind"),
-                    intervalMs = 1500)
+                SearchBar( texts = listOf("Search Restaurants name and Foods name"),
+                    intervalMs = 2000)
             }
         }
 
@@ -87,9 +87,9 @@ fun CallmainScreen() {
                     Spacer(modifier = Modifier.height(10.dp))
                     FilterSection()
                     Spacer(modifier = Modifier.height(10.dp))
-                    MORE_EXPLORE()
-                    Spacer(modifier = Modifier.height(16.dp))
                     My_preview()
+                    Spacer(modifier = Modifier.height(16.dp))
+                    MORE_EXPLORE()
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
                         text = "360 RESTAURANTS TO YOU",

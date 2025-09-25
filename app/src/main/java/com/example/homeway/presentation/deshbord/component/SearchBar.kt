@@ -59,8 +59,8 @@ import kotlinx.coroutines.delay
 @SuppressLint("SuspiciousIndentation")
 @Composable
 fun SearchBar(texts: List<String>,
-              intervalMs: Long = 4000L,
-              typingSpeed: Long = 10L,
+              intervalMs: Long = 8000L,
+              typingSpeed: Long = 20L,
               style: TextStyle = TextStyle.Default
 
     ){
@@ -217,13 +217,7 @@ Column (
 
     }
 
-    Foodhorizontal(
-        categories = categories,
-        selectedTabIndex = selectedTab,
-        onTabSelected = { index ->
-            selectedTab = index
-        }
-    )
+
         }
     }
  }
@@ -232,7 +226,7 @@ Column (
 @Composable
 private fun text() {
     SearchBar( texts = listOf("Search", "Restaurants name", "Foods name", "According to your mind"),
-        intervalMs = 1500)
+        intervalMs = 2000)
 }
 
 
